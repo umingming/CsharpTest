@@ -27,7 +27,6 @@ public class Main {
 			> showMenu() 호출
 			> switch문 입력을 조건으로 기능 선택
 				> 파일 출력/요소 수정/요소 추가/주석 처리/요소 제거/다른 이름으로 저장
-				ysum
 	 */
 	public static void main(String[] args) {
 		try {
