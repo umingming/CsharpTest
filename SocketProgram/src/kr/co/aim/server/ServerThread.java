@@ -1,6 +1,5 @@
 package kr.co.aim.server;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -26,7 +25,8 @@ public class ServerThread implements Runnable {
 	private OutputStream out;
 	private Scanner receiver;
 	private PrintWriter sender;
-
+	private Calendar now;
+	
 	/*
 		생성자 정의
 		1. 필드의 client 변수를 매개 소켓으로 초기화
@@ -34,6 +34,7 @@ public class ServerThread implements Runnable {
 	 */
 	public ServerThread(Socket client) {
 		this.client = client;
+		this.now = Calendar.getInstance();
 		setClient();
 	}
 	
@@ -79,14 +80,13 @@ public class ServerThread implements Runnable {
 		try {
 			while(receiver.hasNext()) {
 				msg = receiver.nextLine();
-				String time = getTime();
-				String echo = String.format("%s: %s %s"
-										, name, msg, time);
-				System.out.printf("%s %s님이 메시지를 수신했습니다.%n%s%n",
-									time, name, msg);
+				System.out.printf("[메시지 수신] %s님이 메시지를 수신했습니다.%n ☞ %s%n"
+									, name, msg);
+				String echo = String.format("서버: %s [%tT]"
+											, msg, now);
 				sender.println(echo);
-				System.out.printf("%s %s님에게 메시지를 발신했습니다.%n%s%n",
-									getTime(), name, echo);
+				System.out.printf("[메시지 발신] %s님에게 메시지를 발신했습니다.%n ☞ %s%n"
+									, name, echo);
 				sender.flush();
 			}
 		} catch (Exception e) {
@@ -108,18 +108,8 @@ public class ServerThread implements Runnable {
 			client.close();
 			System.out.printf("[사용자 접속 종료] %s님이 종료합니다.%n", name);
 			
-		} catch (IOException e) {
-			System.out.println("[사용자 종료 실패] 알 수 없는 오류입니다.");
+		} catch (Exception e) {
+			System.out.println("[사용자 종료 실패]");
 		}
-	}
-	
-	/*
-		getTime; 현재 시각을 정해진 형식으로 리턴함.
-		1. SimpleDateFormat 객체 생성 후, 원하는 형식으로 생성자 호출함.
-		2. format 메소드를 사용해 이를 반환 //TODO
-	 */
-	private static String getTime() {
-		SimpleDateFormat format = new SimpleDateFormat("[HH:mm:ss]");
-        return format.format(new Date());
 	}
 }

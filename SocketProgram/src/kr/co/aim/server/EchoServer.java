@@ -20,14 +20,10 @@ public class EchoServer {
 	private Socket client;
 	
 	private Scanner scanner;
-	private Calendar now;
-	private Log log;
 	private int port;
 	
 	{
 		scanner = new Scanner(System.in);
-		now = Calendar.getInstance();
-		log = new Log();
 	}
 	
 	/*
@@ -55,24 +51,24 @@ public class EchoServer {
 	 */
 	private void setServer() {
 		try {
-			log.print("시스템 시작");
-			port = log.inputInt("Port 번호");
+			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
+			port = scanner.nextInt();
 			
 			if(port >= 0 && port < 65536) {
 				server = new ServerSocket(port);
-				log.print("서버 생성 성공");
 				System.out.printf("[서버 생성 성공] Port 번호는 %d입니다.%n"
 									, server.getLocalPort());
+				
 			} else {
 				new InputMismatchException();
 			}
 			
 		} catch (InputMismatchException e) {
-			System.out.println("[서버 생성 실패] 65536 보다 작은 양수를 입력하세요.");
+			System.out.println("[서버 접속 실패] 65536 보다 작은 양수를 입력하세요.");
 		} catch (SocketException e) {
-			System.out.printf("[서버 생성 실패] %d는 불가능한 Port입니다.", port);
+			System.out.printf("[서버 접속 실패] %d는 불가능한 Port입니다.", port);
 		} catch (Exception e) {
-			System.out.printf("[서버 생성 실패] 알 수 없는 오류입니다.");
+			System.out.printf("[서버 접속 실패]");
 		} 
 	}
 	
@@ -88,11 +84,9 @@ public class EchoServer {
 	private void run() {
 		try {
 			while(true) {
-				ExecutorService threadPool = Executors.newFixedThreadPool(3);
 				client = server.accept();
 				System.out.println("[사용자 접속 대기]");
 				ServerThread serverThread = new ServerThread(client);
-				threadPool.execute(serverThread);
 				Thread thread = new Thread(serverThread);
 				thread.start();
 			}

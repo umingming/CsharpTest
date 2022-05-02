@@ -22,11 +22,20 @@ public class Log {
 	}
 
 	/*
-		print; 현재 상황을 출력함.
+		getInfo; 현재 상황을 출력함.
 		1. 현재 시각과 info를 출력
 	 */
-	public void print(String info) {
-		System.out.printf("[%tF %tT] %s%n", now, now, info);
+	public void getInfo(String info) {
+		System.out.printf("[%tF %tT] [%s] ", now, now, info);
+	}
+	
+	/*
+		getInfo; 현재 상황을 출력함.
+		1. 현재 시각과 info를 출력
+	 */
+	public void getInfo(String info, String variable, String value) {
+		System.out.printf("[%tF %tT] [%s] %s은(는) %s입니다."
+							, now, now, info, variable, value);
 	}
 	
 	/*
