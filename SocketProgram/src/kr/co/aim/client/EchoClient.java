@@ -153,14 +153,7 @@ public class EchoClient {
 	 */
 	public static void main(String[] args) {
 		try {
-			System.gc(); 
-			long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 			new EchoClient();
-			
-			System.gc();
-			long after  = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-			long usedMemory = (before - after);
-			System.out.println("Used Memory : " + usedMemory);
 			
 		} catch (Exception e) {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
