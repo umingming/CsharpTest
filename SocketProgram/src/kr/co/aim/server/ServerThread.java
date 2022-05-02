@@ -80,12 +80,12 @@ public class ServerThread implements Runnable {
 			while(receiver.hasNext()) {
 				msg = receiver.nextLine();
 				System.out.printf("[메시지 수신] %s님이 메시지를 수신했습니다.%n ☞ %s%n"
-						, name, msg);
+									, name, msg);
 				String echo = String.format("서버: %s [%tT]"
-						, msg, now);
+									, msg, now);
 				sender.println(echo);
 				System.out.printf("[메시지 발신] %s님에게 메시지를 발신했습니다.%n ☞ %s%n"
-						, name, echo);
+									, name, echo);
 				sender.flush();
 			}
 			
