@@ -3,13 +3,8 @@ package kr.co.aim.server;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import kr.co.aim.Log;
 
 /*
 	에코 서버

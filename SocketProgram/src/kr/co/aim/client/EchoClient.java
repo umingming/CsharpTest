@@ -36,16 +36,16 @@ public class EchoClient {
 		2. if문 클라이언트가 null이 아닌지? 
 			> setClient 메소드
 			> communicate 메소드 호출
-		3. close 메소드 호출
+			> close 메소드 호출
 	 */
-	public EchoClient() {
+	public EchoClient() throws Exception {
 		accessServer();
 		
 		if(client != null) {
 			setClient();
 			communicate();
+			close();
 		}
-		close();
 	}
 
 	/*
@@ -62,20 +62,19 @@ public class EchoClient {
 	private void accessServer() {
 		try {
 			scanner = new Scanner(System.in);
-			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
-			port = scanner.nextInt();
-			scanner.nextLine();
-			
 			System.out.print("[시스템 시작] IP 주소를 입력하세요. \n ☞ ");
 			ip = scanner.nextLine();
 			
-			if(port > 0 && port < 65536) {
+			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
+			port = Integer.parseInt(scanner.nextLine());
+			
+			if(port >= 0 && port < 65536) {
 				client = new Socket(ip, port); 
 				System.out.print("[서버 접속 중] 사용자 이름을 입력해주세요. \n ☞ ");
 				name = scanner.nextLine();
 				
 			} else {
-				new InputMismatchException();
+				throw new InputMismatchException();
 			}
 			
 		} catch (InputMismatchException e) {
@@ -85,7 +84,7 @@ public class EchoClient {
 		} catch (UnknownHostException e) {
 			System.out.printf("[서버 접속 실패] %s는 불가능한 IP입니다.", ip);
 		} catch (IOException e) {
-			System.out.printf("[서버 접속 실패] 알 수 없는 오류입니다.");
+			System.out.println("[서버 접속 실패] 잘못된 입력입니다.");
 		} 
 	}
 	
@@ -94,20 +93,15 @@ public class EchoClient {
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
 		2. name을 println 메소드로 서버에 전송함.
 	 */
-	private void setClient() {
-		try {
-			out = client.getOutputStream();
-			sender = new PrintWriter(new OutputStreamWriter(out));
-	
-			in = client.getInputStream();
-			receiver = new Scanner(new InputStreamReader(in));
-			
-			sender.println(name);
-			System.out.printf("[서버 접속 성공] %s님 환영합니다.%n ☞ ", name);
-			
-		} catch (IOException e) {
-			System.out.println("[서버 접속 실패] 알 수 없는 오류입니다.");
-		}
+	private void setClient() throws Exception {
+		out = client.getOutputStream();
+		sender = new PrintWriter(new OutputStreamWriter(out));
+		
+		in = client.getInputStream();
+		receiver = new Scanner(new InputStreamReader(in));
+		
+		sender.println(name);
+		System.out.printf("[서버 접속 성공] %s님 환영합니다.%n ☞ ", name);
 	}
 
 	/*
@@ -134,18 +128,13 @@ public class EchoClient {
 		1. 스트림과 소켓을 역순으로 닫음.
 		2. 접속 종료 여부를 안내함.
 	 */
-	private void close() {
-		try {
-			sender.close();
-			out.close();
-			receiver.close();
-			in.close();
-			client.close();
-			System.out.println("[서버 접속 종료]");
-			
-		} catch (IOException e) {
-			System.out.println("[서버 접속 종료 실패]");
-		}
+	private void close() throws Exception {
+		sender.close();
+		out.close();
+		receiver.close();
+		in.close();
+		client.close();
+		System.out.println("[서버 접속 종료]");
 	}
 	
 	/*
@@ -153,6 +142,12 @@ public class EchoClient {
 		1. 생성자 호출
 	 */
 	public static void main(String[] args) {
-		new EchoClient();
+		try {
+			new EchoClient();
+			
+		} catch (Exception e) {
+			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
+			System.exit(0);
+		}
 	}
 }
