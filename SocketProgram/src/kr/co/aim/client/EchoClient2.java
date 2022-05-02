@@ -16,19 +16,19 @@ import java.util.Scanner;
 	에코 클라이언트
 	- 서버에 메시지를 보내고, 해당 메시지를 돌려 받을 것.
  */
-public class EchoClient {
-	private Socket client;
+public class EchoClient2 {
+	private static Socket client;
 	
-	private String name;
-	private String msg;
-	private String ip;
-	private int port;
+	private static String name;
+	private static String msg;
+	private static String ip;
+	private static int port;
 	
-	private OutputStream out;
-	private InputStream in;
-	private PrintWriter sender;
-	private Scanner receiver;
-	private Scanner scanner;
+	private static OutputStream out;
+	private static InputStream in;
+	private static PrintWriter sender;
+	private static Scanner receiver;
+	private static Scanner scanner;
 	
 	/*
 		생성자 정의
@@ -38,15 +38,6 @@ public class EchoClient {
 			> communicate 메소드 호출
 			> close 메소드 호출
 	 */
-	public EchoClient() {
-		accessServer();
-		
-		if(client != null) {
-			setClient();
-			communicate();
-			close();
-		}
-	}
 
 	/*
 		accessServer; 서버 접근을 위한 메소드
@@ -60,7 +51,7 @@ public class EchoClient {
 			> 잘못된 port 넘버일 경우; 사용할 수 없거나 사용 중인 port
 			> IP가 불가능한 경우
 	 */
-	private void accessServer() {
+	private static void accessServer() {
 		try {
 			scanner = new Scanner(System.in);
 			System.out.print("[시스템 시작] IP 주소를 입력하세요. \n ☞ ");
@@ -93,7 +84,7 @@ public class EchoClient {
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
 		2. name을 println 메소드로 서버에 전송함.
 	 */
-	private void setClient() {
+	private static void setClient() {
 		try {
 			out = client.getOutputStream();
 			sender = new PrintWriter(new OutputStreamWriter(out));
@@ -116,7 +107,7 @@ public class EchoClient {
 			> msg를 println으로 서버에 전송하고 flush 메소드로 확인함.
 			> 서버로부터 돌려 받은 값을 출력함.
 	 */
-	private void communicate() {
+	private static void communicate() {
 		while((msg = scanner.nextLine()) != null) {
 			if(msg.equals("종료")) {
 				break;
@@ -133,7 +124,7 @@ public class EchoClient {
 		1. 스트림과 소켓을 역순으로 닫음.
 		2. 접속 종료 여부를 안내함.
 	 */
-	private void close() {
+	private static void close() {
 		try {
 			sender.close();
 			out.close();
@@ -155,7 +146,14 @@ public class EchoClient {
 		try {
 			System.gc(); 
 			long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-			new EchoClient();
+			
+			accessServer();
+			
+			if(client != null) {
+				setClient();
+				communicate();
+				close();
+			}
 			
 			System.gc();
 			long after  = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
