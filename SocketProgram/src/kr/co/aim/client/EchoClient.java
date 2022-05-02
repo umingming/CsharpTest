@@ -93,15 +93,20 @@ public class EchoClient {
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
 		2. name을 println 메소드로 서버에 전송함.
 	 */
-	private void setClient() throws Exception {
-		out = client.getOutputStream();
-		sender = new PrintWriter(new OutputStreamWriter(out));
-		
-		in = client.getInputStream();
-		receiver = new Scanner(new InputStreamReader(in));
-		
-		sender.println(name);
-		System.out.printf("[서버 접속 성공] %s님 환영합니다.%n ☞ ", name);
+	private void setClient() {
+		try {
+			out = client.getOutputStream();
+			sender = new PrintWriter(new OutputStreamWriter(out));
+	
+			in = client.getInputStream();
+			receiver = new Scanner(new InputStreamReader(in));
+			
+			sender.println(name);
+			System.out.printf("[통신 시작] %s님 환영합니다.%n ☞ ", name);
+			
+		} catch (IOException e) {
+			System.out.println("[통신 실패]");
+		}
 	}
 
 	/*
@@ -128,13 +133,18 @@ public class EchoClient {
 		1. 스트림과 소켓을 역순으로 닫음.
 		2. 접속 종료 여부를 안내함.
 	 */
-	private void close() throws Exception {
-		sender.close();
-		out.close();
-		receiver.close();
-		in.close();
-		client.close();
-		System.out.println("[서버 접속 종료]");
+	private void close() {
+		try {
+			sender.close();
+			out.close();
+			receiver.close();
+			in.close();
+			client.close();
+			System.out.println("[서버 접속 종료]");
+			
+		} catch (IOException e) {
+			System.out.println("[접속 종료 실패]");
+		}
 	}
 	
 	/*

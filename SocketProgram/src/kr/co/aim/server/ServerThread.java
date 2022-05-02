@@ -1,14 +1,13 @@
 package kr.co.aim.server;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 /*
@@ -43,7 +42,7 @@ public class ServerThread implements Runnable {
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
 		2. BufferedReader로 읽은 값을 name에 저장후 안내 메시지 출력
 	 */
-	private void setClient() {
+	private void setClient(){
 		try {
 			in = client.getInputStream();
 			receiver = new Scanner(new InputStreamReader(in));
@@ -52,7 +51,7 @@ public class ServerThread implements Runnable {
 			
 			name = receiver.nextLine();
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
-
+			
 		} catch (Exception e) {
 			System.out.println("[사용자 접속 실패]");
 		}
@@ -81,14 +80,15 @@ public class ServerThread implements Runnable {
 			while(receiver.hasNext()) {
 				msg = receiver.nextLine();
 				System.out.printf("[메시지 수신] %s님이 메시지를 수신했습니다.%n ☞ %s%n"
-									, name, msg);
+						, name, msg);
 				String echo = String.format("서버: %s [%tT]"
-											, msg, now);
+						, msg, now);
 				sender.println(echo);
 				System.out.printf("[메시지 발신] %s님에게 메시지를 발신했습니다.%n ☞ %s%n"
-									, name, echo);
+						, name, echo);
 				sender.flush();
 			}
+			
 		} catch (Exception e) {
 			System.out.println("[메시지 전송 실패]");
 		}
@@ -108,7 +108,7 @@ public class ServerThread implements Runnable {
 			client.close();
 			System.out.printf("[사용자 접속 종료] %s님이 종료합니다.%n", name);
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("[사용자 종료 실패]");
 		}
 	}

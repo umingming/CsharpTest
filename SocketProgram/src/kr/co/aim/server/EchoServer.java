@@ -1,5 +1,6 @@
 package kr.co.aim.server;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -14,12 +15,7 @@ public class EchoServer {
 	private ServerSocket server;
 	private Socket client;
 	
-	private Scanner scanner;
 	private int port;
-	
-	{
-		scanner = new Scanner(System.in);
-	}
 	
 	/*
 		생성자 정의
@@ -27,7 +23,7 @@ public class EchoServer {
 		2. if문 server가 null이 아닌지?
 			> run() 메소드 호출
 	 */		
-	public EchoServer() {
+	public EchoServer() throws Exception{
 		setServer();
 		
 		if(server != null) {
@@ -46,6 +42,8 @@ public class EchoServer {
 	 */
 	private void setServer() {
 		try {
+			Scanner scanner = new Scanner(System.in);
+			
 			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
 			port = scanner.nextInt();
 			
@@ -62,8 +60,8 @@ public class EchoServer {
 			System.out.println("[서버 접속 실패] 65536 보다 작은 양수를 입력하세요.");
 		} catch (SocketException e) {
 			System.out.printf("[서버 접속 실패] %d는 불가능한 Port입니다.", port);
-		} catch (Exception e) {
-			System.out.printf("[서버 접속 실패]");
+		} catch (IOException e) {
+			System.out.printf("[서버 접속 실패] 잘못된 입력입니다.");
 		} 
 	}
 	
@@ -73,22 +71,15 @@ public class EchoServer {
 			> 클라이언트 접근 확인 후 client 소켓에 초기화
 			> 해당 클라이언트를 매개로 ServerThread 객체 생성
 			> 스레드를 생성해 start 메소드 호출
-		2. 예외 처리
-			> 사용자가 접속에 실패할 경우 종료함.
 	 */
-	private void run() {
-		try {
-			while(true) {
-				client = server.accept();
-				System.out.println("[사용자 접속 대기]");
-				ServerThread serverThread = new ServerThread(client);
-				Thread thread = new Thread(serverThread);
-				thread.start();
-			}
-		} catch (Exception e) {
-			System.out.println("[사용자 접속 실패]");
-			System.exit(0);
-		} 
+	private void run() throws Exception{
+		while(true) {
+			client = server.accept();
+			System.out.println("[사용자 접속 대기]");
+			ServerThread serverThread = new ServerThread(client);
+			Thread thread = new Thread(serverThread);
+			thread.start();
+		}
 	}
 	
 	/*
@@ -96,6 +87,12 @@ public class EchoServer {
 		1. 생성자 호출
 	 */
 	public static void main(String[] args) {
-		new EchoServer();
+		try {
+			new EchoServer();
+			
+		} catch(Exception e) {
+			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
+			System.exit(0);
+		}
 	}
 }
