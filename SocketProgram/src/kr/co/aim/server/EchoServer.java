@@ -23,7 +23,7 @@ public class EchoServer {
 		2. if문 server가 null이 아닌지?
 			> run() 메소드 호출
 	 */		
-	public EchoServer() throws Exception{
+	public EchoServer() {
 		setServer();
 		
 		if(server != null) {
@@ -34,9 +34,10 @@ public class EchoServer {
 	/*
 		setServer(); 서버 생성
 		1. 입력 값을 port에 저장
-		2. if문 port가 허용 범위인지? (0~65535)
-			> port를 매개로 서버소켓 생성 후 안내 메시지 출력
-		3. 예외처리
+		2. if문 port가 허용 범위 외인지? (0~65535)
+			> InputMismatchException 예외 처리
+		3. port를 매개로 서버소켓 생성 후 안내 메시지 출력
+		4. 예외처리
 			> port 넘버를 잘못 입력했을 경우
 			> 이미 존재하는 port의 경우
 	 */
@@ -47,21 +48,20 @@ public class EchoServer {
 			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
 			port = scanner.nextInt();
 			
-			if(port >= 0 && port < 65536) {
-				server = new ServerSocket(port);
-				System.out.printf("[서버 생성 성공] Port 번호는 %d입니다.%n"
-									, server.getLocalPort());
-				
-			} else {
-				new InputMismatchException();
+			if(port < 0 || port > 65535) {
+				throw new InputMismatchException();
 			}
 			
+			server = new ServerSocket(port);
+			System.out.printf("[서버 생성 성공] Port 번호는 %d입니다.%n"
+								, server.getLocalPort());
+			
 		} catch (InputMismatchException e) {
-			System.out.println("[서버 접속 실패] 65536 보다 작은 양수를 입력하세요.");
+			System.out.println("[서버 생성 실패] 65536 보다 작은 양수를 입력하세요.");
 		} catch (SocketException e) {
-			System.out.printf("[서버 접속 실패] %d는 불가능한 Port입니다.", port);
+			System.out.printf("[서버 생성 실패] %d는 불가능한 Port입니다.", port);
 		} catch (IOException e) {
-			System.out.printf("[서버 접속 실패] 잘못된 입력입니다.");
+			System.out.printf("[서버 생성 실패] 잘못된 입력입니다.");
 		} 
 	}
 	
@@ -72,13 +72,18 @@ public class EchoServer {
 			> 해당 클라이언트를 매개로 ServerThread 객체 생성
 			> 스레드를 생성해 start 메소드 호출
 	 */
-	private void run() throws Exception{
-		while(true) {
-			client = server.accept();
-			System.out.println("[사용자 접속 대기]");
-			ServerThread serverThread = new ServerThread(client);
-			Thread thread = new Thread(serverThread);
-			thread.start();
+	private void run() {
+		try {
+			while(true) {
+				client = server.accept();
+				System.out.println("[사용자 접속 대기]");
+				ServerThread serverThread = new ServerThread(client);
+				Thread thread = new Thread(serverThread);
+				thread.start();
+			}
+			
+		} catch (IOException e) {
+			System.out.println("[사용자 접속 실패]");
 		}
 	}
 	

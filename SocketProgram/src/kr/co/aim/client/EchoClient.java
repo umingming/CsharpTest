@@ -38,7 +38,7 @@ public class EchoClient {
 			> communicate 메소드 호출
 			> close 메소드 호출
 	 */
-	public EchoClient() throws Exception {
+	public EchoClient() {
 		accessServer();
 		
 		if(client != null) {
@@ -52,10 +52,11 @@ public class EchoClient {
 		accessServer; 서버 접근을 위한 메소드
 		1. Scanner 생성자 호출 후 초기화
 		2. 입력 값을 port와 ip에 저장
-		3. if문 port가 허용 범위내인지? 0~65536 
-			> port, ip를 매개로 클라이언트 소켓 생성
-			> 이름을 입력 받고 name 변수에 초기화
-		4. 예외 처리
+		3. if문 port가 허용 범위 외인지? 0~65536 
+			> InputMismatchException 예외 발생
+		4. port, ip를 매개로 클라이언트 소켓 생성
+	 	5. 이름을 입력 받고 name 변수에 초기화
+		6. 예외 처리
 			> 잘못된 port 넘버일 경우; 사용할 수 없거나 사용 중인 port
 			> IP가 불가능한 경우
 	 */
@@ -68,14 +69,13 @@ public class EchoClient {
 			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
 			port = Integer.parseInt(scanner.nextLine());
 			
-			if(port >= 0 && port < 65536) {
-				client = new Socket(ip, port); 
-				System.out.print("[서버 접속 중] 사용자 이름을 입력해주세요. \n ☞ ");
-				name = scanner.nextLine();
-				
-			} else {
+			if(port < 0 || port > 65535) {
 				throw new InputMismatchException();
 			}
+			
+			client = new Socket(ip, port); 
+			System.out.print("[서버 접속 중] 사용자 이름을 입력해주세요. \n ☞ ");
+			name = scanner.nextLine();
 			
 		} catch (InputMismatchException e) {
 			System.out.println("[서버 접속 실패] Port 번호는 0 또는 65536 이하의 양수입니다.");
