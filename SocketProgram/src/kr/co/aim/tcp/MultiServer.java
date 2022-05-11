@@ -22,7 +22,7 @@ public class MultiServer {
 		Socket socket = null;
 		
 		try {
-			serverSocket = new ServerSocket(7777);
+			serverSocket = new ServerSocket(5555);
 			System.out.println("서버 시작");
 			
 			while(true) {

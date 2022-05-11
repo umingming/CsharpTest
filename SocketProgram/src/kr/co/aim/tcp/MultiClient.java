@@ -16,9 +16,9 @@ public class MultiClient {
 		
 		try {
 			String serverIp = "127.0.0.1";
-			Socket socket = new Socket(serverIp, 7777);
+			Socket socket = new Socket(serverIp, 5555);
 			System.out.println("서버에 연결되었습니다.");
-			Thread sender = new Thread(new ClientSender(socket, arges[0]));
+			Thread sender = new Thread(new ClientSender(socket, args[0]));
 			Thread receiver = new Thread(new ClientReceiver(socket));
 			
 			sender.start();
