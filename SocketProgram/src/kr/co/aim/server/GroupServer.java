@@ -1,10 +1,10 @@
 package kr.co.aim.server;
 
 import java.io.IOException;
-import java.net.MulticastSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,7 +12,8 @@ import java.util.Scanner;
 	에코 서버
 	- 서버를 생성하고 클라이언트의 접근을 확인해 스레드 생성
  */
-public class EchoServer {
+public class GroupServer {
+	private ArrayList<Socket> clientList = new ArrayList<Socket>();
 	private ServerSocket server;
 	private Socket client;
 	
@@ -24,7 +25,7 @@ public class EchoServer {
 		2. if문 server가 null이 아닌지?
 			> run() 메소드 호출
 	 */		
-	public EchoServer() {
+	public GroupServer() {
 		setServer();
 		
 		if(server != null) {
@@ -54,6 +55,7 @@ public class EchoServer {
 			}
 			
 			server = new ServerSocket(port);
+			
 			System.out.printf("[서버 생성 성공] Port 번호는 %d입니다.%n"
 								, server.getLocalPort());
 			
@@ -94,7 +96,7 @@ public class EchoServer {
 	 */
 	public static void main(String[] args) {
 		try {
-			new EchoServer();
+			new GroupServer();
 			
 		} catch(Exception e) {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");

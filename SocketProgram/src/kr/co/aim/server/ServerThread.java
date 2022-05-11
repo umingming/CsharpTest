@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -46,10 +47,12 @@ public class ServerThread implements Runnable {
 		try {
 			in = client.getInputStream();
 			receiver = new Scanner(new InputStreamReader(in));
+			
 			out = client.getOutputStream();
 			sender = new PrintWriter(new OutputStreamWriter(out));
 			
-			name = receiver.nextLine();
+//			name = receiver.nextLine();
+			name = "이용자";
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 		} catch (Exception e) {
