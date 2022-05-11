@@ -1,5 +1,6 @@
 package kr.co.aim.tcp;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -50,5 +51,21 @@ public class MultiServer {
 	
 	public static void main(String[] args) {
 		new MultiServer().start();
+	}
+	
+	class ServerReceiver extends Thread {
+		Socket socket;
+		DataInputStream in;
+		DataOutputStream out;
+		
+		ServerReceiver(Socket socket) {
+			this.socket = socket;
+			try {
+				in = new DataInputStream(socket.getInputStream());
+				out = new DataOutputStream(socket.getOutputStream());
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
