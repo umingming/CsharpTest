@@ -1,8 +1,11 @@
 package kr.co.aim.tcp;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class MultiClient {
 	public static void main(String[] args) {
@@ -42,6 +45,42 @@ public class MultiClient {
 			}
 		}
 		
+		public void run() {
+			Scanner scanner = new Scanner(System.in);
+			try {
+				if(out != null) {
+					out.writeUTF(name);
+				}
+				while(out != null) {
+					out.writeUTF("[" + name + "]" + scanner.nextLine());
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
-
+	
+	static class ClientReceiver extends Thread {
+		Socket socket;
+		DataInputStream in;
+		
+		public ClientReceiver(Socket socket) {
+			this.socket = socket;
+			try {
+				in = new DataInputStream(socket.getInputStream());
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void run() {
+			while(in != null) {
+				try {
+					System.out.println(in.readUTF());
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
