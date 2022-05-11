@@ -1,9 +1,12 @@
 package kr.co.aim.tcp;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MultiServer {
 	HashMap clients;
@@ -32,7 +35,20 @@ public class MultiServer {
 		}
 	}
 	
+	void sendToAll(String msg) {
+		Iterator it = clients.keySet().iterator();
+		
+		while(it.hasNext()) {
+			try {
+				DataOutputStream out = (DataOutputStream)clients.get(it.next());
+				out.writeUTF(msg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
-	
-
+	public static void main(String[] args) {
+		new MultiServer().start();
+	}
 }
