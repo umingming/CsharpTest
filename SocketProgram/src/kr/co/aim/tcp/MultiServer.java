@@ -67,5 +67,27 @@ public class MultiServer {
 				e.printStackTrace();
 			}
 		}
+		
+		public void run() {
+			String name = "";
+			try {
+				name = in.readUTF();
+				sendToAll(name + "님이 들어오셨습니다.");
+				
+				clients.put(name, out);
+				System.out.println("현재 서버 접속자 수는 " + clients.size() + "입니다.");
+				
+				while(in != null) {
+					sendToAll(in.readUTF());
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			} finally {
+				sendToAll(name + "님이 나가셨습니다.");
+				clients.remove(name);
+				System.out.println("[" + socket.getInetAddress() + ":" + socket.getPort() + "] 에서 접속을 종료하였습니다.");
+				System.out.println("현재 서버 접속자 수는 " + clients.size() + "입니다.");
+			}
+		}
 	}
 }
