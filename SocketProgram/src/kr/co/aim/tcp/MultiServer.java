@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MultiServer {
-	HashMap clients;
+	HashMap<String, DataOutputStream> clients;
 	
 	MultiServer() {
-		clients = new HashMap();
+		clients = new HashMap<>();
 		Collections.synchronizedMap(clients);
 	}
 	

@@ -12,7 +12,7 @@ public class Client {
 	public static void main(String[] args) {
 		Thread systemIn;
 		try {
-			SocketChannel socket = SocketChannel.open(new InetSocketAddress("localhost", 3211));
+			SocketChannel socket = SocketChannel.open(new InetSocketAddress("localhost", 3333));
 			WritableByteChannel out = Channels.newChannel(System.out);
 			ByteBuffer buf = ByteBuffer.allocate(1024);
 			systemIn = new Thread(new SystemIn(socket));

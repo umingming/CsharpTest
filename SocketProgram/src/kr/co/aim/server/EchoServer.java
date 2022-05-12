@@ -1,11 +1,19 @@
 package kr.co.aim.server;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.MulticastSocket;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
-import java.util.InputMismatchException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /*
@@ -15,8 +23,10 @@ import java.util.Scanner;
 public class EchoServer {
 	private ServerSocket server;
 	private Socket client;
+	private ArrayList<ClientGroup> groupList;
 	
 	private int port;
+	private int index;
 	
 	/*
 		생성자 정의
@@ -49,20 +59,12 @@ public class EchoServer {
 			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
 			port = scanner.nextInt();
 			
-			if(port < 0 || port > 65535) {
-				throw new InputMismatchException();
-			}
-			
 			server = new ServerSocket(port);
 			System.out.printf("[서버 생성 성공] Port 번호는 %d입니다.%n"
 								, server.getLocalPort());
 			
-		} catch (InputMismatchException e) {
-			System.out.println("[서버 생성 실패] 65536 보다 작은 양수를 입력하세요.");
-		} catch (SocketException e) {
-			System.out.printf("[서버 생성 실패] %d는 불가능한 Port입니다.", port);
-		} catch (IOException e) {
-			System.out.printf("[서버 생성 실패] 잘못된 입력입니다.");
+		} catch (Exception e) {
+			System.out.println("[서버 생성 실패] 잘못된 입력입니다.");
 		} 
 	}
 	
@@ -76,15 +78,62 @@ public class EchoServer {
 	private void run() {
 		try {
 			while(true) {
+				createGroup();
 				client = server.accept();
 				System.out.println("[사용자 접속 대기]");
-				ServerThread serverThread = new ServerThread(client);
-				Thread thread = new Thread(serverThread);
+				
+				Thread thread = new Thread() {
+					public void run() {
+						connect(client, groupList.get(index));
+					}
+				};
 				thread.start();
 			}
 			
 		} catch (IOException e) {
 			System.out.println("[사용자 접속 실패]");
+		}
+	}
+	
+	private void createGroup() {
+		ClientGroup group = new ClientGroup();
+		groupList.add(group);
+	}
+
+	private void connect(Socket client, ClientGroup group) {
+		try {
+			DataInputStream in = new DataInputStream(client.getInputStream());
+			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			
+			String name = in.readUTF();
+			group.getClientMap().put(name, out);
+			
+			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
+			
+			while(in != null) {
+				send(in.readUTF(), group);
+			}
+			
+			in.close();
+			out.close();
+			client.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
+	private void send(String msg, ClientGroup group) {
+		Iterator it = group.getClientMap().keySet().iterator();
+				
+		while(it.hasNext()) {
+			try {
+				DataOutputStream out = (DataOutputStream)group.getClientMap().get(it.next());
+				out.writeUTF(msg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -100,5 +149,31 @@ public class EchoServer {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
 			System.exit(0);
 		}
+	}
+}
+
+class ClientGroup {
+	private HashMap<String, DataOutputStream> clientMap;
+	private String name;
+	
+	public ClientGroup() {
+		clientMap = new HashMap<String, DataOutputStream>(5);
+	}
+	
+	public ClientGroup(int total) {
+		clientMap = new HashMap<String, DataOutputStream>(total);
+	}
+	
+	public HashMap<String, DataOutputStream> getClientMap() {
+		return clientMap;
+	}
+	public void setClientMap(HashMap<String, DataOutputStream> clientMap) {
+		this.clientMap = clientMap;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

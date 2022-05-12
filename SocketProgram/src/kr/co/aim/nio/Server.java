@@ -16,6 +16,7 @@ import java.util.Set;
 
 public class Server {
 	private ServerSocketChannel server;
+	private SocketChannel socket;
 	private Selector selector;
 	private SelectionKey key;
 	private ByteBuffer input = ByteBuffer.allocate(1024);
@@ -48,23 +49,17 @@ public class Server {
 					setClient();		
 					
 				} else if (key.isReadable()) {
-					SocketChannel readSocket = (SocketChannel) key.channel();
+					socket = (SocketChannel) key.channel();
 					ClientInfo info = (ClientInfo) key.attachment();
 					try {
-						readSocket.read(input);
+						socket.read(input);
 					} catch (Exception e) {
 						key.cancel();
-						clientSet.remove(readSocket);
+						clientSet.remove(socket);
 						String end = info.getId() + "님의 연결이 종료되었습니다.\n";
 						System.out.println(end);
 						output.put(end.getBytes());
-						for(SocketChannel channel : clientSet) {
-							if(!readSocket.equals(channel)) {
-								output.flip();
-								channel.write(output);
-							}
-						}
-						output.clear();
+						sendToAll();
 						continue;
 					}
 					
@@ -80,13 +75,7 @@ public class Server {
 						
 						output.put(enter.getBytes());
 						
-						for(SocketChannel client : clientSet) {
-							output.flip();
-							client.write(output);
-						}
-						
-						input.clear();
-						output.clear();
+						sendToAll();
 						continue;
 					}
 					
@@ -95,21 +84,24 @@ public class Server {
 					output.put(input);
 					output.flip();
 					
-					for(SocketChannel client : clientSet) {
-						if(!readSocket.equals(client)) {
-							client.write(output);
-							output.flip();
-						}
-					}
-					
-					input.clear();
-					output.clear();
+					sendToAll();
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private void sendToAll() throws IOException {
+		for(SocketChannel client : clientSet) {
+			if(!socket.equals(client)) {
+				output.flip();
+				client.write(output);
+			}
+		}
+		input.clear();
+		output.clear();
 	}
 
 	private void setClient() throws IOException {
