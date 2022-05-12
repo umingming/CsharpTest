@@ -1,6 +1,7 @@
 package kr.co.aim.server;
 
 import java.io.DataOutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class ClientGroup {
 		return map;
 	}
 	
-	public void setClientMap(Map<String, DataOutputStream> clientMap) {
+	public void setMap(Map<String, DataOutputStream> clientMap) {
 		this.map = clientMap;
 	}
 	
@@ -43,6 +44,14 @@ public class ClientGroup {
 
 	@Override
 	public String toString() {
-		return String.format("%s", name);
+		String[] clients = new String[map.size()];
+		int index = 0;
+		
+		for(String client : map.keySet()) {
+			clients[index] = client;
+			index++;
+		}
+		
+		return String.format("%s,%d%s", name, total, Arrays.toString(clients));
 	}
 }

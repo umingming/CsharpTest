@@ -1,6 +1,7 @@
 package kr.co.aim.client;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class ReceiverThread implements Runnable {
@@ -22,7 +23,7 @@ public class ReceiverThread implements Runnable {
 	public void run() {
 		while(in != null) {
 			try {
-				System.out.println(in.readUTF());;
+				System.out.println(in.readUTF());
 			} catch(Exception e) {
 				System.out.println("[메시지 수신 오류]");
 			}

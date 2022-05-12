@@ -8,6 +8,7 @@ public class SenderThread implements Runnable {
 	private Socket socket;
 	private DataOutputStream out;
 	private String name;
+	private Scanner scanner;
 	
 	public SenderThread(Socket socket, String name) {
 		this.socket = socket;
@@ -15,6 +16,10 @@ public class SenderThread implements Runnable {
 		
 		try {
 			out = new DataOutputStream(socket.getOutputStream());
+			
+			if(out != null) {
+				out.writeUTF(name);
+			}
 		} catch (Exception e) {
 			System.out.println("[클라이언트 소켓 오류]");
 		}
@@ -22,11 +27,8 @@ public class SenderThread implements Runnable {
 
 	@Override
 	public void run() {
-		Scanner scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);
 		try {
-			if(out != null) {
-				out.writeUTF(name);
-			}
 			while(out != null) {
 				String msg = String.format("[%s]%s", name, scanner.nextLine());
 				out.writeUTF(msg);
