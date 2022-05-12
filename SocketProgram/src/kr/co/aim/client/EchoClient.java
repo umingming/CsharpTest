@@ -12,6 +12,9 @@ import java.net.UnknownHostException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import kr.co.aim.client.MultiClient.ClientReceiver;
+import kr.co.aim.client.MultiClient.ClientSender;
+
 /*
 	에코 클라이언트
 	- 서버에 메시지를 보내고, 해당 메시지를 돌려 받을 것.
@@ -69,21 +72,12 @@ public class EchoClient {
 			System.out.print("[시스템 시작] Port 번호를 입력하세요. \n ☞ ");
 			port = Integer.parseInt(scanner.nextLine());
 			
-			if(port < 0 || port > 65535) {
-				throw new InputMismatchException();
-			}
-			
 			client = new Socket(ip, port); 
+			
 			System.out.print("[서버 접속 중] 사용자 이름을 입력해주세요. \n ☞ ");
 			name = scanner.nextLine();
 			
-		} catch (InputMismatchException e) {
-			System.out.println("[서버 접속 실패] Port 번호는 0 또는 65536 이하의 양수입니다.");
-		} catch (SocketException e) {
-			System.out.printf("[서버 접속 실패] %d는 불가능한 Port입니다.", port);
-		} catch (UnknownHostException e) {
-			System.out.printf("[서버 접속 실패] %s는 불가능한 IP입니다.", ip);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("[서버 접속 실패] 잘못된 입력입니다.");
 		} 
 	}
@@ -95,6 +89,12 @@ public class EchoClient {
 	 */
 	private void setClient() {
 		try {
+			Thread sender = new Thread(new SenderThread(client, name));
+			Thread receiver = new Thread(new ReceiverThread(client));
+
+			sender.start();
+			receiver.start();
+			
 			out = client.getOutputStream();
 			sender = new PrintWriter(new OutputStreamWriter(out));
 	
