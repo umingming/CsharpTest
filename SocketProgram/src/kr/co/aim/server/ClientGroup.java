@@ -2,25 +2,26 @@ package kr.co.aim.server;
 
 import java.io.DataOutputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ClientGroup {
-	private HashMap<String, DataOutputStream> map;
+	private Map<String, DataOutputStream> map;
 	private String name;
 	private int total;
 	
 	public ClientGroup() {
-		map = new HashMap<String, DataOutputStream>();
+		map = new HashMap<>();
 	}
 	
 	public ClientGroup(int total) {
 		this.total = total;
-		map = new HashMap<String, DataOutputStream>(total);
+		map = new HashMap<>(total);
 	}
 	
-	public HashMap<String, DataOutputStream> getClientMap() {
+	public Map<String, DataOutputStream> getClientMap() {
 		return map;
 	}
-	public void setClientMap(HashMap<String, DataOutputStream> clientMap) {
+	public void setClientMap(Map<String, DataOutputStream> clientMap) {
 		this.map = clientMap;
 	}
 	public String getName() {
