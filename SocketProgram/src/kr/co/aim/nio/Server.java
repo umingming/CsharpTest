@@ -71,18 +71,18 @@ public class Server {
 						if(info.getId() == null) {
 							inputBuf.limit(inputBuf.position() - 2);
 							inputBuf.position(0);
-							byte[] b = new byte[inputBuf.limit()];
-							inputBuf.get(b);
-							info.setId(new String(b));
+							byte[] id = new byte[inputBuf.limit()];
+							inputBuf.get(id);
+							info.setId(new String(id));
 							
 							String enter = info.getId() + "님이 입장하셨습니다. \n";
-							System.out.println(enter);
+							System.out.print(enter);
 							
 							outputBuf.put(enter.getBytes());
 							
-							for(SocketChannel s : clientSet) {
+							for(SocketChannel client : clientSet) {
 								outputBuf.flip();
-								s.write(outputBuf);
+								client.write(outputBuf);
 							}
 							
 							inputBuf.clear();
@@ -95,9 +95,9 @@ public class Server {
 						outputBuf.put(inputBuf);
 						outputBuf.flip();
 						
-						for(SocketChannel s : clientSet) {
-							if(!readSocket.equals(s)) {
-								s.write(outputBuf);
+						for(SocketChannel client : clientSet) {
+							if(!readSocket.equals(client)) {
+								client.write(outputBuf);
 								outputBuf.flip();
 							}
 						}
