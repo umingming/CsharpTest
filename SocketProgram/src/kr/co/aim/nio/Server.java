@@ -37,74 +37,77 @@ public class Server {
 
 	private void run() {
 		while(true) {
-			if (iterator.hasNext()) {
-				key = iterator.next();
-				iterator.remove();
-				checkEvent();
-			}
+			checkEvent();
 		}
 	}
 	
 	private void checkEvent() {
 		try {
-			if (key.isAcceptable()) {
-				setClient();					
-			} else if (key.isReadable()) {
-				SocketChannel readSocket = (SocketChannel) key.channel();
-				ClientInfo info = (ClientInfo) key.attachment();
+			while (iterator.hasNext()) {
+				key = iterator.next();
+				iterator.remove();
 				
-				try {
-					readSocket.read(input);
-				} catch (Exception e) {
-					key.cancel();
-					clientSet.remove(readSocket);
-					String end = info.getId() + "님의 연결이 종료되었습니다.\n";
-					System.out.println(end);
-					output.put(end.getBytes());
-					for(SocketChannel channel : clientSet) {
-						if(!readSocket.equals(channel)) {
-							output.flip();
-							channel.write(output);
+				if (key.isAcceptable()) {
+					setClient();					
+				} else if (key.isReadable()) {
+					SocketChannel readSocket = (SocketChannel) key.channel();
+					ClientInfo info = (ClientInfo) key.attachment();
+					
+					try {
+						readSocket.read(input);
+					} catch (Exception e) {
+						key.cancel();
+						clientSet.remove(readSocket);
+						String end = info.getId() + "님의 연결이 종료되었습니다.\n";
+						System.out.println(end);
+						output.put(end.getBytes());
+						for(SocketChannel channel : clientSet) {
+							if(!readSocket.equals(channel)) {
+								output.flip();
+								channel.write(output);
+							}
 						}
+						output.clear();
+						continue;
 					}
-					output.clear();
-				}
-				
-				if(info.getId() == null) {
-					input.limit(input.position() - 2);
-					input.position(0);
-					byte[] id = new byte[input.limit()];
-					input.get(id);
-					info.setId(new String(id));
 					
-					String enter = info.getId() + "님이 입장하셨습니다. \n";
-					System.out.print(enter);
+					if(info.getId() == null) {
+						input.limit(input.position() - 2);
+						input.position(0);
+						byte[] id = new byte[input.limit()];
+						input.get(id);
+						info.setId(new String(id));
+						
+						String enter = info.getId() + "님이 입장하셨습니다. \n";
+						System.out.print(enter);
+						
+						output.put(enter.getBytes());
+						
+						for(SocketChannel client : clientSet) {
+							output.flip();
+							client.write(output);
+						}
+						
+						input.clear();
+						output.clear();
+						continue;
+					}
 					
-					output.put(enter.getBytes());
+					input.flip();
+					output.put((info.getId() + ":").getBytes());
+					output.put(input);
+					output.flip();
 					
 					for(SocketChannel client : clientSet) {
-						output.flip();
-						client.write(output);
+						if(!readSocket.equals(client)) {
+							client.write(output);
+							output.flip();
+						}
 					}
 					
 					input.clear();
 					output.clear();
 				}
-				
-				input.flip();
-				output.put((info.getId() + ":").getBytes());
-				output.put(input);
-				output.flip();
-				
-				for(SocketChannel client : clientSet) {
-					if(!readSocket.equals(client)) {
-						client.write(output);
-						output.flip();
-					}
-				}
-				
-				input.clear();
-				output.clear();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
