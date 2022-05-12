@@ -11,7 +11,8 @@ import java.nio.channels.WritableByteChannel;
 public class Client {
 	public static void main(String[] args) {
 		Thread systemIn;
-		try (SocketChannel socket = SocketChannel.open(new InetSocketAddress("localhost", 15000))) {
+		try {
+			SocketChannel socket = SocketChannel.open(new InetSocketAddress("localhost", 15000));
 			WritableByteChannel out = Channels.newChannel(System.out);
 			ByteBuffer buf = ByteBuffer.allocate(1024);
 			systemIn = new Thread(new SystemIn(socket));
