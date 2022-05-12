@@ -29,30 +29,27 @@ public class Server {
 	}
 	
 	public Server() {
-		while(server == null) {
-			setServer();
+		while(true) {
+			if(server == null) {
+				setServer();
+			} else {
+				run();
+			}
 		}
-		run();
 	}
 
 	private void run() {
-		while(true) {
-			checkEvent();
-		}
-	}
-	
-	private void checkEvent() {
 		try {
 			while (iterator.hasNext()) {
 				key = iterator.next();
 				iterator.remove();
 				
 				if (key.isAcceptable()) {
-					setClient();					
+					setClient();		
+					
 				} else if (key.isReadable()) {
 					SocketChannel readSocket = (SocketChannel) key.channel();
 					ClientInfo info = (ClientInfo) key.attachment();
-					
 					try {
 						readSocket.read(input);
 					} catch (Exception e) {
@@ -123,7 +120,6 @@ public class Server {
 		clientSet.add(client);
 		
 		client.write(ByteBuffer.wrap("아이디를 입력해주세요 : ".getBytes()));
-		
 		client.register(selector, SelectionKey.OP_READ, new ClientInfo());
 	}
 
@@ -168,4 +164,3 @@ class ClientInfo {
 		this.id = id;
 	}
 }
-
