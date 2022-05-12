@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class EchoServer {
 	private ServerSocket server;
 	private Socket client;
-	private ArrayList<ClientGroup> groupList;
+	private ArrayList<ClientGroup> groupList = new ArrayList<>();
 	
 	private int port;
 	private int index;
@@ -38,7 +38,7 @@ public class EchoServer {
 		setServer();
 		
 		if(server != null) {
-			run();
+			start();
 		}
 	}
 	
@@ -75,12 +75,18 @@ public class EchoServer {
 			> 해당 클라이언트를 매개로 ServerThread 객체 생성
 			> 스레드를 생성해 start 메소드 호출
 	 */
-	private void run() {
+	private void start() {
 		try {
+			createGroup(2);
+			
 			while(true) {
-				createGroup();
 				client = server.accept();
 				System.out.println("[사용자 접속 대기]");
+				
+				if(groupList.get(index).isFull()) {
+					createGroup(2);
+					index++;
+				}
 				
 				Thread thread = new Thread() {
 					public void run() {
@@ -95,8 +101,8 @@ public class EchoServer {
 		}
 	}
 	
-	private void createGroup() {
-		ClientGroup group = new ClientGroup();
+	private void createGroup(int total) {
+		ClientGroup group = new ClientGroup(2);
 		groupList.add(group);
 	}
 
@@ -111,7 +117,9 @@ public class EchoServer {
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 			while(in != null) {
-				send(in.readUTF(), group);
+				String msg = in.readUTF();
+				send(msg, group);
+				System.out.println(msg);
 			}
 			
 			in.close();
@@ -147,33 +155,8 @@ public class EchoServer {
 			
 		} catch(Exception e) {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
+			e.printStackTrace();
 			System.exit(0);
 		}
-	}
-}
-
-class ClientGroup {
-	private HashMap<String, DataOutputStream> clientMap;
-	private String name;
-	
-	public ClientGroup() {
-		clientMap = new HashMap<String, DataOutputStream>(5);
-	}
-	
-	public ClientGroup(int total) {
-		clientMap = new HashMap<String, DataOutputStream>(total);
-	}
-	
-	public HashMap<String, DataOutputStream> getClientMap() {
-		return clientMap;
-	}
-	public void setClientMap(HashMap<String, DataOutputStream> clientMap) {
-		this.clientMap = clientMap;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 }
