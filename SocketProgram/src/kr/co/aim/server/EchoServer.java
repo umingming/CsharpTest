@@ -121,16 +121,16 @@ public class EchoServer {
 	 */
 	private void connect(Socket client, ClientGroup group) {
 		try {
-			Scanner in = new Scanner(client.getInputStream());
-			PrintWriter out = new PrintWriter(client.getOutputStream());
-			out.write("환영합니다.");
+			DataInputStream in = new DataInputStream(client.getInputStream());
+			DataOutputStream out = new DataOutputStream(client.getOutputStream());
 			
-			String name = in.nextLine();
+			String name = in.readUTF();
+			group.getClientMap().put(name, out);
 			
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 			while(in != null) {
-				send(in.nextLine(), group);
+				send(in.readUTF(), group);
 			}
 			
 		} catch (Exception e) {
@@ -151,8 +151,8 @@ public class EchoServer {
 			Iterator<String> iterator = group.getClientMap().keySet().iterator();
 			
 			while(iterator.hasNext()) {
-				PrintWriter out = group.getClientMap().get(iterator.next());
-				out.write(msg);
+				DataOutputStream out = group.getClientMap().get(iterator.next());
+				out.writeUTF(msg);
 			}
 			
 		} catch (Exception e) {

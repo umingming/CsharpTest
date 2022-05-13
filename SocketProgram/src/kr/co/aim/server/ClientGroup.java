@@ -2,7 +2,6 @@ package kr.co.aim.server;
 
 import java.io.DataOutputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.Map;
  	ClientGroup; 클라이언트들의 그룹을 정의함.
  */
 public class ClientGroup {
-	private Map<String, PrintWriter> map;
+	private Map<String, DataOutputStream> map;
 	private String name;
 	private int total;
 	
@@ -24,11 +23,11 @@ public class ClientGroup {
 		map = new HashMap<>(total);
 	}
 	
-	public Map<String, PrintWriter> getClientMap() {
+	public Map<String, DataOutputStream> getClientMap() {
 		return map;
 	}
 	
-	public void setMap(Map<String, PrintWriter> clientMap) {
+	public void setMap(Map<String, DataOutputStream> clientMap) {
 		this.map = clientMap;
 	}
 	

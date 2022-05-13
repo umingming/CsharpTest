@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class SenderThread implements Runnable {
 	private Socket socket;
-	private PrintWriter out;
+	private DataOutputStream out;
 	private String name;
 	private Scanner scanner;
 	
@@ -18,10 +18,10 @@ public class SenderThread implements Runnable {
 		this.name = name;
 		
 		try {
-			out = new PrintWriter(socket.getOutputStream());
+			out = new DataOutputStream(socket.getOutputStream());
 			
 			if(out != null) {
-				out.write(name);
+				out.writeUTF(name);
 				System.out.println("[이름 전송]");
 			}
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class SenderThread implements Runnable {
 		try {
 			while(out != null) {
 				String msg = String.format("[%s]%s", name, scanner.nextLine());
-				out.write(msg);
+				out.writeUTF(msg);
 			}
 		} catch(Exception e) {
 			System.out.println("[메시지 전송 오류]");
