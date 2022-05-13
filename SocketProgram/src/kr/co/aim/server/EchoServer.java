@@ -122,7 +122,8 @@ public class EchoServer {
 	private void connect(Socket client, ClientGroup group) {
 		try {
 			DataInputStream in = new DataInputStream(client.getInputStream());
-			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			DataOutputStream 
+			out = new DataOutputStream(client.getOutputStream());
 			
 			String name = in.readUTF();
 			group.getClientMap().put(name, out);
