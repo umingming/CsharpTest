@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ca21037-221b-4caf-993f-ea4076e9459a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/example/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SocketProgram/src/kr/co/aim/nio/example/Client.java" afterDir="false" />
-    </list>
+    <list default="true" id="6ca21037-221b-4caf-993f-ea4076e9459a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +47,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652344269033</updated>
       <workItem from="1652344270129" duration="1532000" />
+      <workItem from="1652385262315" duration="3000" />
     </task>
     <servers />
   </component>

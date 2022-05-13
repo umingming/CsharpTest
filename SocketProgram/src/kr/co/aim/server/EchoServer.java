@@ -3,6 +3,11 @@ package kr.co.aim.server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -116,16 +121,16 @@ public class EchoServer {
 	 */
 	private void connect(Socket client, ClientGroup group) {
 		try {
-			DataInputStream in = new DataInputStream(client.getInputStream());
-			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			Scanner in = new Scanner(client.getInputStream());
+			PrintWriter out = new PrintWriter(client.getOutputStream());
+			out.write("환영합니다.");
 			
-			String name = in.readUTF();
-			group.getClientMap().put(name, out);
+			String name = in.nextLine();
 			
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 			while(in != null) {
-				send(in.readUTF(), group);
+				send(in.nextLine(), group);
 			}
 			
 		} catch (Exception e) {
@@ -146,8 +151,8 @@ public class EchoServer {
 			Iterator<String> iterator = group.getClientMap().keySet().iterator();
 			
 			while(iterator.hasNext()) {
-				DataOutputStream out = group.getClientMap().get(iterator.next());
-				out.writeUTF(msg);
+				PrintWriter out = group.getClientMap().get(iterator.next());
+				out.write(msg);
 			}
 			
 		} catch (Exception e) {
