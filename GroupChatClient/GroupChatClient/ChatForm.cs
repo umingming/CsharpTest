@@ -23,7 +23,7 @@ namespace GroupChatClient
             msgList = new ArrayList(200);
             box = new Notification();
 
-            Thread msgThread = new Thread(() => GetMsg());
+            Thread msgThread = new Thread(() => ReceiveMsg());
             msgThread.Start();
             InitializeComponent();
         }
@@ -63,26 +63,34 @@ namespace GroupChatClient
         {
             cmbMax.Select();
             cmbMax.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMax.DroppedDown = true;
+            cmbMax.DroppedDown = true;  
         }
 
         private void SendMsg()
         {
-            client.SetMsg(txtMsg.Text);
+            client.SendMsg(txtMsg.Text);
             txtMsg.Text = "";
         }
 
-        private void ReceiveMsg()
+        private void ReceiveMsg(object sender, EventArgs e)
         {
-            ArrayList newMsgList = (ArrayList)client.GetNewMsgList().Clone();
-            foreach (string newMsg in newMsgList)
+            foreach (var newMsg in client.GetNewMsgList())
             {
-                msgList.Add(newMsg);
-                rtxChat.Text += newMsg;
+                msgList.Add(newMsg + "\n");
+                rtxChat.Text += newMsg + "\n";
             }
             UpdateChat();
         }
 
+        private void ReceiveMsg()
+        {
+            var msg = "";
+            while((msg = client.ReceiveMsg()) != null)
+            {
+                msgList.Add(msg + "\n");
+                rtxChat.Text += msg + "\n";
+            }
+        }
 
         /*
             UpdateChat; 범위 내의 최신 대화를 보여줄 것.

@@ -34,7 +34,6 @@ namespace GroupChatClient
 				this.client = new TcpClient(ip, port);
 				this.sender = new StreamWriter(client.GetStream());
 				this.receiver = new StreamReader(client.GetStream());
-				Run();
 			}
 			catch (SocketException)
 			{
@@ -45,18 +44,6 @@ namespace GroupChatClient
 				box.DisplayError();
 			}
 		}
-
-        private void Run()
-        {
-			Thread senderThread = new Thread(() => Send());
-			Thread receiverThread = new Thread(() => Receive());
-
-			senderThread.IsBackground = true;
-			receiverThread.IsBackground = true;
-
-			senderThread.Start();
-			receiverThread.Start();
-        }
 
         /*
 			SetName
@@ -88,23 +75,16 @@ namespace GroupChatClient
                 }
 			}
 		}
-
-		public void Send()
+		
+		public string ReceiveMsg()
 		{
-			while (sender != null)
-			{
-				if(msgList.Count > index)
-                {
-					sender.WriteLine("[{0}]{1}", name, msgList[index]);
-					sender.Flush();
-					index++;
-                }
-			}
+			return receiver.ReadLine();
 		}
 
-		public void SetMsg(string msg)
+		public void SendMsg(string msg)
         {
-			msgList.Add(msg);
+			sender.WriteLine("[{0}]{1}", name, msg);
+			sender.Flush();
 		}
 
 		public ArrayList GetNewMsgList()

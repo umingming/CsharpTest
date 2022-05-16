@@ -138,7 +138,7 @@
             this.rtxChat.TabIndex = 17;
             this.rtxChat.Text = "";
             this.rtxChat.WordWrap = false;
-            this.rtxChat.MouseHover += new System.EventHandler(this.UpdateChat);
+            this.rtxChat.MouseHover += new System.EventHandler(this.ReceiveMsg);
             // 
             // label5
             // 
