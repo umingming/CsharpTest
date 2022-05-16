@@ -19,13 +19,13 @@ public class ServerThread implements Runnable {
 	private Socket client;
 	private String name;
 	private String msg;
-
+	
 	private InputStream in;
 	private OutputStream out;
 	private Scanner receiver;
 	private PrintWriter sender;
 	private Calendar now;
-
+	
 	/*
 		생성자 정의
 		1. 필드의 client 변수를 매개 소켓으로 초기화
@@ -36,7 +36,7 @@ public class ServerThread implements Runnable {
 		this.now = Calendar.getInstance();
 		setClient();
 	}
-
+	
 	/*
 		setClient(); 클라이언트 정보 설정
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
@@ -46,18 +46,17 @@ public class ServerThread implements Runnable {
 		try {
 			in = client.getInputStream();
 			receiver = new Scanner(new InputStreamReader(in));
-
 			out = client.getOutputStream();
 			sender = new PrintWriter(new OutputStreamWriter(out));
-
+			
 			name = receiver.nextLine();
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
-
+			
 		} catch (Exception e) {
 			System.out.println("[사용자 접속 실패]");
 		}
 	}
-
+	
 	/*
 		run(); start 메소드 호출시 실행됨.
 		1. echo와 close 메소드 호출
@@ -67,7 +66,7 @@ public class ServerThread implements Runnable {
 		echo();
 		close();
 	}
-
+	
 	/*
 		echo(); 클라이언트의 메시지를 읽고 돌려줌. //TODO
 		1. while문 클라이언트로부터 받은 메시지가 있으면 반복; hasNext() 사용
@@ -89,12 +88,12 @@ public class ServerThread implements Runnable {
 									, name, echo);
 				sender.flush();
 			}
-
+			
 		} catch (Exception e) {
 			System.out.println("[메시지 전송 실패]");
 		}
 	}
-
+	
 	/*
 		close()
 		1. 스트림과 소켓을 역순으로 닫음.
@@ -108,7 +107,7 @@ public class ServerThread implements Runnable {
 			in.close();
 			client.close();
 			System.out.printf("[사용자 접속 종료] %s님이 종료합니다.%n", name);
-
+			
 		} catch (IOException e) {
 			System.out.println("[사용자 종료 실패]");
 		}

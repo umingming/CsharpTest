@@ -18,7 +18,7 @@ import java.util.Scanner;
 	에코 서버
 	- 서버를 생성하고 클라이언트의 접근을 확인해 스레드 생성
  */
-public class EchoServer {
+public class Server {
 	private ServerSocket server;
 	private Socket client;
 	private ArrayList<ClientGroup> groupList = new ArrayList<>();
@@ -31,7 +31,7 @@ public class EchoServer {
 		2. if문 server가 null이 아닌지?
 			> run() 메소드 호출
 	 */		
-	public EchoServer() {
+	public Server() {
 		while(server == null) {
 			setServer();
 		}
@@ -121,10 +121,8 @@ public class EchoServer {
 	 */
 	private void connect(Socket client, ClientGroup group) {
 		try {
-			int msgByteCnt = readMsgByteCnt();
 			DataInputStream in = new DataInputStream(client.getInputStream());
-			DataOutputStream 
-			out = new DataOutputStream(client.getOutputStream());
+			DataOutputStream out = new DataOutputStream(client.getOutputStream());
 			
 			String name = in.readUTF();
 			group.getClientMap().put(name, out);
@@ -179,7 +177,7 @@ public class EchoServer {
 	 */
 	public static void main(String[] args) {
 		try {
-			new EchoServer();
+			new Server();
 			
 		} catch(Exception e) {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
