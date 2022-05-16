@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\bin\Debug\GroupChatClient.exe
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\bin\Debug\GroupChatClient.pdb
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.ChatForm.resources
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.MainForm.resources
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.NameForm.resources
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.Properties.Resources.resources
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.csproj.GenerateResource.cache
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.exe
+C:\Users\user\source\repos\AimTraining\GroupChatClient\GroupChatClient\obj\Debug\GroupChatClient.pdb
