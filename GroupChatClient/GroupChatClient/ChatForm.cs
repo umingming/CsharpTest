@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GroupChatClient
@@ -21,6 +22,8 @@ namespace GroupChatClient
             this.client = client;
             msgList = new ArrayList(200);
             box = new Notification();
+
+            Thread msgThread = new Thread(() => GetMsg());
             InitializeComponent();
         }
 
@@ -64,20 +67,32 @@ namespace GroupChatClient
 
         private void SendMsg()
         {
-            client.Send(txtMsg.Text);
+            client.SetMsg(txtMsg.Text);
             txtMsg.Text = "";
             UpdateChat();
         }
 
         private void ReceiveMsg()
         {
-            var newMsgList = client.GetMsg();
-            foreach(var newMsg in newMsgList)
+            ArrayList newMsgList = (ArrayList)client.GetNewMsgList().Clone();
+            foreach (string newMsg in newMsgList)
             {
                 msgList.Add(newMsg);
-                rtxChat.Text += newMsg;
+
+                Action<string> action = i => rtxChat.Text += i + "\n";
+
+                if (rtxChat.InvokeRequired)
+                {
+                    rtxChat.Invoke(action, newMsg);
+                }
+                else
+                {
+                    action(newMsg);
+                }
             }
         }
+
+
 
         /*
             UpdateChat; 범위 내의 최신 대화를 보여줄 것.
@@ -91,10 +106,26 @@ namespace GroupChatClient
          */
         private void UpdateChat()
         {
-            box.DisplayWarning("2");
-
             ReceiveMsg();
-            box.DisplayWarning("7");
+
+            if (msgList.Count > max)
+            {
+                msgList.RemoveRange(0, msgList.Count - max);
+                rtxChat.Text = "";
+
+                for (int i = 0; i < msgList.Count; i++)
+                {
+                    rtxChat.Text += msgList[i];
+                }
+            }
+
+            rtxChat.SelectionStart = rtxChat.Text.Length;
+            rtxChat.ScrollToCaret();
+        } 
+
+        private void UpdateChat(object sender, EventArgs e)
+        {
+            ReceiveMsg();
 
             if (msgList.Count > max)
             {
@@ -121,7 +152,6 @@ namespace GroupChatClient
         {
             max = Convert.ToInt32(cmbMax.SelectedItem);
 
-            box.DisplayWarning("1");
             UpdateChat();
             txtMsg.Select();
         }
@@ -144,6 +174,22 @@ namespace GroupChatClient
         private void Quit(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ChatForm_Load(object sender, EventArgs e)
+        {
+            Thread chatThread = new Thread(() => GetMessage());
+            t.IsBackground = true;  
+            t.Start();
+        }
+
+        private void GetMsg()
+        {
+            while(true)
+            {
+                UpdateChat();
+                Thread.Sleep(200);
+            }
         }
     }
 }

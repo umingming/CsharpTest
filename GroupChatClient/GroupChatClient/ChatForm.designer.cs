@@ -86,8 +86,8 @@
             // cmbMax
             // 
             this.cmbMax.AllowDrop = true;
-            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMax.BackColor = System.Drawing.Color.White;
             this.cmbMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -138,6 +138,7 @@
             this.rtxChat.TabIndex = 17;
             this.rtxChat.Text = "";
             this.rtxChat.WordWrap = false;
+            this.rtxChat.MouseHover += new System.EventHandler(this.UpdateChat);
             // 
             // label5
             // 
@@ -156,9 +157,6 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // directorySearcher1
-            // 
             // 
             // errorProvider1
             // 
@@ -183,6 +181,7 @@
             this.Name = "ChatForm";
             this.ShowIcon = false;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
+            this.Load += new System.EventHandler(this.ChatForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
