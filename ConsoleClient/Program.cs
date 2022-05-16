@@ -15,7 +15,6 @@ namespace ConsoleClient
         private static StreamWriter sender;
         private static StreamReader receiver;
 
-
         public static void Main(string[] args)
         {
             AccessServer();
