@@ -121,16 +121,18 @@ public class Server {
 	 */
 	private void connect(Socket client, ClientGroup group) {
 		try {
-			DataInputStream in = new DataInputStream(client.getInputStream());
-			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			Scanner in = new Scanner(client.getInputStream());
+			PrintWriter out = new PrintWriter(client.getOutputStream());
 			
-			String name = in.readUTF();
+			String name = in.nextLine();
 			group.getClientMap().put(name, out);
 			
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 			while(in != null) {
-				send(in.readUTF(), group);
+				if(in.hasNextLine()) {
+					send(in.nextLine(), group);
+				}
 			}
 			
 		} catch (Exception e) {
@@ -162,8 +164,9 @@ public class Server {
 			Iterator<String> iterator = group.getClientMap().keySet().iterator();
 			
 			while(iterator.hasNext()) {
-				DataOutputStream out = group.getClientMap().get(iterator.next());
-				out.writeUTF(msg);
+				PrintWriter out = group.getClientMap().get(iterator.next());
+				out.println(msg);
+				out.flush();
 			}
 			
 		} catch (Exception e) {

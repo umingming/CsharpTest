@@ -2,6 +2,7 @@ package kr.co.aim.client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,8 +12,8 @@ import java.util.Scanner;
  */
 public class Client {
 	private Socket client;
-	private DataInputStream in;
-	private DataOutputStream out;
+	private Scanner in;
+	private PrintWriter out;
 	
 	private String name;
 	private String msg;
@@ -73,11 +74,12 @@ public class Client {
 	 */
 	private void setClient() {
 		try {
-			in = new DataInputStream(client.getInputStream());
-			out = new DataOutputStream(client.getOutputStream());
+			in = new Scanner(client.getInputStream());
+			out = new PrintWriter(client.getOutputStream());
 			
 			System.out.printf("[통신 시작] %s님 환영합니다.%n ☞ ", name);
-			out.writeUTF(name);
+			out.println(name);
+			out.flush();
 			
 			Thread sender = new Thread() {
 				@Override
@@ -106,7 +108,8 @@ public class Client {
 		try {
 			while(out != null) {
 				String msg = String.format("[%s]%s", name, scanner.nextLine());
-				out.writeUTF(msg);
+				out.println(msg);
+				out.flush();
 			}
 		} catch(Exception e) {
 			System.out.println("[메시지 전송 오류]");
@@ -116,7 +119,9 @@ public class Client {
 	public void receive() {
 		while(in!=null) {
 			try {
-				System.out.println(in.readUTF());
+				if(in.hasNext()) {
+					System.out.println(in.nextLine());
+				}
 			} catch(Exception e) {
 				System.out.println("[메시지 수신 오류]");
 			}
