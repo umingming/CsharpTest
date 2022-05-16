@@ -56,17 +56,15 @@ namespace ConsoleClient
 
         private static void receive()
         {
-            var msg = "";
-            while ((msg = receiver.ReadLine()) != null) {
-                Console.WriteLine(msg);
+            while (receiver != null) {
+                Console.WriteLine(receiver.ReadLine());
             }
         }
 
         private static void send()
         {
             while (sender != null) {
-                var msg = string.Format("[{0}]{1}", name, Console.ReadLine());
-                sender.WriteLine(msg);
+                sender.WriteLine("[{0}]{1}", name, Console.ReadLine());
                 sender.Flush();
             }
         }
