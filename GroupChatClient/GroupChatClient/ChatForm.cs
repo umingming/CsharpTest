@@ -24,6 +24,7 @@ namespace GroupChatClient
             box = new Notification();
 
             Thread msgThread = new Thread(() => ReceiveMsg());
+            msgThread.IsBackground = true;
             msgThread.Start();
             InitializeComponent();
         }
@@ -66,41 +67,66 @@ namespace GroupChatClient
             cmbMax.DroppedDown = true;  
         }
 
+        /*
+            SendMsg
+            1. 입력 텍스트를 인자로 SendMsg 호출
+            2. 텍스트 초기화
+         */
         private void SendMsg()
         {
             client.SendMsg(txtMsg.Text);
             txtMsg.Text = "";
         }
 
-        private void ReceiveMsg(object sender, EventArgs e)
-        {
-            foreach (var newMsg in client.GetNewMsgList())
-            {
-                msgList.Add(newMsg + "\n");
-                rtxChat.Text += newMsg + "\n";
-            }
-            UpdateChat();
-        }
-
+        /*
+            ReceiveMsg
+            1. msg 선언
+            2. while문 ReceiveMsg의 반환 값을 msg에 초기화하고, 존재하는지를 조건으로 반복함.
+                > msg를 List에 추가함.
+                > SetRtx 호출
+            3. UpdateChat() 호출
+         */
         private void ReceiveMsg()
         {
             var msg = "";
             while((msg = client.ReceiveMsg()) != null)
             {
                 msgList.Add(msg + "\n");
-                rtxChat.Text += msg + "\n";
+                SetRtx(rtxChat, msg);
+            }
+            UpdateChat();   
+        }
+
+        /*
+            SetRtx; 크로스스레드 
+            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지?
+                > 아니면, delegate를 사용해 박스를 업데이트함.
+                > 맞을 경우, 그냥 msg 추가
+         */
+        public static void SetRtx(RichTextBox rtx, string msg)
+        {
+            if (rtx.InvokeRequired)
+            {
+                rtx.Invoke(new MethodInvoker(delegate
+                {
+                    rtx.Text += msg + "\n";
+                }));
+            }
+            else
+            {
+                rtx.Text += msg + "\n";
             }
         }
 
         /*
             UpdateChat; 범위 내의 최신 대화를 보여줄 것.
             1. if문 메시지 리스트의 수가 최대값을 초과하는지?
-                > list의 0번째 요소부터 초과하는 만틈 삭제함.
+                > list의 0번째 요소부터 초과하는 만큼 삭제함.
                 > 채팅 박스 초기화
                 > for문 리스트 크기 반복
                     > list의 요소를 채팅 박스에 추가함.
             2. 채팅 박스의 캐럿 위치를 문자열 끝으로 설정
-            3. 스크롤을 미틍로 이동함.
+            3. 스크롤을 밑로 이동함.
          */
         private void UpdateChat()
         {
@@ -119,23 +145,6 @@ namespace GroupChatClient
             rtxChat.ScrollToCaret();
         } 
 
-        private void UpdateChat(object sender, EventArgs e)
-        {
-            if (msgList.Count > max)
-            {
-                msgList.RemoveRange(0, msgList.Count - max);
-                rtxChat.Text = "";
-
-                for (int i = 0; i < msgList.Count; i++)
-                {
-                    rtxChat.Text += msgList[i];
-                }
-            }
-
-            rtxChat.SelectionStart = rtxChat.Text.Length;
-            rtxChat.ScrollToCaret();
-        }
-
         /*
             SetMax; 콤보박스의 선택 값에 따라 메시지 보관 갯수를 설정함.
             1. 콤보 박스 값을 int로 변환해 max 변수에 초기화함.
@@ -151,11 +160,11 @@ namespace GroupChatClient
         }
 
         /*
-            IsEnterKey
-            1. if문 입력 키가 엔터인지?
-                > EnterMsg 호출
+            EnterMsgByEnterKeyDow
+            1. if문 입력 키가 엔터아니면 리턴함.
+            2. EnterMsg 호출
          */
-        private void IsEnterKey(object sender, KeyEventArgs e)
+        private void EnterMsgByEnterKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
             EnterMsg(sender, e);
@@ -168,20 +177,7 @@ namespace GroupChatClient
         private void Quit(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void GetMsg()
-        {
-            while(true)
-            {
-                ArrayList newMsgList = (ArrayList)client.GetNewMsgList().Clone();
-                foreach (string newMsg in newMsgList)
-                {
-                    msgList.Add(newMsg);
-                    rtxChat.Text += newMsg;
-                }
-                Thread.Sleep(200);
-            }
+            client.Close();
         }
     }
 }

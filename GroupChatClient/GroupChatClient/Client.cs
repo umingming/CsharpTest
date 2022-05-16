@@ -64,36 +64,26 @@ namespace GroupChatClient
             }
         }
 
-		public void Receive()
-		{
-			while (receiver != null)
-			{
-				var msg = receiver.ReadLine();
-				if(msg != null)
-                {
-					newMsgList.Add(msg);
-                }
-			}
-		}
-		
+		/*
+			ReceiveMsg
+			1. 서버로부터 받은 메시지를 반환
+		 */
 		public string ReceiveMsg()
 		{
 			return receiver.ReadLine();
 		}
 
+		/*
+			SendMsg
+			1. 인자로 받은 메시지를 서버에 전송
+			2. Flush 호출해서 stream 확인
+		 */
 		public void SendMsg(string msg)
         {
-			sender.WriteLine("[{0}]{1}", name, msg);
+			sender.WriteLine(msg);
 			sender.Flush();
 		}
 
-		public ArrayList GetNewMsgList()
-        {
-			ArrayList msgList = new ArrayList();
-			msgList = (ArrayList)this.newMsgList.Clone();
-			this.newMsgList.Clear();
-			return msgList;
-		}
 		/*
 			Close
 			1. 스트림과 소켓을 역순으로 닫음.

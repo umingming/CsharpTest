@@ -96,7 +96,7 @@
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(99, 25);
             this.txtPort.TabIndex = 2;
-            this.txtPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IsEnterKey);
+            this.txtPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartByEnterKeyDown);
             // 
             // label3
             // 

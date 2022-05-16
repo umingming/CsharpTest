@@ -44,15 +44,14 @@ namespace GroupChatClient
         }
 
         /*
-            IsEnterKey
+            EnterNameByEnterKeyDown
             1. if문 입력 키가 엔터가 아닌지?
                 > return
-            2. Start 호출
+            2. EnterName 호출
          */
-        private void IsEnterKey(object sender, KeyEventArgs e)
+        private void EnterNameByEnterKeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.Alt || e.KeyCode != Keys.Enter) return;
-
+            if (e.KeyCode != Keys.Enter) return;
             EnterName(sender, e);
         }
     }

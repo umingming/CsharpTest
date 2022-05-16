@@ -56,15 +56,14 @@ namespace GroupChatClient
         }
 
         /*
-            IsEnterKey; port 박스에서 엔터를 누를 경우 실행시킴
+            EnterMsgByEnterKeyDown; port 박스에서 엔터를 누를 경우 실행시킴
             1. if문 입력 키가 엔터가 아닌지?
                 > return
             2. Start 호출
          */
-        private void IsEnterKey(object sender, KeyEventArgs e)
+        private void StartByEnterKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
-            
             Start(sender, e);
         }
     }

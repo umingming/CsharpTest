@@ -65,7 +65,7 @@
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(260, 20);
             this.txtMsg.TabIndex = 1;
-            this.txtMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IsEnterKey);
+            this.txtMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterMsgByEnterKeyDown);
             // 
             // btnInput
             // 
@@ -138,7 +138,6 @@
             this.rtxChat.TabIndex = 17;
             this.rtxChat.Text = "";
             this.rtxChat.WordWrap = false;
-            this.rtxChat.MouseHover += new System.EventHandler(this.ReceiveMsg);
             // 
             // label5
             // 
