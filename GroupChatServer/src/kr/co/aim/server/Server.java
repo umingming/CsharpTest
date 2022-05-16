@@ -165,7 +165,7 @@ public class Server {
 			
 			while(iterator.hasNext()) {
 				PrintWriter out = group.getClientMap().get(iterator.next());
-				out.println(msg);
+				out.println(msg+"\n");
 				out.flush();
 			}
 			
