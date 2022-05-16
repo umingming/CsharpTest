@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -13,7 +14,8 @@ namespace GroupChatClient
 		private StreamWriter sender;
 		private StreamReader receiver;
 		private Notification box;
-		private String name;
+		private ArrayList msgList;
+		private string name;
 
 		/*
 			생성자 정의
@@ -29,10 +31,11 @@ namespace GroupChatClient
 				this.sender = new StreamWriter(client.GetStream());
 				this.receiver = new StreamReader(client.GetStream());
 				this.box = new Notification();
+				this.msgList = new ArrayList();
 
-				Thread senderThread = new Thread(() => send());
-				Thread receiverThread = new Thread(() => receive());
-				senderThread.Start();
+//				Thread senderThread = new Thread(() => Send());
+				Thread receiverThread = new Thread(() => Receive());
+//				senderThread.Start();
 				receiverThread.Start();
 			}
 			catch (SocketException)
@@ -56,7 +59,8 @@ namespace GroupChatClient
             {
 				this.name = name;
 				sender.WriteLine(this.name);
-            }
+				sender.Flush();
+			}
 			catch (IOException)
             {
 				box.DisplayError("이름 설정");
@@ -83,20 +87,27 @@ namespace GroupChatClient
             }
 		}
 
-		public string receive()
+		public void Receive()
 		{
 			try
             {
-				return receiver.ReadLine();
+				while (receiver != null)
+				{
+					var msg = receiver.ReadLine();
+					if(msg != null)
+                    {
+						box.DisplayError(msg);
+						msgList.Add(msg);
+                    }
+				}
             }
 			catch (IOException)
             {
 				box.DisplayError("메시지 수신");
-				return null;
 			}
 		}
 
-		public void send(string msg)
+		public void Send(string msg)
 		{
 			try
 			{
@@ -109,6 +120,20 @@ namespace GroupChatClient
 			}
 		}
 
+		public ArrayList GetMsg()
+        {
+			try
+			{
+				ArrayList msgList = this.msgList;
+				this.msgList.Clear();
+				return msgList;
+			}
+			catch (IOException)
+			{
+				box.DisplayError("메시지 전송");
+				return null;
+			}
+		}
 		/*
 			Close
 			1. 스트림과 소켓을 역순으로 닫음.

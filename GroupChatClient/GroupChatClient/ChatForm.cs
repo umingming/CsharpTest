@@ -46,8 +46,7 @@ namespace GroupChatClient
                 box.DisplayWarning("입력 메시지");
                 return;
             }
-
-            SetMsg();
+            SendMsg();
         }
 
         /*
@@ -63,53 +62,21 @@ namespace GroupChatClient
             cmbMax.DroppedDown = true;
         }
 
-        /*
-            SetMsg
-            1. 발신 메시지를 형식화 해서 msg 변수에 초기화함.
-            2. msg를 매개로 AddMsg 호출함.
-            3. Communicate 호출
-            4. txtMsg의 텍스트 비우기
-         */
-        private void SetMsg()
+        private void SendMsg()
         {
-            String msg = String.Format("나: {0} [{1}]\n"
-                                        , txtMsg.Text
-                                        , DateTime.Now.ToString("HH:mm:ss"));
-            AddMsg(msg);
-            Communicate();
+            client.Send(txtMsg.Text);
             txtMsg.Text = "";
-        }
-
-        /*
-            Communicate
-            1. byte 배열 생성 후, msg 저장
-            2. msg를 서버에 전송
-            3. byte 배열 초기화
-            4. 서버로부터 받은 메시지를 변환해 echo 변수에 초기화
-            5. if문 echo가 null이 아닌지?
-                > AddMsg 호출
-         */
-        private void Communicate()
-        {
-            String echo = client.Echo(txtMsg.Text);
-
-            if (echo != null)
-            {
-                AddMsg(echo + "\n");
-            }
-        }
-        
-        /*
-            AddMsg
-            1. echo를 msgList와 콤보 박스, 대화 내용에 추가함.
-            2. UpdateChat 호출
-         */
-        private void AddMsg(String msg)
-        {
-            msgList.Add(msg);
-            rtxChat.Text += msg;
-
             UpdateChat();
+        }
+
+        private void ReceiveMsg()
+        {
+            var newMsgList = client.GetMsg();
+            foreach(var newMsg in newMsgList)
+            {
+                msgList.Add(newMsg);
+                rtxChat.Text += newMsg;
+            }
         }
 
         /*
@@ -124,6 +91,11 @@ namespace GroupChatClient
          */
         private void UpdateChat()
         {
+            box.DisplayWarning("2");
+
+            ReceiveMsg();
+            box.DisplayWarning("7");
+
             if (msgList.Count > max)
             {
                 msgList.RemoveRange(0, msgList.Count - max);
@@ -149,6 +121,7 @@ namespace GroupChatClient
         {
             max = Convert.ToInt32(cmbMax.SelectedItem);
 
+            box.DisplayWarning("1");
             UpdateChat();
             txtMsg.Select();
         }
