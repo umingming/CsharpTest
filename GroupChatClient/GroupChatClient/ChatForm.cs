@@ -24,6 +24,7 @@ namespace GroupChatClient
             box = new Notification();
 
             Thread msgThread = new Thread(() => GetMsg());
+            msgThread.Start();
             InitializeComponent();
         }
 
@@ -69,7 +70,6 @@ namespace GroupChatClient
         {
             client.SetMsg(txtMsg.Text);
             txtMsg.Text = "";
-            UpdateChat();
         }
 
         private void ReceiveMsg()
@@ -78,20 +78,10 @@ namespace GroupChatClient
             foreach (string newMsg in newMsgList)
             {
                 msgList.Add(newMsg);
-
-                Action<string> action = i => rtxChat.Text += i + "\n";
-
-                if (rtxChat.InvokeRequired)
-                {
-                    rtxChat.Invoke(action, newMsg);
-                }
-                else
-                {
-                    action(newMsg);
-                }
+                rtxChat.Text += newMsg;
             }
+            UpdateChat();
         }
-
 
 
         /*
@@ -106,8 +96,6 @@ namespace GroupChatClient
          */
         private void UpdateChat()
         {
-            ReceiveMsg();
-
             if (msgList.Count > max)
             {
                 msgList.RemoveRange(0, msgList.Count - max);
@@ -125,8 +113,6 @@ namespace GroupChatClient
 
         private void UpdateChat(object sender, EventArgs e)
         {
-            ReceiveMsg();
-
             if (msgList.Count > max)
             {
                 msgList.RemoveRange(0, msgList.Count - max);
@@ -176,18 +162,16 @@ namespace GroupChatClient
             Application.Exit();
         }
 
-        private void ChatForm_Load(object sender, EventArgs e)
-        {
-            Thread chatThread = new Thread(() => GetMessage());
-            t.IsBackground = true;  
-            t.Start();
-        }
-
         private void GetMsg()
         {
             while(true)
             {
-                UpdateChat();
+                ArrayList newMsgList = (ArrayList)client.GetNewMsgList().Clone();
+                foreach (string newMsg in newMsgList)
+                {
+                    msgList.Add(newMsg);
+                    rtxChat.Text += newMsg;
+                }
                 Thread.Sleep(200);
             }
         }
