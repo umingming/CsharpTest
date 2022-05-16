@@ -68,6 +68,30 @@ namespace GroupChatClient
         }
 
         /*
+            SelectMax; 마우스 클릭 이벤트라 오버로딩함.
+         */
+        private void SelectMax(object sender, MouseEventArgs e)
+        {
+            cmbMax.Select();
+            cmbMax.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMax.DroppedDown = true;  
+        }
+
+        /*
+            SetMax; 콤보박스의 선택 값에 따라 메시지 보관 갯수를 설정함.
+            1. 콤보 박스 값을 int로 변환해 max 변수에 초기화함.
+            2. UpdateChat 호출
+            3. 메시지 입력으로 포커스 이동
+         */
+        private void SetMax(object sender, EventArgs e)
+        {
+            max = Convert.ToInt32(cmbMax.SelectedItem);
+
+            UpdateChat();
+            txtMsg.Select();
+        }
+
+        /*
             SendMsg
             1. 입력 텍스트를 인자로 SendMsg 호출
             2. 텍스트 초기화
@@ -91,30 +115,9 @@ namespace GroupChatClient
             var msg = "";
             while((msg = client.ReceiveMsg()) != null)
             {
-                msgList.Add(msg + "\n");
-                SetRtx(rtxChat, msg);
-            }
-            UpdateChat();   
-        }
-
-        /*
-            SetRtx; 크로스스레드 
-            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지?
-                > 아니면, delegate를 사용해 박스를 업데이트함.
-                > 맞을 경우, 그냥 msg 추가
-         */
-        public static void SetRtx(RichTextBox rtx, string msg)
-        {
-            if (rtx.InvokeRequired)
-            {
-                rtx.Invoke(new MethodInvoker(delegate
-                {
-                    rtx.Text += msg + "\n";
-                }));
-            }
-            else
-            {
-                rtx.Text += msg + "\n";
+                msgList.Add(msg);
+                AddToRtx(rtxChat, msg);
+                UpdateChat();   
             }
         }
 
@@ -133,34 +136,81 @@ namespace GroupChatClient
             if (msgList.Count > max)
             {
                 msgList.RemoveRange(0, msgList.Count - max);
-                rtxChat.Text = "";
+                ClearRtx(rtxChat);
 
                 for (int i = 0; i < msgList.Count; i++)
                 {
-                    rtxChat.Text += msgList[i];
+                    AddToRtx(rtxChat, (string)msgList[i]);
                 }
             }
-
-            rtxChat.SelectionStart = rtxChat.Text.Length;
-            rtxChat.ScrollToCaret();
-        } 
-
-        /*
-            SetMax; 콤보박스의 선택 값에 따라 메시지 보관 갯수를 설정함.
-            1. 콤보 박스 값을 int로 변환해 max 변수에 초기화함.
-            2. UpdateChat 호출
-            3. 메시지 입력으로 포커스 이동
-         */
-        private void SetMax(object sender, EventArgs e)
-        {
-            max = Convert.ToInt32(cmbMax.SelectedItem);
-
-            UpdateChat();
-            txtMsg.Select();
+            UpdateRtx(rtxChat);
         }
 
         /*
-            EnterMsgByEnterKeyDow
+            AddRtx; 
+            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지 판별
+            2. 박스에 해당 메시지를 추가함.
+         */
+        public static void AddToRtx(RichTextBox rtx, string msg)
+        {
+            if (rtx.InvokeRequired)
+            {
+                rtx.Invoke(new MethodInvoker(delegate
+                {
+                    rtx.Text += msg + "\n";
+                }));
+            }
+            else
+            {
+                rtx.Text += msg + "\n";
+            }
+        }
+
+        /*
+            UpdateRtx
+            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지 판별
+            2. 채팅 박스의 캐럿 위치를 문자열 끝으로 설정
+            3. 스크롤을 밑로 이동함.
+         */
+        public static void UpdateRtx(RichTextBox rtx)
+        {
+            if (rtx.InvokeRequired)
+            {
+                rtx.Invoke(new MethodInvoker(delegate
+                {
+                    rtx.SelectionStart = rtx.Text.Length;
+                    rtx.ScrollToCaret();
+                }));
+            }
+            else
+            {
+                rtx.SelectionStart = rtx.Text.Length;
+                rtx.ScrollToCaret();
+            }
+        }
+
+        /*
+            ClearRtx; Rtx 초기화
+            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드 인지 판별
+            2. rtx 비움.
+         */
+        public static void ClearRtx(RichTextBox rtx)
+        {
+            if (rtx.InvokeRequired)
+            {
+                rtx.Invoke(new MethodInvoker(delegate
+                {
+                    rtx.Text = "";
+                }));
+            }
+            else
+            {
+                rtx.Text = "";
+            }
+        }
+
+        /*
+            EnterMsgByEnterKeyDown
             1. if문 입력 키가 엔터아니면 리턴함.
             2. EnterMsg 호출
          */

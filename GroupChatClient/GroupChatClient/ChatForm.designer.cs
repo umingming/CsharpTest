@@ -110,6 +110,7 @@
             this.cmbMax.Text = "Max";
             this.cmbMax.DropDownClosed += new System.EventHandler(this.SetMax);
             this.cmbMax.Enter += new System.EventHandler(this.SelectMax);
+            this.cmbMax.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SelectMax);
             // 
             // panel1
             // 
