@@ -1,7 +1,5 @@
 package kr.co.aim.client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -107,8 +105,7 @@ public class Client {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			while(out != null) {
-				String msg = String.format("[%s]%s", name, scanner.nextLine());
-				out.println(msg);
+				out.println(scanner.nextLine());
 				out.flush();
 			}
 		} catch(Exception e) {

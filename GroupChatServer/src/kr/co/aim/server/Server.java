@@ -1,12 +1,6 @@
 package kr.co.aim.server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -27,9 +21,8 @@ public class Server {
 	
 	/*
 		생성자 정의
-		1. setServer 메소드 호출
-		2. if문 server가 null이 아닌지?
-			> run() 메소드 호출
+		1. while문 server가 null이면 반복해서 setServer() 호출함.
+		2. server 설정이 되면, start() 호출
 	 */		
 	public Server() {
 		while(server == null) {
@@ -104,7 +97,6 @@ public class Server {
 					index++;
 				}
 			}
-			
 		} catch (IOException e) {
 			System.out.println("[사용자 접속 실패]");
 		}
@@ -116,8 +108,9 @@ public class Server {
 	 	2. input 값을 이름에 할당함.
 	 	3. 클라이언트의 이름과, Output 스트림을 그룹에 저장함.
 	 	4. 사용자 접속 안내
-	 	5. while문 input이 있을 경우를 조건으로 반복함.
-	 		> input 값을 그룹에게 보내기 위해 send 메소드 호출함.
+	 	5. while문 전송 스트림이 존재하면 반복.
+	 		> if문 읽을 내용이 있는지?
+	 			> input 값을 그룹에게 보내기 위해 send 메소드 호출함.
 	 */
 	private void connect(Socket client, ClientGroup group) {
 		try {
@@ -126,12 +119,12 @@ public class Server {
 			
 			String name = in.nextLine();
 			group.getClientMap().put(name, out);
-			
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
 			
 			while(in != null) {
 				if(in.hasNextLine()) {
-					send(in.nextLine(), group);
+					String msg = String.format("[%s]%s", name, in.nextLine());
+					send(msg, group);
 				}
 			}
 			
@@ -140,22 +133,11 @@ public class Server {
 		}
 	}
 	
-	private int readMsgByteCnt() throws Exception {
-		byte[] headerBytes = new byte[4];
-		InputStream in = client.getInputStream();
-		in.read(headerBytes);
-		return byteArrayToInt(headerBytes);
-	}
-
-	private int byteArrayToInt(byte[] bytes) {
-		return (bytes[3] & 0xFF << 24) + ((bytes[2] & 0xFF) << 16) + ((bytes[1] & 0xFF) << 8) + (bytes[0] & 0xFF);
-	}
-
 	/*
 		send; 메시지를 그룹에게 전송함.
 		1. group을 클라이언트 이름으로 탐색하고자, Iterator 사용
 		2. 탐색이 가능한지를 조건으로 while문 반복
-		  > 해당 반복자의 이름을 key로 스트림을 얻어 변수에 초기화함.
+		  > 해당 반복자의 이름을 key로 스트림을 얻어 out 변수에 초기화함.
 		  > 메시지를 해당 스트림으로 전송함.
 	 */
 	private void send(String msg, ClientGroup group) {
@@ -165,7 +147,7 @@ public class Server {
 			
 			while(iterator.hasNext()) {
 				PrintWriter out = group.getClientMap().get(iterator.next());
-				out.println(msg+"\n");
+				out.println(msg);
 				out.flush();
 			}
 			

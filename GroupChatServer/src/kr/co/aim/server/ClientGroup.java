@@ -15,10 +15,16 @@ public class ClientGroup {
 	private String name;
 	private int total;
 	
+	/*
+		total값을 정의하지 않으면 그룹을 무한대로 만듦.
+	 */
 	public ClientGroup() {
 		map = new HashMap<>();
 	}
 	
+	/*
+		total값을 매개로 받아, 해당 크기 만큼 map을 생성함.
+	 */
 	public ClientGroup(int total) {
 		this.total = total;
 		map = new HashMap<>(total);
@@ -40,6 +46,10 @@ public class ClientGroup {
 		this.name = name;
 	}
 	
+	/*
+	  	isFull()
+	  	1. 존재하는 요소와 total의 크기가 같은지를 리턴함.
+	 */
 	public boolean isFull() { 
 		return map.size() == total;
 	}
@@ -53,7 +63,6 @@ public class ClientGroup {
 			clients[index] = client;
 			index++;
 		}
-		
 		return String.format("%s,%d%s", name, total, Arrays.toString(clients));
 	}
 }
