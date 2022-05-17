@@ -127,7 +127,6 @@ public class Server {
 			
 			group.getClientMap().put(name, out);
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
-			
 			while(in != null) {
 				Packet msgPacket = new Packet();
 				msgPacket.setStream(in);
