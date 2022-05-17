@@ -44,12 +44,9 @@ namespace ConsoleClient
 
         private static void setClient()
         {
-            byte[] nameArr = Encoding.UTF8.GetBytes(name);
-            byte[] header = new byte[4];
-            header = BitConverter.GetBytes(nameArr.Length);
-            Array.Reverse(header);
+            Packet namePacket = new Packet(name);
+            byte[] nameArr = namePacket.ToByteArr();
 
-            sender.Write(header, 0, header.Length);
             sender.Write(nameArr, 0, nameArr.Length);
             sender.Flush();
 
@@ -62,15 +59,12 @@ namespace ConsoleClient
         private static void Receive()
         {
             while (receiver != null) {
-                byte[] header = new byte[4];
+                Packet msgPacket = new Packet();
+                msgPacket.SetStream(receiver);
 
-                if(receiver.Read(header, 0, 4) > 0)
+                if(msgPacket.IsUpdated())
                 {
-                    Array.Reverse(header);
-                    var length = BitConverter.ToInt32(header, 0);
-                    byte[] msg = new byte[length];
-                    sender.Read(msg, 0, length);
-                    Console.Write(Encoding.UTF8.GetString(msg));
+                    Console.Write(msgPacket.ToString());
                 }
             }
         }
@@ -78,12 +72,11 @@ namespace ConsoleClient
         private static void Send()
         {
             while (sender != null) {
-                byte[] nameArr = Encoding.UTF8.GetBytes(Console.ReadLine());
-                byte[] header = BitConverter.GetBytes(nameArr.Length);
-                Array.Reverse(header);
+                var msg = Console.ReadLine();
+                Packet msgPacket = new Packet(msg);
+                byte[] msgArr = msgPacket.ToByteArr();
 
-                sender.Write(header, 0, header.Length);
-                sender.Write(nameArr, 0, nameArr.Length);
+                sender.Write(msgArr, 0, msgArr.Length);
                 sender.Flush();
             }
         }

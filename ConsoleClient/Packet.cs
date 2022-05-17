@@ -24,11 +24,33 @@ namespace ConsoleClient
             body = Encoding.UTF8.GetBytes(msg);
             header = BitConverter.GetBytes(body.Length);
         }
+        
+        public void SetStream(NetworkStream stream)
+        {
+            this.stream = stream;
+        }
 
         public Boolean IsUpdated()
         {
-            return stream.DataAvailable;
+            return (stream.Read(header, 0, 4) > 0) ? true : false;
         }
 
+        public string ToString()
+        {
+            Array.Reverse(header);
+            var length = BitConverter.ToInt32(header, 0);
+            byte[] msg = new byte[length];
+            stream.Read(msg, 0, length);
+            return Encoding.UTF8.GetString(msg);
+        }
+
+        public byte[] ToByteArr()
+        {
+            byte[] byteArr = new byte[header.Length + body.Length];
+            Array.Reverse(header);
+            Array.Copy(header, 0, byteArr, 0, header.Length);
+            Array.Copy(body, 0, byteArr, header.Length, body.Length);
+            return byteArr;
+        }
     }
 }
