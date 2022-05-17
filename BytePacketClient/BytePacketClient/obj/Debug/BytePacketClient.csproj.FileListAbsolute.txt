@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\bin\Debug\BytePacketClient.exe
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\bin\Debug\BytePacketClient.pdb
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.ChatForm.resources
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.MainForm.resources
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.NameForm.resources
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.Properties.Resources.resources
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.GenerateResource.cache
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.exe
+C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.pdb

@@ -1,4 +1,4 @@
-﻿namespace GroupChatClient
+﻿namespace BytePacketClient
 {
     partial class MainForm
     {
@@ -96,7 +96,6 @@
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(99, 25);
             this.txtPort.TabIndex = 2;
-            this.txtPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IsEnterKey);
             // 
             // label3
             // 

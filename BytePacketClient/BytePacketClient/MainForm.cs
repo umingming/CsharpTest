@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace BytePacketClient
-{ 
+{
     /*
         MainForm
         - Port와 IP를 입력 받아 서버에 연결할 것
@@ -56,15 +56,14 @@ namespace BytePacketClient
         }
 
         /*
-            IsEnterKey; port 박스에서 엔터를 누를 경우 실행시킴
+            EnterMsgByEnterKeyDown; port 박스에서 엔터를 누를 경우 실행시킴
             1. if문 입력 키가 엔터가 아닌지?
                 > return
             2. Start 호출
          */
-        private void IsEnterKey(object sender, KeyEventArgs e)
+        private void StartByEnterKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
-            
             Start(sender, e);
         }
     }

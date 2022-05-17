@@ -65,7 +65,7 @@
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(260, 20);
             this.txtMsg.TabIndex = 1;
-            this.txtMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IsEnterKey);
+            this.txtMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterMsgByEnterKeyDown);
             // 
             // btnInput
             // 
@@ -110,6 +110,7 @@
             this.cmbMax.Text = "Max";
             this.cmbMax.DropDownClosed += new System.EventHandler(this.SetMax);
             this.cmbMax.Enter += new System.EventHandler(this.SelectMax);
+            this.cmbMax.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SelectMax);
             // 
             // panel1
             // 
@@ -156,9 +157,6 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // directorySearcher1
-            // 
             // 
             // errorProvider1
             // 

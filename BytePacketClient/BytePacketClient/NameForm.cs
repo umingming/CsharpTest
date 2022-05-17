@@ -4,8 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace BytePacketClient
-{ 
-
+{
     /*
         NameForm
         - 이름을 입력 받아 서버에 전달
@@ -45,15 +44,14 @@ namespace BytePacketClient
         }
 
         /*
-            IsEnterKey
+            EnterNameByEnterKeyDown
             1. if문 입력 키가 엔터가 아닌지?
                 > return
-            2. Start 호출
+            2. EnterName 호출
          */
-        private void IsEnterKey(object sender, KeyEventArgs e)
+        private void EnterNameByEnterKeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.Alt || e.KeyCode != Keys.Enter) return;
-
+            if (e.KeyCode != Keys.Enter) return;
             EnterName(sender, e);
         }
     }

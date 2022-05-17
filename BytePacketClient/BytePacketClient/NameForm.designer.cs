@@ -1,4 +1,4 @@
-﻿namespace GroupChatClient
+﻿namespace BytePacketClient
 {
     partial class NameForm
     {
@@ -55,7 +55,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(105, 25);
             this.txtName.TabIndex = 1;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IsEnterKey);
             // 
             // label1
             // 
