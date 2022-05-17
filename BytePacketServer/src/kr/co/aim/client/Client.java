@@ -1,14 +1,20 @@
 package kr.co.aim.client;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
+
+import kr.co.aim.server.Packet;
 
 /*
 	에코 클라이언트
 	- 서버에 메시지를 보내고, 해당 메시지를 돌려 받을 것.
  */
-public class EchoClient {
+public class Client {
 	private Socket client;
+	private InputStream in;
+	private OutputStream out;
 	
 	private String name;
 	private String msg;
@@ -23,11 +29,12 @@ public class EchoClient {
 			> communicate 메소드 호출
 			> close 메소드 호출
 	 */
-	public EchoClient() {
+	public Client() {
 		accessServer();
 		
 		if(client != null) {
 			setClient();
+			run();
 		}
 	}
 
@@ -65,20 +72,92 @@ public class EchoClient {
 	/*
 		setClient(); 클라이언트 정보 설정
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
-		2. name을 println 메소드로 서버에 전송함.
+		2. name 패킷을 생성함.
+		3. 패킷의 바이트 배열을 전송함.
 	 */
 	private void setClient() {
 		try {
-			System.out.printf("[통신 시작] %s님 환영합니다.%n ☞ ", name);
+			in = client.getInputStream();
+			out = client.getOutputStream();
 			
-			Thread sender = new Thread(new SenderThread(client, name));
-			Thread receiver = new Thread(new ReceiverThread(client));
-
-			sender.start();
-			receiver.start();
+			Packet namePacket = new Packet(name);
+			out.write(namePacket.toByteArr());
+			out.flush();
+			
+			System.out.printf("[통신 시작] %s님 환영합니다.%n ☞ ", name);
 			
 		} catch (Exception e) {
 			System.out.println("[통신 실패]");
+		}
+	}
+	
+	/*
+	 	run(); 스레드 시작
+	 	1. sender 스레드 생성
+	 		> send() 호출함.
+ 		2. receiver 스레드 생성
+ 			> receive() 호출함.
+		3. 스레드 시작함.
+	 */
+	private void run() {
+		Thread sender = new Thread() {
+			@Override
+			public void run() {
+				send();
+			}
+		};
+		
+		Thread receiver = new Thread(){
+			@Override
+			public void run() {
+				receive();
+			}
+		};
+
+		sender.start();
+		receiver.start();
+	}
+	
+	/*
+	 	send(); 입력이 있으면 메시지를 전송함.
+	 	1. while문 스트림이 초기화되었으면 반복함.
+	 		> 입력을 메시지 변수에 초기화함.
+	 		> 메시지 패킷을 생성
+	 		> 해당 패킷의 바이트 배열을 전송함.
+	 */
+	public void send() {
+		try {
+			while(out != null) {
+				Scanner scanner = new Scanner(System.in);
+				String msg = scanner.nextLine();
+				Packet msgPacket = new Packet(msg);
+				out.write(msgPacket.toByteArr());
+				out.flush();
+			}
+		} catch(Exception e) {
+			System.out.println("[메시지 전송 오류]");
+		}
+	}
+	
+	/*
+	 	receive()
+	 	1. while문 스트림이 초기화되었으면 반복함.
+	 		> 패킷 생성함.
+	 		> 패킷에 스트림 할당함.
+	 		> if문 패킷이 업데이트되었는지?
+	 			> 패킷의 내용을 출력함.
+	 */
+	public void receive() {
+		try {
+			while(in != null) {
+				Packet packet = new Packet();
+				packet.setStream(in);
+				if(packet.isUpdated()) {
+					System.out.println(packet.toString());
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("[메시지 수신 오류]");
 		}
 	}
 
@@ -88,7 +167,7 @@ public class EchoClient {
 	 */
 	public static void main(String[] args) {
 		try {
-			new EchoClient();
+			new Client();
 			
 		} catch (Exception e) {
 			System.out.println("[시스템 오류] 접속을 강제 종료합니다.");
