@@ -32,7 +32,7 @@ public class Packet {
 	}
 
 	/*
-	 	isUpdated; 스트림에 변화가 있을 경우 안내함
+	 	isUpdated; 스트림에 변화가 있는지
 	 	1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
 	 */
 	public boolean isUpdated() {
@@ -53,11 +53,12 @@ public class Packet {
 	 */
 	public String toString() {
 		try {
-			byte[] header = new byte[4];
 			stream.read(header);
+			
 			int length = ByteBuffer.wrap(header).getInt();
-			this.body = new byte[length];
+			body = new byte[length];
 			stream.read(body);
+			
 			return new String(body);
 			
 		} catch (Exception e) {
