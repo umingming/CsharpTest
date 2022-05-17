@@ -11,7 +11,7 @@ import java.util.Map;
  	ClientGroup; 클라이언트들의 그룹을 정의함.
  */
 public class ClientGroup {
-	private Map<String, PrintWriter> map;
+	private Map<String, OutputStream> map;
 	private String name;
 	private int total;
 	
@@ -30,11 +30,11 @@ public class ClientGroup {
 		map = new HashMap<>(total);
 	}
 	
-	public Map<String, PrintWriter> getClientMap() {
+	public Map<String, OutputStream> getClientMap() {
 		return map;
 	}
 	
-	public void setMap(Map<String, PrintWriter> clientMap) {
+	public void setMap(Map<String, OutputStream> clientMap) {
 		this.map = clientMap;
 	}
 	
