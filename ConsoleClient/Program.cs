@@ -12,17 +12,16 @@ namespace ConsoleClient
     {
         private static TcpClient client;
         private static string name;
-        private static StreamWriter sender;
-        private static StreamReader receiver;
+        private static NetworkStream sender;
+        private static NetworkStream receiver;
 
         public static void Main(string[] args)
         {
             AccessServer();
-            if(client != null)
+            if(name != null)
             {
                 setClient();
             }
-
         }
 
         private static void AccessServer()
@@ -36,35 +35,55 @@ namespace ConsoleClient
             client = new TcpClient();
             client.Connect(ip, port);
 
+            sender = client.GetStream();
+            receiver = client.GetStream();
+
             Console.Write("[서버 접속 중] 사용자 이름을 입력해주세요. \n ☞ ");
             name = Console.ReadLine();
         }
 
         private static void setClient()
         {
-            sender = new StreamWriter(client.GetStream());
-            receiver = new StreamReader(client.GetStream());
+            byte[] nameArr = Encoding.UTF8.GetBytes(name);
+            byte[] header = new byte[4];
+            header = BitConverter.GetBytes(nameArr.Length);
+            Array.Reverse(header);
 
-            sender.WriteLine(name);
+            sender.Write(header, 0, header.Length);
+            sender.Write(nameArr, 0, nameArr.Length);
             sender.Flush();
 
-            Thread senderThread = new Thread(() => send());
-            Thread receiverThread = new Thread(() => receive());
+            Thread senderThread = new Thread(() => Send());
+            Thread receiverThread = new Thread(() => Receive());
             senderThread.Start();
             receiverThread.Start();
         }
 
-        private static void receive()
+        private static void Receive()
         {
             while (receiver != null) {
-                Console.WriteLine(receiver.ReadLine());
+                byte[] header = new byte[4];
+
+                if(receiver.Read(header, 0, 4) > 0)
+                {
+                    Array.Reverse(header);
+                    var length = BitConverter.ToInt32(header, 0);
+                    byte[] msg = new byte[length];
+                    sender.Read(msg, 0, length);
+                    Console.Write(Encoding.UTF8.GetString(msg));
+                }
             }
         }
 
-        private static void send()
+        private static void Send()
         {
             while (sender != null) {
-                sender.WriteLine("[{0}]{1}", name, Console.ReadLine());
+                byte[] nameArr = Encoding.UTF8.GetBytes(Console.ReadLine());
+                byte[] header = BitConverter.GetBytes(nameArr.Length);
+                Array.Reverse(header);
+
+                sender.Write(header, 0, header.Length);
+                sender.Write(nameArr, 0, nameArr.Length);
                 sender.Flush();
             }
         }
