@@ -1,4 +1,4 @@
-﻿namespace GroupChatClient
+﻿namespace BytePacketClient
 {
     partial class ChatForm
     {
@@ -86,8 +86,8 @@
             // cmbMax
             // 
             this.cmbMax.AllowDrop = true;
-            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMax.BackColor = System.Drawing.Color.White;
             this.cmbMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
