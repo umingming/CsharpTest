@@ -32,26 +32,25 @@ public class Packet {
 	}
 
 	/*
-	 	isUpdated; 스트림에 변화가 있는지
-	 	1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
-	 */
-	public boolean isUpdated() {
-		try {
-			return (stream.available() > 0) ? true : false;
-		} catch (Exception e) {
-			return false;
-		}
+	    isAvailable; 사용 가능한 패킷인지 확인
+	    1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
+	*/
+	public boolean isAvailable() {
+	   try {
+	       return (stream.available() > 0) ? true : false;
+	   } catch (Exception e) {
+	       return false;
+	   }
 	}
 	
 	/*
-	 	toString; 패킷을 문자열로 반환함.
-	 	1. 스트림을 헤더의 크기만큼 읽어 할당함.
+		init; 스트림을 읽어 패킷 초기화
+		1. 스트림을 헤더의 크기만큼 읽어 할당함.
 	 	2. 길이 변수에 헤더 배열을 정수로 변환해 초기화함.
 	 	3. body 배열을 해당 길이로 지정함.
 	 	4. 스트림을 읽어 바디에 할당함.
-	 	5. 해당 내용을 문자열로 반환함.
 	 */
-	public String toString() {
+	public void init() {
 		try {
 			stream.read(header);
 			
@@ -59,12 +58,17 @@ public class Packet {
 			body = new byte[length];
 			stream.read(body);
 			
-			return new String(body);
-			
 		} catch (Exception e) {
 			System.out.println("[메시지 수신 오류]");
-			return null;
 		}
+	}
+	
+	/*
+	 	toString; 패킷을 문자열로 반환함.
+	 	1. 패킷을 문자열로 반환함.
+	 */
+	public String toString() {
+		return new String(body);
 	}
 	
 	/*

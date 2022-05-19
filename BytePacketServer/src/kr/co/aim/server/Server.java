@@ -131,9 +131,8 @@ public class Server {
 				Packet msgPacket = new Packet();
 				msgPacket.setStream(in);
 				
-				if(msgPacket.isUpdated()) {
-					String msg = String.format("[%s]%s", name, msgPacket.toString());
-					send(msg, group);
+				if(msgPacket.hasData()) {
+					send(msgPacket, group);
 				}
 			}
 			
@@ -150,14 +149,13 @@ public class Server {
 		  > 메시지를 인자로 패킷 생성
 		  > 해당 메시지의 바이트배열을 스트림으로 전송함.
 	 */
-	private void send(String msg, ClientGroup group) {
+	private void send(Packet msgPacket, ClientGroup group) {
 		try {
-			System.out.println(msg);
+			System.out.println(msgPacket.toString());
 			Iterator<String> iterator = group.getClientMap().keySet().iterator();
 			
 			while(iterator.hasNext()) {
 				OutputStream out = group.getClientMap().get(iterator.next());
-				Packet msgPacket = new Packet(msg);
 				out.write(msgPacket.toByteArr());
 				out.flush();
 			}

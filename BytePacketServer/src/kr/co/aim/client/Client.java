@@ -152,7 +152,7 @@ public class Client {
 			while(in != null) {
 				Packet packet = new Packet();
 				packet.setStream(in);
-				if(packet.isUpdated()) {
+				if(packet.hasData()) {
 					System.out.println(packet.toString());
 				}
 			}
