@@ -13,10 +13,18 @@ public class Packet {
 	
 	private final int HEADER_LENGTH = 4;
 	
+	/*
+	 	기본 생성자
+	 	1. 헤더 배열 초기화
+	 */
 	public Packet() {
 		this.header = new byte[HEADER_LENGTH];
 	}
 	
+	/*
+	 	스트림 매개 생성자
+	 	1. 헤더 배열, 스트림 초기화
+	 */
 	public Packet(InputStream stream) {
 		this.header = new byte[HEADER_LENGTH];
 		this.stream = stream;
