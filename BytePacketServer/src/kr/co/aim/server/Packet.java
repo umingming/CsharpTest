@@ -17,6 +17,11 @@ public class Packet {
 		this.header = new byte[HEADER_LENGTH];
 	}
 	
+	public Packet(InputStream stream) {
+		this.header = new byte[HEADER_LENGTH];
+		this.stream = stream;
+	}
+	
 	/*
 	 	생성자 정의
 	 	1. 메시지를 인자로 받을 경우 형변환에 body에 초기화함.
@@ -25,10 +30,6 @@ public class Packet {
 	public Packet(String msg) {
 		this.body = msg.getBytes();
 		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
-	}
-
-	public void setStream(InputStream stream) {
-		this.stream = stream;
 	}
 
 	/*

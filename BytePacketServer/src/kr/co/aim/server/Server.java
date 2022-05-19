@@ -121,17 +121,18 @@ public class Server {
 			InputStream in = client.getInputStream();
 			OutputStream out = client.getOutputStream();
 			
-			Packet namePacket = new Packet();
-			namePacket.setStream(in);
+			Packet namePacket = new Packet(in);
+			namePacket.init();
 			String name = namePacket.toString();
 			
 			group.getClientMap().put(name, out);
 			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
+			
 			while(in != null) {
-				Packet msgPacket = new Packet();
-				msgPacket.setStream(in);
+				Packet msgPacket = new Packet(in);
 				
-				if(msgPacket.hasData()) {
+				if(msgPacket.isAvailable()) {
+					msgPacket.init();
 					send(msgPacket, group);
 				}
 			}

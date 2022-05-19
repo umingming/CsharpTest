@@ -150,9 +150,9 @@ public class Client {
 	public void receive() {
 		try {
 			while(in != null) {
-				Packet packet = new Packet();
-				packet.setStream(in);
-				if(packet.hasData()) {
+				Packet packet = new Packet(in);
+				if(packet.isAvailable()) {
+					packet.init();
 					System.out.println(packet.toString());
 				}
 			}
