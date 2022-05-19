@@ -15,9 +15,9 @@ public class Client {
 	private Socket client;
 	private InputStream in;
 	private OutputStream out;
+	private Scanner scanner;
 	
 	private String name;
-	private String msg;
 	private String ip;
 	private int port;
 	
@@ -33,7 +33,7 @@ public class Client {
 		accessServer();
 		
 		if(client != null) {
-			setClient();
+			registerClient();
 			run();
 		}
 	}
@@ -52,7 +52,7 @@ public class Client {
 	 */
 	private void accessServer() {
 		try {
-			Scanner scanner = new Scanner(System.in);
+			scanner = new Scanner(System.in);
 			System.out.print("[시스템 시작] IP 주소를 입력하세요. \n ☞ ");
 			ip = scanner.nextLine();
 			
@@ -70,12 +70,12 @@ public class Client {
 	}
 	
 	/*
-		setClient(); 클라이언트 정보 설정
+		registerClient(); 클라이언트 정보 설정
 		1. 스트림 변수에 client 소켓 스트림의 값을 초기화함.
 		2. name 패킷을 생성함.
 		3. 패킷의 바이트 배열을 전송함.
 	 */
-	private void setClient() {
+	private void registerClient() {
 		try {
 			in = client.getInputStream();
 			out = client.getOutputStream();
@@ -103,14 +103,14 @@ public class Client {
 		Thread sender = new Thread() {
 			@Override
 			public void run() {
-				send();
+				sendMsg();
 			}
 		};
 		
 		Thread receiver = new Thread(){
 			@Override
 			public void run() {
-				receive();
+				receiveMsg();
 			}
 		};
 
@@ -125,10 +125,9 @@ public class Client {
 	 		> 메시지 패킷을 생성
 	 		> 해당 패킷의 바이트 배열을 전송함.
 	 */
-	public void send() {
+	public void sendMsg() {
 		try {
 			while(out != null) {
-				Scanner scanner = new Scanner(System.in);
 				String msg = scanner.nextLine();
 				Packet msgPacket = new Packet(msg);
 				out.write(msgPacket.toByteArr());
@@ -147,13 +146,13 @@ public class Client {
 	 		> if문 패킷이 업데이트되었는지?
 	 			> 패킷의 내용을 출력함.
 	 */
-	public void receive() {
+	public void receiveMsg() {
 		try {
 			while(in != null) {
-				Packet packet = new Packet(in);
-				if(packet.isAvailable()) {
-					packet.init();
-					System.out.println(packet.toString());
+				Packet msgPacket = new Packet(in);
+				if(msgPacket.isAvailable()) {
+					msgPacket.init();
+					System.out.println(msgPacket.toString());
 				}
 			}
 		} catch (Exception e) {

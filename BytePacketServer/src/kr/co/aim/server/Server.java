@@ -27,7 +27,7 @@ public class Server {
 	 */		
 	public Server() {
 		while(server == null) {
-			setServer();
+			registerServer();
 		}
 		start();
 	}
@@ -41,7 +41,7 @@ public class Server {
 			> port 넘버를 잘못 입력했을 경우
 			> 이미 존재하는 port의 경우
 	 */
-	private void setServer() {
+	private void registerServer() {
 		try {
 			Scanner scanner = new Scanner(System.in);
 			
@@ -54,6 +54,8 @@ public class Server {
 			
 			createGroup(2);
 			createGroup(2);
+			
+			scanner.close();
 			
 		} catch (Exception e) {
 			System.out.println("[서버 생성 실패] 잘못된 입력입니다.");
