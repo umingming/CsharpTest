@@ -74,7 +74,6 @@ public class Packet {
 	
 	/*
 	 	toString; 패킷을 문자열로 반환함.
-	 	1. 패킷을 문자열로 반환함.
 	 */
 	public String toString() {
 		return new String(body);
