@@ -80,7 +80,7 @@ public class Client {
 			in = client.getInputStream();
 			out = client.getOutputStream();
 			
-			Packet namePacket = new Packet(name);
+			Packet namePacket = new Packet(in, name);
 			out.write(namePacket.toByteArr());
 			out.flush();
 			

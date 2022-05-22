@@ -39,6 +39,12 @@ public class Packet {
 		this.body = msg.getBytes();
 		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
 	}
+	
+	public Packet(InputStream stream, String msg) {
+		this.stream = stream;
+		this.body = msg.getBytes();
+		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
+	}
 
 	/*
 	    isAvailable; 사용 가능한 패킷인지 확인
