@@ -88,13 +88,9 @@ public class Server {
 				client = server.accept();
 				System.out.println("[사용자 접속 대기]");
 				
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						connect(client, groupList.get(index));
-					}
-				};
-				thread.start();
+				new Thread(() -> {
+					connect(client, groupList.get(index));
+				}).start();
 				
 				if(groupList.get(index).isFull()) {
 					index++;
