@@ -50,7 +50,8 @@ public class ClientGroup {
 	  	isFull()
 	  	1. 존재하는 요소와 total의 크기가 같은지를 리턴함.
 	 */
-	public boolean isFull() { 
+	public boolean isFull() {
+		System.out.println(map.size() + "," + total);
 		return map.size() == total;
 	}
 
