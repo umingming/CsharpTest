@@ -11,7 +11,7 @@ import java.util.Map;
  	ClientGroup; 클라이언트들의 그룹을 정의함.
  */
 public class ClientGroup {
-	private Map<String, OutputStream> map;
+	private Map<String, OutputStream> clientMap;
 	private String name;
 	private int total;
 	
@@ -19,7 +19,7 @@ public class ClientGroup {
 		total값을 정의하지 않으면 그룹을 무한대로 만듦.
 	 */
 	public ClientGroup() {
-		map = new HashMap<>();
+		clientMap = new HashMap<>();
 	}
 	
 	/*
@@ -27,15 +27,15 @@ public class ClientGroup {
 	 */
 	public ClientGroup(int total) {
 		this.total = total;
-		map = new HashMap<>(total);
+		clientMap = new HashMap<>(total);
 	}
 	
 	public Map<String, OutputStream> getClientMap() {
-		return map;
+		return clientMap;
 	}
 	
 	public void setMap(Map<String, OutputStream> clientMap) {
-		this.map = clientMap;
+		this.clientMap = clientMap;
 	}
 	
 	public String getName() {

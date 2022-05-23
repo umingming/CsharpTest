@@ -8,6 +8,8 @@ import java.util.Iterator;
 public class ServerThread implements Runnable {
 	private Socket client;
 	private ClientGroup group;
+	private InputStream in;
+	private OutputStream out;
 	
 	public ServerThread(Socket client, ClientGroup group) {
 		this.client = client;
@@ -17,11 +19,8 @@ public class ServerThread implements Runnable {
 	/*
 	 	connect; 클라이언트가 그룹에 연결되어, 메시지를 보냄.
 	 	1. 스트림 변수에 client 소켓 스트림 값을 초기화함.
-	 	2. 패킷 생성해 스트림 설정함.
-	 	3. 해당 패킷의 내용을 이름에 할당함.
-	 	4. 클라이언트의 이름과, Output 스트림을 그룹에 저장함.
-	 	5. 사용자 접속 안내
-	 	6. while문 스트림이 존재하면 반복.
+	 	2. registerName 호출
+	 	3. while문 스트림이 존재하면 반복.
 	 		> 메시지 패킷 생성
 	 		> if문 읽을 내용이 있는지?
 	 			> 메시지 변수에, 이름과 메시지를 저장함.
@@ -30,15 +29,10 @@ public class ServerThread implements Runnable {
 	@Override
 	public void run() {
 		try {
-			InputStream in = client.getInputStream();
-			OutputStream out = client.getOutputStream();
+			in = client.getInputStream();
+			out = client.getOutputStream();
 			
-			Packet namePacket = new Packet(in);
-			namePacket.init();
-			String name = namePacket.toString();
-			
-			group.getClientMap().put(name, out);
-			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
+			registerName();
 			
 			while(in != null) {
 				Packet msgPacket = new Packet(in);
@@ -48,12 +42,27 @@ public class ServerThread implements Runnable {
 					send(msgPacket, group);
 				}
 			}
-			
 		} catch (Exception e) {
 			System.out.println("[사용자 접속 실패]");
 		}
 	}
 
+	/*
+	 	registerName; 이름 설정
+		1. 패킷 생성 후 초기화
+	 	2. 해당 패킷의 내용을 이름에 할당함.
+	 	3. 클라이언트의 이름과, Output 스트림을 그룹에 저장함.
+	 	4. 사용자 접속 안내
+	 */
+	private void registerName() {
+		Packet namePacket = new Packet(in);
+		namePacket.init();
+		String name = namePacket.toString();
+		
+		group.getClientMap().put(name, out);
+		System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
+	}
+	
 	/*
 		send; 메시지를 그룹에게 전송함.
 		1. group을 클라이언트 이름으로 탐색하고자, Iterator 사용
@@ -62,7 +71,7 @@ public class ServerThread implements Runnable {
 		  > 메시지를 인자로 패킷 생성
 		  > 해당 메시지의 바이트배열을 스트림으로 전송함.
 	 */
-	public void send(Packet msgPacket, ClientGroup group) {
+	private void send(Packet msgPacket, ClientGroup group) {
 		try {
 			System.out.println(msgPacket.toString());
 			Iterator<String> iterator = group.getClientMap().keySet().iterator();
