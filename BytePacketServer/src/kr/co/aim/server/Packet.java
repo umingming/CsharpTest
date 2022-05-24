@@ -30,8 +30,14 @@ public class Packet {
 		this.stream = stream;
 	}
 	
+	public Packet(InputStream stream, String msg) {
+		this.stream = stream;
+		this.body = msg.getBytes();
+		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
+	}
+	
 	/*
-	 	생성자 정의
+	 	메시지 매개 생성자
 	 	1. 메시지를 인자로 받을 경우 형변환에 body에 초기화함.
 	 	2. ByteBuffer를 이용해 body의 길이를 값으로 하는 배열을 선언함.
 	 */
@@ -40,12 +46,6 @@ public class Packet {
 		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
 	}
 	
-	public Packet(InputStream stream, String msg) {
-		this.stream = stream;
-		this.body = msg.getBytes();
-		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
-	}
-
 	/*
 	    isAvailable; 사용 가능한 패킷인지 확인
 	    1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
@@ -68,10 +68,12 @@ public class Packet {
 	public void init() {
 		try {
 			stream.read(header);
-			
+			System.out.println(header);
 			int length = ByteBuffer.wrap(header).getInt();
+			System.out.println(length);
 			body = new byte[length];
 			stream.read(body);
+			System.out.println(body);
 			
 		} catch (Exception e) {
 			System.out.println("[메시지 수신 오류]");

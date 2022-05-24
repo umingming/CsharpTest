@@ -51,16 +51,15 @@ public class ClientGroup {
 	  	1. 존재하는 요소와 total의 크기가 같은지를 리턴함.
 	 */
 	public boolean isFull() {
-		System.out.println(map.size() + "," + total);
-		return map.size() == total;
+		return clientMap.size() == total;
 	}
 
 	@Override
 	public String toString() {
-		String[] clients = new String[map.size()];
+		String[] clients = new String[clientMap.size()];
 		int index = 0;
 		
-		for(String client : map.keySet()) {
+		for(String client : clientMap.keySet()) {
 			clients[index] = client;
 			index++;
 		}
