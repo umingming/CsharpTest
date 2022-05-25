@@ -32,6 +32,7 @@ public class Server {
 		start();
 	}
 	
+	
 	/*
 		setServer(); 서버 생성
 		1. 입력 값을 port에 저장
