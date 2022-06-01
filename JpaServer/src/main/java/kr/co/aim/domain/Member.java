@@ -1,5 +1,7 @@
 package kr.co.aim.domain;
 
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +22,8 @@ import lombok.Setter;
 @Getter @Setter
 public class Member {
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int seq;
+	@Column(name = "memberId")
+	private int id;
 	
 	@Column(nullable = false, length = 30)
 	private String name;
@@ -28,5 +32,11 @@ public class Member {
 	private Date regDate = new Date();
 	
 	@OneToMany(mappedBy = "member")
-	private List<MemberByRoom> rooms;
+	private List<MemberRoom> rooms = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "member")
+	private List<Message> messages = new ArrayList<>();
+	
+	@Transient
+	private OutputStream out;
 }
