@@ -120,7 +120,7 @@
             this.printSetupToolStripMenuItem,
             this.toolStripSeparator5,
             this.exitToolStripMenuItem});
-            this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
+            this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(83, 29);
             this.fileMenu.Text = "파일(&F)";
