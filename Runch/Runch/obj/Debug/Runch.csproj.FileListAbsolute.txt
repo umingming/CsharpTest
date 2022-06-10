@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Runch.exe.config
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Runch.exe
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Runch.pdb
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.Form1.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.Properties.Resources.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.GenerateResource.cache
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.exe
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.pdb
