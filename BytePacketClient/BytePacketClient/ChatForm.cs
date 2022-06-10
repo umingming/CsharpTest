@@ -98,7 +98,7 @@ namespace BytePacketClient
          */
         private void SendMsg()
         {
-            client.SendMsg(txtMsg.Text);
+            client.SendMsg($"[{client.GetName()}]{txtMsg.Text}");
             txtMsg.Text = "";
         }
 
@@ -115,9 +115,15 @@ namespace BytePacketClient
             var msg = "";
             while((msg = client.ReceiveMsg()) != null)
             {
-                msgList.Add(msg);
-                AddToRtx(rtxChat, msg);
-                UpdateChat();   
+                if(txtRoom.Text == "")
+                {
+                    InitTxt(txtRoom, msg);
+                }
+                else
+                {
+                    msgList.Add(msg);
+                    AddToRtx(rtxChat, msg);
+                }
             }
         }
 
@@ -143,13 +149,29 @@ namespace BytePacketClient
                     AddToRtx(rtxChat, (string)msgList[i]);
                 }
             }
-            UpdateRtx(rtxChat);
+        }
+
+        private void InitTxt(TextBox txt, string msg)
+        {
+            if (txt.InvokeRequired)
+            {
+                txt.Invoke(new MethodInvoker(delegate
+                {
+                    txt.Text = msg;
+                }));
+            }
+            else
+            {
+                txt.Text = msg;
+            }
         }
 
         /*
             AddRtx; 
             1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지 판별
             2. 박스에 해당 메시지를 추가함.
+            3. 채팅 박스의 캐럿 위치를 문자열 끝으로 설정
+            4. 스크롤을 밑로 이동함.
          */
         public static void AddToRtx(RichTextBox rtx, string msg)
         {
@@ -158,32 +180,13 @@ namespace BytePacketClient
                 rtx.Invoke(new MethodInvoker(delegate
                 {
                     rtx.Text += msg + "\n";
-                }));
-            }
-            else
-            {
-                rtx.Text += msg + "\n";
-            }
-        }
-
-        /*
-            UpdateRtx
-            1. if문 컨트롤에 접근하는 스레드가, 컨트롤 생성 스레드가 아닌지 판별
-            2. 채팅 박스의 캐럿 위치를 문자열 끝으로 설정
-            3. 스크롤을 밑로 이동함.
-         */
-        public static void UpdateRtx(RichTextBox rtx)
-        {
-            if (rtx.InvokeRequired)
-            {
-                rtx.Invoke(new MethodInvoker(delegate
-                {
                     rtx.SelectionStart = rtx.Text.Length;
                     rtx.ScrollToCaret();
                 }));
             }
             else
             {
+                rtx.Text += msg + "\n";
                 rtx.SelectionStart = rtx.Text.Length;
                 rtx.ScrollToCaret();
             }

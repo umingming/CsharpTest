@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
-            this.label3 = new System.Windows.Forms.Label();
             this.txtMsg = new System.Windows.Forms.TextBox();
             this.btnInput = new System.Windows.Forms.Button();
             this.cmbMax = new System.Windows.Forms.ComboBox();
@@ -40,19 +39,12 @@
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtRoom = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label3
-            // 
-            this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(69, 401);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(270, 29);
-            this.label3.TabIndex = 10;
             // 
             // txtMsg
             // 
@@ -86,8 +78,8 @@
             // cmbMax
             // 
             this.cmbMax.AllowDrop = true;
-            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.cmbMax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMax.BackColor = System.Drawing.Color.White;
             this.cmbMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -162,12 +154,32 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Location = new System.Drawing.Point(69, 401);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(270, 29);
+            this.label3.TabIndex = 10;
+            // 
+            // txtRoom
+            // 
+            this.txtRoom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRoom.Font = new System.Drawing.Font("ONE 모바일고딕 Regular", 9F);
+            this.txtRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(59)))), ((int)(((byte)(76)))));
+            this.txtRoom.Location = new System.Drawing.Point(74, 112);
+            this.txtRoom.Name = "txtRoom";
+            this.txtRoom.Size = new System.Drawing.Size(265, 20);
+            this.txtRoom.TabIndex = 17;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(520, 505);
+            this.Controls.Add(this.txtRoom);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnInput);
@@ -180,6 +192,7 @@
             this.MinimumSize = new System.Drawing.Size(542, 561);
             this.Name = "ChatForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
@@ -190,7 +203,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.Button btnInput;
         private System.Windows.Forms.ComboBox cmbMax;
@@ -200,5 +212,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.RichTextBox rtxChat;
+        private System.Windows.Forms.TextBox txtRoom;
+        private System.Windows.Forms.Label label3;
     }
 }

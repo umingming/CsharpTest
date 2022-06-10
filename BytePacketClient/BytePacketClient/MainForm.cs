@@ -35,13 +35,11 @@ namespace BytePacketClient
             {
                 String ip = txtIp.Text;
                 int port = Convert.ToInt32(txtPort.Text);
-
-                if(port < 0 || port > 65535)
-                {
-                    throw new FormatException();
-                }
+                if(port < 0 || port > 65535) throw new FormatException();
 
                 client = new Client(ip, port);
+                if (!client.IsConnected()) return;
+
                 (new NameForm(client)).Show();
                 this.Visible = false;
             }

@@ -96,6 +96,7 @@
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(99, 25);
             this.txtPort.TabIndex = 2;
+            this.txtPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartByEnterKeyDown);
             // 
             // label3
             // 
@@ -149,6 +150,7 @@
             this.MinimumSize = new System.Drawing.Size(542, 561);
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

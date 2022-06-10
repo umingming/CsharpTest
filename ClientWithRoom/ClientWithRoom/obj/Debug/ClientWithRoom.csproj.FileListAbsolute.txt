@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.Properties.Resources.resources
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.csproj.GenerateResource.cache
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\bin\Debug\ClientWithRoom.exe
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\bin\Debug\ClientWithRoom.pdb
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.ChatForm.resources
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.MainForm.resources
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.NameForm.resources
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.exe
+C:\Users\user\source\repos\AimTraining\ClientWithRoom\ClientWithRoom\obj\Debug\ClientWithRoom.pdb

@@ -14,12 +14,9 @@ namespace BytePacketClient
 		private NetworkStream sender;
 		private NetworkStream receiver;
 
-		private int index;
 		private string name;
 
 		private Notification box = new Notification();
-		private ArrayList newMsgList = new ArrayList();
-		private ArrayList msgList = new ArrayList();
 
         /*
 			생성자 정의
@@ -45,6 +42,15 @@ namespace BytePacketClient
 			}
 		}
 
+		/*
+			IsConnected; 소켓 연결 확인
+			1. 클라이언트 연결 여부에 따라 boolean 리턴함.
+		 */
+		public bool IsConnected()
+        {
+			return (client != null) ? true : false;
+        }
+
         /*
 			SetName
 			1. 인자 값을 name 필드 변수에 할당함.
@@ -67,6 +73,11 @@ namespace BytePacketClient
             {
 				box.DisplayError("이름 설정");
             }
+        }
+
+		public string GetName()
+        {
+			return this.name;
         }
 
 		/*
