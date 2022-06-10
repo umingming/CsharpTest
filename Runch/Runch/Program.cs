@@ -16,7 +16,9 @@ namespace Runch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            new MDIParent1().Show();
+            Application.Run();
         }
     }
 }
