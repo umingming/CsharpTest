@@ -27,10 +27,11 @@ public class Server {
 	 */		
 	public Server() {
 		while(server == null) {
-			setServer();
+			registerServer();
 		}
 		start();
 	}
+	
 	
 	/*
 		setServer(); 서버 생성
@@ -41,7 +42,7 @@ public class Server {
 			> port 넘버를 잘못 입력했을 경우
 			> 이미 존재하는 port의 경우
 	 */
-	private void setServer() {
+	private void registerServer() {
 		try {
 			Scanner scanner = new Scanner(System.in);
 			
@@ -54,6 +55,8 @@ public class Server {
 			
 			createGroup(2);
 			createGroup(2);
+			
+			scanner.close();
 			
 		} catch (Exception e) {
 			System.out.println("[서버 생성 실패] 잘못된 입력입니다.");
@@ -86,87 +89,19 @@ public class Server {
 				client = server.accept();
 				System.out.println("[사용자 접속 대기]");
 				
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						connect(client, groupList.get(index));
-					}
-				};
-				thread.start();
-				
 				if(groupList.get(index).isFull()) {
 					index++;
 				}
+				
+				ServerThread serverThread = new ServerThread(client, groupList.get(index));
+				Thread thread = new Thread(serverThread);
+				thread.start();
 			}
 		} catch (IOException e) {
 			System.out.println("[사용자 접속 실패]");
 		}
 	}
 
-	/*
-	 	connect; 클라이언트가 그룹에 연결되어, 메시지를 보냄.
-	 	1. 스트림 변수에 client 소켓 스트림 값을 초기화함.
-	 	2. 패킷 생성해 스트림 설정함.
-	 	3. 해당 패킷의 내용을 이름에 할당함.
-	 	4. 클라이언트의 이름과, Output 스트림을 그룹에 저장함.
-	 	5. 사용자 접속 안내
-	 	6. while문 스트림이 존재하면 반복.
-	 		> 메시지 패킷 생성
-	 		> if문 읽을 내용이 있는지?
-	 			> 메시지 변수에, 이름과 메시지를 저장함.
-	 			> 해당 메시지를 그룹에게 보내기 위해 send 메소드 호출함.
-	 */
-	private void connect(Socket client, ClientGroup group) {
-		try {
-			InputStream in = client.getInputStream();
-			OutputStream out = client.getOutputStream();
-			
-			Packet namePacket = new Packet();
-			namePacket.setStream(in);
-			String name = namePacket.toString();
-			
-			group.getClientMap().put(name, out);
-			System.out.printf("[사용자 접속 성공] %s님이 접속했습니다.%n", name);
-			while(in != null) {
-				Packet msgPacket = new Packet();
-				msgPacket.setStream(in);
-				
-				if(msgPacket.isUpdated()) {
-					String msg = String.format("[%s]%s", name, msgPacket.toString());
-					send(msg, group);
-				}
-			}
-			
-		} catch (Exception e) {
-			System.out.println("[사용자 접속 실패]");
-		}
-	}
-	
-	/*
-		send; 메시지를 그룹에게 전송함.
-		1. group을 클라이언트 이름으로 탐색하고자, Iterator 사용
-		2. 탐색이 가능한지를 조건으로 while문 반복
-		  > 해당 반복자의 이름을 key로 스트림을 얻어 out 변수에 초기화함.
-		  > 메시지를 인자로 패킷 생성
-		  > 해당 메시지의 바이트배열을 스트림으로 전송함.
-	 */
-	private void send(String msg, ClientGroup group) {
-		try {
-			System.out.println(msg);
-			Iterator<String> iterator = group.getClientMap().keySet().iterator();
-			
-			while(iterator.hasNext()) {
-				OutputStream out = group.getClientMap().get(iterator.next());
-				Packet msgPacket = new Packet(msg);
-				out.write(msgPacket.toByteArr());
-				out.flush();
-			}
-			
-		} catch (Exception e) {
-			System.out.println("[메시지 송신 오류]");
-		}
-	}
-	
 	/*
 		메인 메소드
 		1. 생성자 호출

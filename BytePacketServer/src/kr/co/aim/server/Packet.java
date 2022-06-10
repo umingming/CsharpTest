@@ -13,12 +13,31 @@ public class Packet {
 	
 	private final int HEADER_LENGTH = 4;
 	
+	/*
+	 	기본 생성자
+	 	1. 헤더 배열 초기화
+	 */
 	public Packet() {
 		this.header = new byte[HEADER_LENGTH];
 	}
 	
 	/*
-	 	생성자 정의
+	 	스트림 매개 생성자
+	 	1. 헤더 배열, 스트림 초기화
+	 */
+	public Packet(InputStream stream) {
+		this.header = new byte[HEADER_LENGTH];
+		this.stream = stream;
+	}
+	
+	public Packet(InputStream stream, String msg) {
+		this.stream = stream;
+		this.body = msg.getBytes();
+		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
+	}
+	
+	/*
+	 	메시지 매개 생성자
 	 	1. 메시지를 인자로 받을 경우 형변환에 body에 초기화함.
 	 	2. ByteBuffer를 이용해 body의 길이를 값으로 하는 배열을 선언함.
 	 */
@@ -26,45 +45,46 @@ public class Packet {
 		this.body = msg.getBytes();
 		this.header = ByteBuffer.allocate(HEADER_LENGTH).putInt(body.length).array();
 	}
-
-	public void setStream(InputStream stream) {
-		this.stream = stream;
-	}
-
+	
 	/*
-	 	isUpdated; 스트림에 변화가 있는지
-	 	1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
+	    isAvailable; 사용 가능한 패킷인지 확인
+	    1. stream으로 부터 읽어 올 수 있는 데이터 크기가 0이상이면 true 반환
+	*/
+	public boolean isAvailable() {
+	   try {
+	       return (stream.available() > 0) ? true : false;
+	   } catch (Exception e) {
+	       return false;
+	   }
+	}
+	
+	/*
+		init; 스트림을 읽어 패킷 초기화
+		1. 스트림을 헤더의 크기만큼 읽어 할당함.
+	 	2. 길이 변수에 헤더 배열을 정수로 변환해 초기화함.
+	 	3. body 배열을 해당 길이로 지정함.
+	 	4. 스트림을 읽어 바디에 할당함.
 	 */
-	public boolean isUpdated() {
+	public void init() {
 		try {
-			return (stream.available() > 0) ? true : false;
+			stream.read(header);
+			System.out.println(header);
+			int length = ByteBuffer.wrap(header).getInt();
+			System.out.println(length);
+			body = new byte[length];
+			stream.read(body);
+			System.out.println(body);
+			
 		} catch (Exception e) {
-			return false;
+			System.out.println("[메시지 수신 오류]");
 		}
 	}
 	
 	/*
 	 	toString; 패킷을 문자열로 반환함.
-	 	1. 스트림을 헤더의 크기만큼 읽어 할당함.
-	 	2. 길이 변수에 헤더 배열을 정수로 변환해 초기화함.
-	 	3. body 배열을 해당 길이로 지정함.
-	 	4. 스트림을 읽어 바디에 할당함.
-	 	5. 해당 내용을 문자열로 반환함.
 	 */
 	public String toString() {
-		try {
-			stream.read(header);
-			
-			int length = ByteBuffer.wrap(header).getInt();
-			body = new byte[length];
-			stream.read(body);
-			
-			return new String(body);
-			
-		} catch (Exception e) {
-			System.out.println("[메시지 수신 오류]");
-			return null;
-		}
+		return new String(body);
 	}
 	
 	/*
