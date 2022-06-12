@@ -103,5 +103,15 @@ namespace Runch
                 childForm.Close();
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpMenu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
