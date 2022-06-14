@@ -13,12 +13,26 @@ namespace Runch.View
 {
     public partial class JoinForm : Form
     {
-        User user;
+        Notification box;
 
-        public JoinForm(User user)
+        public JoinForm()
         {
-            this.user = user;
+            box = new Notification();
             InitializeComponent();
+        }
+
+        private void CheckId(object sender, EventArgs e)
+        {
+            if (txtId.Text.Equals(""))
+            {
+                box.DisplayWarning("ID 입력");
+                return;
+            }
+
+            if(!new User().IsValid(txtId.Text))
+            {
+                btnIdChecked.BackColor = Color.Green;
+            }
         }
     }
 }

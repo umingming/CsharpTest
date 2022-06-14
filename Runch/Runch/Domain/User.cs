@@ -36,8 +36,16 @@ namespace Runch.Domain
         {
             this.id = id;
 
-            if (!IsValid()) return 0;
-            if (IsLoggedIn()) return 0;
+            if (!IsValid(id)) 
+            {
+                box.DisplayWarning("미등록 사용자");
+                return 0;
+            }
+            if (IsLoggedIn())
+            {
+                box.DisplayWarning("접속 사용자");
+                return 0;
+            }
 
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = dbutil.Connect();
@@ -53,7 +61,7 @@ namespace Runch.Domain
                 > id, name 저장
                 > true 반환
          */
-        public Boolean IsValid()
+        public Boolean IsValid(string id)
         {
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = dbutil.Connect();

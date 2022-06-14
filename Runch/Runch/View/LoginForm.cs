@@ -16,10 +16,12 @@ namespace Runch
     public partial class LoginForm : Form
     {
         User user;
+        Notification box;
 
         public LoginForm()
         {
             user = new User();
+            box = new Notification();
             InitializeComponent();
         }
 
@@ -32,13 +34,19 @@ namespace Runch
         {
             if (txtId.Text.Equals(""))
             {
+                box.DisplayWarning("ID 입력");
                 return;
             }
-            if (user.Login(txtId.Text) == 0)
+
+            if (user.Login(txtId.Text) != 0)
             {
-                return;
+                new JoinForm().Show();
             }
-            new JoinForm(user).Show();
+        }
+
+        private void Join(object sender, EventArgs e)
+        {
+            new JoinForm().Show();
         }
 
         /*

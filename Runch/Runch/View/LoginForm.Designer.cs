@@ -77,9 +77,10 @@
             this.btnJoin.Location = new System.Drawing.Point(234, 370);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(163, 45);
-            this.btnJoin.TabIndex = 4;
+            this.btnJoin.TabIndex = 3;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.UseVisualStyleBackColor = false;
+            this.btnJoin.Click += new System.EventHandler(this.Join);
             // 
             // txtId
             // 
