@@ -11,15 +11,12 @@ using System.Windows.Forms;
 
 namespace Runch
 {
-    public partial class MainForm : Form
+    public partial class LoginForm : Form
     {
-        public MainForm()
+        public LoginForm()
         {
             InitializeComponent();
         }
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -29,9 +26,6 @@ namespace Runch
             //btnJoin.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnJoin.Width, btnJoin.Height, 5, 5));
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-        }
+     
     }
 }

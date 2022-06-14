@@ -117,17 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ESAMANRU_BOLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\font\esamanru bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ESAMANRU_LIGHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\font\esamanru light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ESAMANRU_MEDIUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\font\esamanru medium.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ONE_MOBILE_TITLE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\font\one mobile title.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

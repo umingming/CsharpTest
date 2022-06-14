@@ -17,7 +17,7 @@ namespace Runch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            new MainForm().Show();
+            new LoginForm().Show();
             Application.Run();
         }
     }

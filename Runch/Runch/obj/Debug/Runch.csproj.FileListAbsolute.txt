@@ -8,5 +8,5 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.Genera
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.CoreCompileInputs.cache
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.exe
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.pdb
-C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.MainForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.MDIParent1.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.LoginForm.resources
