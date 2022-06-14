@@ -32,18 +32,18 @@ namespace Runch.Domain
             2. if문 로그인 된 사용자인지
             3. 유저 로그 추가 쿼리 할당
          */
-        public void Login(string id)
+        public int Login(string id)
         {
             this.id = id;
 
-            if (!IsValid()) return;
-            if (IsLoggedIn()) return;
+            if (!IsValid()) return 0;
+            if (IsLoggedIn()) return 0;
 
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = dbutil.Connect();
             cmd.CommandText = "insert into user_log values (seq_user_log.nextVal, :id, 'in', sysdate)";
             cmd.Parameters.AddWithValue("id", id);
-            cmd.ExecuteNonQuery();
+            return cmd.ExecuteNonQuery();
         }
 
         /*
@@ -86,7 +86,6 @@ namespace Runch.Domain
 
             if (reader.Read())
             {
-                box.DisplayError(reader["log_type"].ToString());
                 if (reader["log_type"].ToString() == "in") return true;
             }
             return false;

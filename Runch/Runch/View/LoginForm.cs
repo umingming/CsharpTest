@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Runch.Domain;
+using Runch.View;
 
 namespace Runch
 {
@@ -22,9 +23,22 @@ namespace Runch
             InitializeComponent();
         }
 
+        /*
+            Login
+            1. if 텍스트가 공백인지?
+            2. if 로그인 되는지?
+         */
         private void Login(object sender, EventArgs e)
         {
-            user.Login(txtId.Text);
+            if (txtId.Text.Equals(""))
+            {
+                return;
+            }
+            if (user.Login(txtId.Text) == 0)
+            {
+                return;
+            }
+            new JoinForm(user).Show();
         }
 
         /*
