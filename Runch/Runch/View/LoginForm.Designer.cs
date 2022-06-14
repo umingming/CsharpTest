@@ -107,7 +107,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "aim Systems";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
