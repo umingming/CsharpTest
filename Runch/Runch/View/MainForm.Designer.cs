@@ -64,12 +64,18 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.button3.Location = new System.Drawing.Point(313, 213);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button3.Location = new System.Drawing.Point(332, 203);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(88, 40);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
+            this.button3.Text = "이유미님";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // MainForm
@@ -84,6 +90,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "aim Systems";
             this.ResumeLayout(false);
 
