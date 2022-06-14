@@ -97,7 +97,7 @@ namespace BytePacketClient
 		 */
 		public void SendMsg(string msg)
         {
-			Packet msgPacket = new Packet(msg);
+			Packet msgPacket = new Packet($"[{name}] {msg}");
             byte[] msgArr = msgPacket.ToByteArr();
 
             sender.Write(msgArr, 0, msgArr.Length);
