@@ -11,27 +11,37 @@ namespace Runch.Data
 {
     internal class DBUtil
     {
-        private OleDbConnection connection;
+        private OleDbConnection conn;
+        private OleDbCommand cmd;
+
         private Notification box;
 
-        public void Connect()
+        public OleDbConnection Connect()
         {
-            string connectionString = string.Format("Provider=OraOLEDB.Oracle;" +
-            "OLEDB.NET=true;" +
-            "PLSQLRSet=true;" +
-            "Data Source=orcl;" +
-            "User Id=runch;" +
-            "Password=java1234;");
-
+            string connStr = string.Format("Provider=OraOLEDB.Oracle;" +
+                                            "OLEDB.NET=true;" +
+                                            "PLSQLRSet=true;" +
+                                            "Data Source=orcl;" +
+                                            "User Id=runch;" +
+                                            "Password=java1234;");
             try
             {
-                connection = new OleDbConnection(connectionString);
-                connection.Open();
+                conn = new OleDbConnection(connStr);
+                conn.Open();
+                return conn;
             }
             catch
             {
                 box.DisplayWarning("접속");
+                return null;
             }
         }
+
+        public void Add(string sql)
+        {
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+        }
+
     }
 }
