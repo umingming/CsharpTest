@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace BytePacketClient
+namespace ClientWithRoom
 {
     public class Client
     {
@@ -64,6 +64,7 @@ namespace BytePacketClient
             {
 				this.name = name;
 				Packet namePacket = new Packet(name);
+				namePacket.SetType("RN");
 				byte[] nameArr = namePacket.ToByteArr();
 
 				sender.Write(nameArr, 0, nameArr.Length);
@@ -108,8 +109,10 @@ namespace BytePacketClient
 		 */
 		public void SendMsg(string msg)
         {
-			Packet msgPacket = new Packet($"[{name}] {msg}");
-            byte[] msgArr = msgPacket.ToByteArr();
+			Packet msgPacket = new Packet(msg);
+			msgPacket.SetType("SM");
+			msgPacket.SetOption("1");
+			byte[] msgArr = msgPacket.ToByteArr();
 
             sender.Write(msgArr, 0, msgArr.Length);
             sender.Flush();

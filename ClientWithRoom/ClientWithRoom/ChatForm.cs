@@ -3,7 +3,7 @@ using System.Collections;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace BytePacketClient
+namespace ClientWithRoom
 {
     /*
         ChatForm
@@ -115,15 +115,8 @@ namespace BytePacketClient
             var msg = "";
             while((msg = client.ReceiveMsg()) != null)
             {
-                if(txtRoom.Text == "")
-                {
-                    InitTxt(txtRoom, msg);
-                }
-                else
-                {
-                    msgList.Add(msg);
-                    AddToRtx(rtxChat, msg);
-                }
+                msgList.Add(msg);
+                AddToRtx(rtxChat, msg);
             }
         }
 
@@ -148,21 +141,6 @@ namespace BytePacketClient
                 {
                     AddToRtx(rtxChat, (string)msgList[i]);
                 }
-            }
-        }
-
-        private void InitTxt(TextBox txt, string msg)
-        {
-            if (txt.InvokeRequired)
-            {
-                txt.Invoke(new MethodInvoker(delegate
-                {
-                    txt.Text = msg;
-                }));
-            }
-            else
-            {
-                txt.Text = msg;
             }
         }
 
