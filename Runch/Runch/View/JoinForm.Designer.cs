@@ -144,7 +144,8 @@
             this.Controls.Add(this.btnIdChecked);
             this.Controls.Add(this.label1);
             this.Name = "JoinForm";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "aim Systems";
             this.Load += new System.EventHandler(this.InitCmb);
             this.ResumeLayout(false);
             this.PerformLayout();

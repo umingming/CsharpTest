@@ -12,3 +12,4 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.MDIParent1.re
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.LoginForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.Form1.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.JoinForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.MainForm.resources

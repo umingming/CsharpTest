@@ -78,6 +78,7 @@ namespace Runch.View
             Join
             1. 이름, 소속, 직위 설정
             2. 사용자 추가
+            3. 로그인 화면으로 이동
          */
         private void Join(object sender, EventArgs e)
         {
@@ -86,6 +87,9 @@ namespace Runch.View
             user.positionId = Int32.Parse(cmbPosition.SelectedValue.ToString());
 
             user.Add();
+
+            new LoginForm().Show();
+            this.Visible = false;
         }
     }
 }
