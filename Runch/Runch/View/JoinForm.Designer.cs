@@ -32,10 +32,10 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIdChecked = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.btnJoin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -69,22 +69,17 @@
             this.btnIdChecked.UseVisualStyleBackColor = true;
             this.btnIdChecked.Click += new System.EventHandler(this.CheckId);
             // 
-            // comboBox1
+            // cmbGroup
             // 
-            this.comboBox1.Font = new System.Drawing.Font("한컴 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "개발1그룹",
-            "개발2그룹",
-            "F/W 그룹",
-            "WEB/UX그룹"});
-            this.comboBox1.Location = new System.Drawing.Point(48, 336);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(343, 39);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "소속";
+            this.cmbGroup.Font = new System.Drawing.Font("한컴 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cmbGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(48, 336);
+            this.cmbGroup.Margin = new System.Windows.Forms.Padding(10);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(343, 39);
+            this.cmbGroup.TabIndex = 4;
+            this.cmbGroup.Text = "소속";
             // 
             // label2
             // 
@@ -107,16 +102,16 @@
             this.txtName.TabIndex = 11;
             this.txtName.Text = "이름";
             // 
-            // comboBox2
+            // cmbPosition
             // 
-            this.comboBox2.Font = new System.Drawing.Font("한컴 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(48, 389);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(343, 39);
-            this.comboBox2.TabIndex = 12;
-            this.comboBox2.Text = "직위";
+            this.cmbPosition.Font = new System.Drawing.Font("한컴 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cmbPosition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.cmbPosition.FormattingEnabled = true;
+            this.cmbPosition.Location = new System.Drawing.Point(48, 389);
+            this.cmbPosition.Name = "cmbPosition";
+            this.cmbPosition.Size = new System.Drawing.Size(343, 39);
+            this.cmbPosition.TabIndex = 12;
+            this.cmbPosition.Text = "직위";
             // 
             // btnJoin
             // 
@@ -140,8 +135,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(444, 639);
             this.Controls.Add(this.btnJoin);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbPosition);
+            this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label2);
@@ -149,6 +144,7 @@
             this.Controls.Add(this.label1);
             this.Name = "JoinForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.InitCmb);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,10 +155,10 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnIdChecked;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Button btnJoin;
     }
 }
