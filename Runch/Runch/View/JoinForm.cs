@@ -14,10 +14,11 @@ namespace Runch.View
     public partial class JoinForm : Form
     {
         Notification box;
-
+        User user;
         public JoinForm()
         {
             box = new Notification();
+            user = new User();
             InitializeComponent();
         }
 
@@ -56,7 +57,7 @@ namespace Runch.View
         /*
             CheckId
             1. If 아이디를 입력했는지?
-            2. if 사용 가능한 
+            2. if 사용 가능한 사번인지?
          */
         private void CheckId(object sender, EventArgs e)
         {
@@ -66,12 +67,25 @@ namespace Runch.View
                 return;
             }
 
-            if(!new User().IsValid(txtId.Text))
+            if(!user.IsValid(txtId.Text))
             {
+                user.id = txtId.Text;
                 btnIdChecked.BackColor = Color.Green;
             }
+        }
+        
+        /*
+            Join
+            1. 이름, 소속, 직위 설정
+            2. 사용자 추가
+         */
+        private void Join(object sender, EventArgs e)
+        {
+            user.name = txtName.Text;
+            user.groupId = Int32.Parse(cmbGroup.SelectedValue.ToString());
+            user.positionId = Int32.Parse(cmbPosition.SelectedValue.ToString());
 
-            box.DisplayWarning(cmbPosition.SelectedValue.ToString());
+            user.Add();
         }
     }
 }

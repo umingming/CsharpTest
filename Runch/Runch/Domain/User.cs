@@ -10,8 +10,10 @@ namespace Runch.Domain
 {
     public class User
     {
-        private string id;
-        private string name;
+        public string id { get; set; }
+        public string name { get; set; }
+        public int groupId { get; set; }
+        public int positionId { get; set; }
 
         private DBUtil dbutil;
         private Notification box;
@@ -97,6 +99,18 @@ namespace Runch.Domain
                 if (reader["log_type"].ToString() == "in") return true;
             }
             return false;
+        }
+
+        public void Add()
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.Connection = dbutil.Connect();
+            cmd.CommandText = "insert into users values (:id, :name, :groupId, :positionId)";
+            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("name", name);
+            cmd.Parameters.AddWithValue("groupId", groupId);
+            cmd.Parameters.AddWithValue("positionId", positionId);
+            cmd.ExecuteNonQuery();
         }
     }
 }

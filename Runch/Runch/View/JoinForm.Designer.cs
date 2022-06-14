@@ -126,6 +126,7 @@
             this.btnJoin.TabIndex = 13;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.UseVisualStyleBackColor = false;
+            this.btnJoin.Click += new System.EventHandler(this.Join);
             // 
             // JoinForm
             // 
