@@ -106,6 +106,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.Load += new System.EventHandler(this.InitUserInfo);
             this.ResumeLayout(false);

@@ -38,8 +38,25 @@ namespace Runch.Domain
          */
         public void InitRecommendList()
         {
-            string id = "2203001";
-            string sql = "SELECT r.*, CASE WHEN RESTAURANT_ID NOT IN (SELECT RESTAURANT_ID FROM RESTAURANT_ADOPTION WHERE USER_ID = " + id + " AND SYSDATE - ADOPTION_TIME <= 7) THEN 0 ELSE 1 END AS \"recent adoption\" FROM VWRESTAURANTINFO r WHERE RESTAURANT_ID NOT IN (SELECT RESTAURANT_ID FROM RESTAURANT_BLOCK WHERE user_id = " + id + ") AND CATEGORY_ID IN (" + Properties.Settings.Default.CategoryList + ") AND rownum <= 5 ORDER BY \"recent adoption\", CNT DESC";
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"select 
+                                r.*,
+                                case
+                                    when restaurant_id not in (select restaurant_id
+                                                               from restaurant_adoption
+                                                               where user_id = '{userId}'
+                                                                   and sysdate - adoption_time <= 7)
+                                        then 0 
+                                    else 1
+                                end as recent_adoption
+                            from vwRestaurantInfo r
+                            where restaurant_id not in (select restaurant_id
+                                                        from restaurant_block
+                                                        where user_id = '{userId}')
+                                and category_id in ({Properties.Settings.Default.CategoryList})
+                                and rownum <= 5
+                            order by recent_adoption, cnt desc";
+                                    
             OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
             OleDbDataReader reader = cmd.ExecuteReader();
 
@@ -75,7 +92,7 @@ namespace Runch.Domain
          */        
         public void Adopt()
         {
-            string user_id = "2203001";
+            string user_id = Properties.Settings.Default.UserId;
 
             string sql = $@"insert into restaurant_adoption
                                 values (seq_restaurant_adoption.nextVal, '{user_id}', {id}, sysdate)";

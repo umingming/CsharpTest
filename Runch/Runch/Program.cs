@@ -20,8 +20,8 @@ namespace Runch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            new ListForm().Show();
-            //new LoginForm().Show();
+            //new ListForm().Show();
+            new LoginForm().Show();
             Application.Run();
         }
     }

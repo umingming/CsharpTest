@@ -117,6 +117,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "CategoryForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.Load += new System.EventHandler(this.InitCklCate);
             this.panel1.ResumeLayout(false);

@@ -97,6 +97,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "AdoptionForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.Load += new System.EventHandler(this.ShowLunch);
             this.panel1.ResumeLayout(false);

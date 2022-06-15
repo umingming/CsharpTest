@@ -145,6 +145,7 @@
             this.Controls.Add(this.label1);
             this.Name = "JoinForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.Load += new System.EventHandler(this.InitCmb);
             this.ResumeLayout(false);
