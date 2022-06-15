@@ -15,6 +15,7 @@ namespace Runch.Domain
         public int id;
         public string name;
         public string category;
+        public int categoryId;
         public string signature;
         public int cntAdoption;
         public ArrayList recommendList;
@@ -113,6 +114,20 @@ namespace Runch.Domain
             adapter.Fill(ds);
 
             return ds;
+        }
+
+        public void Add()
+        {
+            string sql = $@"insert into restaurant
+                                values (seq_restaurant.nextVal, '{name}', {categoryId}, '{signature}', 30, 30)";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+
+            string userId = "2203001";//Properties.Settings.Default.UserId;
+            sql = $@"insert into restaurant_history
+                        values (seq_restaurant_history.nextVal, (select max(restaurant_id) from restaurant), '{userId}', 'C', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -22,5 +22,10 @@ namespace Runch.View
         {
             dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
         }
+
+        private void ShowRestaurant(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show(dgvRestaurant.CurrentRow.Cells["No"].Value.ToString());
+        }
     }
 }

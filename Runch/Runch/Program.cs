@@ -21,7 +21,8 @@ namespace Runch
             Application.SetCompatibleTextRenderingDefault(false);
 
             //new ListForm().Show();
-            new LoginForm().Show();
+            //new LoginForm().Show();
+            new AddForm().Show();
             Application.Run();
         }
     }

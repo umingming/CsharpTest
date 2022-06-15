@@ -59,12 +59,15 @@
             this.dgvRestaurant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRestaurant.Location = new System.Drawing.Point(3, 240);
             this.dgvRestaurant.Name = "dgvRestaurant";
-            this.dgvRestaurant.RowHeadersWidth = 5;
+            this.dgvRestaurant.ReadOnly = true;
+            this.dgvRestaurant.RowHeadersVisible = false;
+            this.dgvRestaurant.RowHeadersWidth = 20;
             this.dgvRestaurant.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvRestaurant.RowTemplate.Height = 30;
             this.dgvRestaurant.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRestaurant.Size = new System.Drawing.Size(437, 242);
             this.dgvRestaurant.TabIndex = 0;
+            this.dgvRestaurant.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowRestaurant);
             // 
             // label1
             // 
