@@ -108,7 +108,6 @@
             this.DoubleBuffered = true;
             this.Name = "LoginForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "aim Systems";
             this.ResumeLayout(false);
             this.PerformLayout();

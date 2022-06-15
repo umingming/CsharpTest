@@ -31,7 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnUser = new System.Windows.Forms.Button();
+            this.btnUserPage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -62,36 +63,50 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnUser
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button3.Location = new System.Drawing.Point(332, 203);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 40);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "이유미님";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
+            this.btnUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUser.BackgroundImage")));
+            this.btnUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUser.FlatAppearance.BorderSize = 0;
+            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnUser.Location = new System.Drawing.Point(332, 203);
+            this.btnUser.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(88, 40);
+            this.btnUser.TabIndex = 2;
+            this.btnUser.UseVisualStyleBackColor = false;
+            // 
+            // btnUserPage
+            // 
+            this.btnUserPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(242)))), ((int)(((byte)(252)))));
+            this.btnUserPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUserPage.BackgroundImage")));
+            this.btnUserPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUserPage.FlatAppearance.BorderSize = 0;
+            this.btnUserPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserPage.Location = new System.Drawing.Point(313, 211);
+            this.btnUserPage.Name = "btnUserPage";
+            this.btnUserPage.Size = new System.Drawing.Size(24, 24);
+            this.btnUserPage.TabIndex = 3;
+            this.btnUserPage.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(444, 639);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnUserPage);
+            this.Controls.Add(this.btnUser);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "aim Systems";
+            this.Load += new System.EventHandler(this.InitUserInfo);
             this.ResumeLayout(false);
 
         }
@@ -100,6 +115,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnUser;
+        private System.Windows.Forms.Button btnUserPage;
     }
 }

@@ -40,7 +40,7 @@ namespace Runch
 
             if (user.Login(txtId.Text) != 0)
             {
-                new MainForm().Show();
+                new MainForm(user).Show();
             }
         }
 
