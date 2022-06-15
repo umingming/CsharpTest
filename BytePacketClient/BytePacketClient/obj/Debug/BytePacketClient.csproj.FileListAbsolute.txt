@@ -9,3 +9,14 @@ C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Deb
 C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.CoreCompileInputs.cache
 C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.exe
 C:\Users\user\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.pdb
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\bin\Debug\BytePacketClient.exe
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\bin\Debug\BytePacketClient.pdb
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.AssemblyReference.cache
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.ChatForm.resources
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.MainForm.resources
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.NameForm.resources
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.Properties.Resources.resources
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.GenerateResource.cache
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.csproj.CoreCompileInputs.cache
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.exe
+C:\Users\u_011\source\repos\AimTraining\BytePacketClient\BytePacketClient\obj\Debug\BytePacketClient.pdb
