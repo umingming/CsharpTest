@@ -46,5 +46,11 @@ namespace Runch.View
             new CategoryForm().Show();
             this.Visible = false;
         }
+
+        private void ListRestaurant(object sender, EventArgs e)
+        {
+            new ListForm().Show();
+            this.Visible = false;
+        }
     }
 }

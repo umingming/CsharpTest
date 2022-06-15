@@ -35,6 +35,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics4.Shared.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.DataVisualization.Shared.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.DataVisualization.UltraDataChart.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.Portable.Core.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="System" />
@@ -68,6 +71,18 @@
     </Compile>
     <Compile Include="View\CategoryForm.Designer.cs">
       <DependentUpon>CategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdoptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdoptionForm.Designer.cs">
+      <DependentUpon>AdoptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListForm.Designer.cs">
+      <DependentUpon>ListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\RecommendForm.cs">
       <SubType>Form</SubType>
@@ -105,8 +120,14 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="View\AdoptionForm.resx">
+      <DependentUpon>AdoptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\JoinForm.resx">
       <DependentUpon>JoinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListForm.resx">
+      <DependentUpon>ListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

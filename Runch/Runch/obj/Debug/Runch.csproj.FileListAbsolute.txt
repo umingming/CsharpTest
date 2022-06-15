@@ -23,3 +23,11 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.v
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.exe.licenses
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.CopyComplete
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.RecommendForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.AdoptionForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.ListForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.DataVisualization.Shared.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.DataVisualization.UltraDataChart.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.Portable.Core.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.DataVisualization.Shared.v14.2.xml
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.DataVisualization.UltraDataChart.v14.2.xml
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.Portable.Core.v14.2.xml

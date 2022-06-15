@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecommendForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAdoption = new System.Windows.Forms.TextBox();
+            this.txtSignature = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnJoin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -44,8 +44,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtAdoption);
+            this.panel1.Controls.Add(this.txtSignature);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtCategory);
@@ -55,6 +55,46 @@
             this.panel1.Size = new System.Drawing.Size(392, 178);
             this.panel1.TabIndex = 1;
             // 
+            // txtAdoption
+            // 
+            this.txtAdoption.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAdoption.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtAdoption.Location = new System.Drawing.Point(189, 132);
+            this.txtAdoption.Name = "txtAdoption";
+            this.txtAdoption.Size = new System.Drawing.Size(120, 24);
+            this.txtAdoption.TabIndex = 4;
+            this.txtAdoption.Text = "3932";
+            // 
+            // txtSignature
+            // 
+            this.txtSignature.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSignature.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtSignature.Location = new System.Drawing.Point(189, 105);
+            this.txtSignature.Name = "txtSignature";
+            this.txtSignature.Size = new System.Drawing.Size(120, 24);
+            this.txtSignature.TabIndex = 2;
+            this.txtSignature.Text = "연어초밥";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(98, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "선정 횟수:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(98, 105);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 23);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "추천 메뉴:";
+            // 
             // txtCategory
             // 
             this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -63,7 +103,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(41, 24);
             this.txtCategory.TabIndex = 1;
-            this.txtCategory.Text = "/일식";
+            this.txtCategory.Text = "/";
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtName
@@ -76,46 +116,6 @@
             this.txtName.TabIndex = 0;
             this.txtName.Text = "사카나";
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(98, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "추천 메뉴:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(98, 132);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "선정 횟수:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox1.Location = new System.Drawing.Point(189, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 24);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "연어초밥";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox2.Location = new System.Drawing.Point(189, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 24);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "3932";
             // 
             // btnLogin
             // 
@@ -130,6 +130,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "AGAIN";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.AgainRecommend);
             // 
             // btnJoin
             // 
@@ -144,6 +145,7 @@
             this.btnJoin.TabIndex = 4;
             this.btnJoin.Text = "RUN!";
             this.btnJoin.UseVisualStyleBackColor = false;
+            this.btnJoin.Click += new System.EventHandler(this.AdoptRestaurant);
             // 
             // RecommendForm
             // 
@@ -158,6 +160,7 @@
             this.Name = "RecommendForm";
             this.ShowIcon = false;
             this.Text = "aim Systems";
+            this.Load += new System.EventHandler(this.RecommendLunch);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -169,8 +172,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtCategory;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAdoption;
+        private System.Windows.Forms.TextBox txtSignature;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;

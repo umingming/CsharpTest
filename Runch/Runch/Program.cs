@@ -20,7 +20,7 @@ namespace Runch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            new CategoryForm().Show();
+            new ListForm().Show();
             //new LoginForm().Show();
             Application.Run();
         }
