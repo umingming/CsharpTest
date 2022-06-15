@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Runch.Data;
+using Runch.View;
 
 namespace Runch
 {
@@ -19,9 +20,8 @@ namespace Runch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            db.Connect();
-
-            new LoginForm().Show();
+            new CategoryForm().Show();
+            //new LoginForm().Show();
             Application.Run();
         }
     }

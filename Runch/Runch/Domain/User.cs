@@ -74,7 +74,12 @@ namespace Runch.Domain
             if(reader.Read())
             {
                 id = reader["user_id"].ToString();
+                Properties.Settings.Default.UserId = id;
+
                 name = reader["name"].ToString();
+                Properties.Settings.Default.UserName = name;
+
+                Properties.Settings.Default.Save();
                 return true;
             }
             return false;

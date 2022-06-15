@@ -40,13 +40,15 @@ namespace Runch
 
             if (user.Login(txtId.Text) != 0)
             {
-                new MainForm(user).Show();
+                new MainForm().Show();
+                this.Visible = false;
             }
         }
 
         private void Join(object sender, EventArgs e)
         {
             new JoinForm().Show();
+            this.Visible = false;
         }
 
         /*

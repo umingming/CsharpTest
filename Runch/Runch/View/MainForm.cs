@@ -20,9 +20,8 @@ namespace Runch.View
     {
         User user;
 
-        public MainForm(User user)
+        public MainForm()
         {
-            this.user = user;
             InitializeComponent();
         }
 
@@ -32,7 +31,20 @@ namespace Runch.View
          */
         private void InitUserInfo(object sender, EventArgs e)
         {
+            user = new User();
+            user.id = Properties.Settings.Default.UserId;
+            user.name = Properties.Settings.Default.UserName;
             btnUser.Text = user.name + "님";
+        }
+
+        /*
+            RecommendLunch; 점심추천 메뉴로 이동
+            1. 카테고리 폼 생성
+         */
+        private void RecommendLunch(object sender, EventArgs e)
+        {
+            new CategoryForm().Show();
+            this.Visible = false;
         }
     }
 }
