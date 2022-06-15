@@ -14,3 +14,12 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.Form1.resourc
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.JoinForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.MainForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.CategoryForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Shared.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.UltraWinTabbedMdi.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Shared.v14.2.xml
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.UltraWinTabbedMdi.v14.2.xml
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.v14.2.xml
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.exe.licenses
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.csproj.CopyComplete
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.RecommendForm.resources

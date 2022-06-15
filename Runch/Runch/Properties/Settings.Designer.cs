@@ -46,5 +46,17 @@ namespace Runch.Properties {
                 this["UserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CategoryList {
+            get {
+                return ((string)(this["CategoryList"]));
+            }
+            set {
+                this["CategoryList"] = value;
+            }
+        }
     }
 }

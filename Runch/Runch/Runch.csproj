@@ -34,9 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics4.Shared.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.v14.2, Version=14.2.20142.2168, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DBUtil.cs" />
+    <Compile Include="Domain\EnumType.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Form1.cs">
@@ -62,6 +67,12 @@
     </Compile>
     <Compile Include="View\CategoryForm.Designer.cs">
       <DependentUpon>CategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecommendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RecommendForm.Designer.cs">
+      <DependentUpon>RecommendForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -92,6 +103,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="View\JoinForm.resx">
       <DependentUpon>JoinForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RecommendForm.resx">
+      <DependentUpon>RecommendForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

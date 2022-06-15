@@ -49,14 +49,42 @@ namespace Runch.View
 
         /*
             SelectCategory
-            1. 
+            1. 선택된 카테고리 리스트에 할당
+            2. 해당 리스트 문자열 설정에 저장
+
          */
         private void SelectCategroy(object sender, EventArgs e)
         {
-            for(int i=0; i<cklCategory.CheckedItems.Count; i++)
+            ArrayList categorys = new ArrayList();
+
+            for(int i=0; i<cklCategory.Items.Count; i++)
             {
-                String temp = cklCategory.CheckedItems[i].ValueMember.ToString();
-                box.DisplayWarning(temp);
+                if (cklCategory.GetItemChecked(i))
+                {
+                    string category = cklCategory.Items[i].ToString();
+                    string value = category.Substring(category.LastIndexOf('=') + 2, 2);
+                    categorys.Add(value);
+                }
+            }
+
+            Properties.Settings.Default.CategoryList = string.Join<object>(",", categorys.ToArray());
+            new RecommendForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            CheckAll; 모두 선택
+            1. 전체 선택 여부 판단 해 초기화함.
+            2. for문 체크리스트 아이템 반복
+                > 해당 박스를 체크 설정
+         */
+        private void CheckAll(object sender, EventArgs e)
+        {
+            bool isAllChecked = chkAll.Checked;
+
+            for(int i=0; i<cklCategory.Items.Count; i++)
+            {
+                cklCategory.SetItemChecked(i, isAllChecked);
             }
         }
     }

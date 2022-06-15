@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cklCategory = new System.Windows.Forms.CheckedListBox();
             this.chkAll = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnJoin = new System.Windows.Forms.Button();
+            this.ultraTabbedMdiManager1 = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,6 +74,7 @@
             this.chkAll.TabIndex = 1;
             this.chkAll.Text = "ALL";
             this.chkAll.UseVisualStyleBackColor = true;
+            this.chkAll.CheckedChanged += new System.EventHandler(this.CheckAll);
             // 
             // textBox1
             // 
@@ -98,6 +102,10 @@
             this.btnJoin.UseVisualStyleBackColor = false;
             this.btnJoin.Click += new System.EventHandler(this.SelectCategroy);
             // 
+            // ultraTabbedMdiManager1
+            // 
+            this.ultraTabbedMdiManager1.MdiParent = this;
+            // 
             // CategoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -113,6 +121,7 @@
             this.Load += new System.EventHandler(this.InitCklCate);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -124,5 +133,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnJoin;
         private System.Windows.Forms.CheckedListBox cklCategory;
+        private Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager ultraTabbedMdiManager1;
     }
 }
