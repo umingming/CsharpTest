@@ -68,8 +68,15 @@ namespace Runch.View
             }
 
             Properties.Settings.Default.CategoryList = string.Join<object>(",", categorys.ToArray());
+            InitRestaurantList();
             new RecommendForm().Show();
             this.Visible = false;
+        }
+
+        private void InitRestaurantList()
+        {
+            Restaurant restaurant = new Restaurant();
+            restaurant.InitRecommendList();
         }
 
         /*
