@@ -97,12 +97,11 @@ namespace Runch.Domain
          */        
         public void Adopt()
         {
-            string user_id = Properties.Settings.Default.UserId;
-
+            string userId = Properties.Settings.Default.UserId;
             string sql = $@"insert into restaurant_adoption
-                                values (seq_restaurant_adoption.nextVal, '{user_id}', {id}, sysdate)";
+                                values (seq_restaurant_adoption.nextVal, '{userId}', {id}, sysdate)";
+            
             OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-
             cmd.ExecuteNonQuery();
         }
 
@@ -122,15 +121,16 @@ namespace Runch.Domain
 
         public DataSet Search()
         {
-            string sql = $@"select * from vwrestaurantSimpleInfo where ""No"" in (SELECT restaurant_id
-                            FROM VWRESTAURANTINFO
-                            WHERE CATEGORY_ID IN ('{categoryId}')
-                            	AND recent BETWEEN '{start}' AND '{end}'
-	                            AND RESTAURANT_ID IN (SELECT RESTAURANT_ID 
-						                              FROM RESTAURANT_ADOPTION 
-						                              WHERE user_id IN (SELECT user_id 
-                                                                        FROM users 
-                                                                        WHERE name = '{userName}')))";
+            string sql = $@"select * from vwRestaurantSimpleInfo 
+                            where ""No"" in (select restaurant_id
+                                             from vwRestaurantInfo
+                                             where category_id in ('{categoryId}')
+                                                and recent between '{start}' and '{end}'
+                                                and restaurant_id in (select restaurant_id
+                                                                      from restaurant_adoption
+                                                                      where user_id in (select user_id
+                                                                                        from users
+                                                                                        where name = '{userName}')))";
             OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect());
             DataSet ds = new DataSet();
             adapter.Fill(ds);
