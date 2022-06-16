@@ -107,7 +107,8 @@ namespace Runch.Domain
 
         /*
             List
-            
+            1. 레스토랑 간단 목록 쿼리 선언
+            2. DB 설정 후 데이터셋 반환
          */
         public DataSet List()
         {
@@ -119,6 +120,11 @@ namespace Runch.Domain
             return ds;
         }
 
+        /*
+            Search
+            1. 입력 값으로 조건을 정해, 레스토랑 목록을 반환하는 쿼리 선언
+            2. 데이터셋 설정 후 리턴
+         */
         public DataSet Search()
         {
             string sql = $@"select * from vwRestaurantSimpleInfo 
@@ -138,6 +144,11 @@ namespace Runch.Domain
             return ds;
         }
 
+        /*
+            Add
+            1. 레스토랑에 데이터 추가
+            2. 시스템에 저장된 유저아이디를 사용해, 로그 기록
+         */
         public void Add()
         {
             string sql = $@"insert into restaurant
@@ -152,6 +163,14 @@ namespace Runch.Domain
             cmd.ExecuteNonQuery();
         }
 
+        /*
+            FindById
+            1. 레스토랑 아이디로 값을 찾는 쿼리 선언
+            2. 레스토랑 객체 선언
+            3. if 읽을 값이 있는지?
+                > id, name, category, signature, 채택 수, 최근 채택 변수에 값 할당
+            4. 레스토랑 객체 리턴
+         */
         public Restaurant FindById(int id)
         {
             string sql = $@"select * from vwRestaurantInfo where restaurant_id = {id}";
@@ -173,6 +192,11 @@ namespace Runch.Domain
             return restaurant;
         }
 
+        /*
+            Block; 레스토랑 차단
+            1. 유저 아이디로, 레스토랑 차단하는 쿼리 선언
+            2. DB 작업 수행 객체 사용
+         */
         public void Block()
         {
             string userId = Properties.Settings.Default.UserId;
@@ -182,6 +206,11 @@ namespace Runch.Domain
             cmd.ExecuteNonQuery();
         }
 
+        /*
+            Edit
+            1. 레스토랑 테이블 편집
+            2. Update에 해당하는 로그 남김.
+         */
         public void Edit(Restaurant newRestaurant)
         {
             string sql = $@"update restaurant set name = '{newRestaurant.name}', category_id = {newRestaurant.categoryId}, signature = '{newRestaurant.signature}'

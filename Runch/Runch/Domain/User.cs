@@ -49,10 +49,9 @@ namespace Runch.Domain
                 return 0;
             }
 
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = dbutil.Connect();
-            cmd.CommandText = "insert into user_log values (seq_user_log.nextVal, :id, 'in', sysdate)";
-            cmd.Parameters.AddWithValue("id", id);
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'in', sysdate)";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            
             return cmd.ExecuteNonQuery();
         }
 
@@ -65,10 +64,8 @@ namespace Runch.Domain
          */
         public Boolean IsValid(string id)
         {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = dbutil.Connect();
-            cmd.CommandText = "select * from vwUserInfo where user_id = :id";
-            cmd.Parameters.AddWithValue("id", id);
+            string sql = $@"select * from vwUserInfo where user_id = '{id}'";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
             OleDbDataReader reader = cmd.ExecuteReader();
 
             if(reader.Read())
@@ -93,10 +90,8 @@ namespace Runch.Domain
          */
         public Boolean IsLoggedIn()
         {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = dbutil.Connect();
-            cmd.CommandText = "select * from user_log where user_id = :id and rownum = 1 order by user_log_id desc";
-            cmd.Parameters.AddWithValue("id", id);
+            string sql = $@"select * from user_log where user_id = '{id}' and rownum = 1 order by user_log_id desc";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
             OleDbDataReader reader = cmd.ExecuteReader();
 
             if (reader.Read())
@@ -106,15 +101,16 @@ namespace Runch.Domain
             return false;
         }
 
+        /*
+            Add
+            1. insert 쿼리 선언
+            2. DB 작업 수행 
+         */
         public void Add()
         {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = dbutil.Connect();
-            cmd.CommandText = "insert into users values (:id, :name, :groupId, :positionId)";
-            cmd.Parameters.AddWithValue("id", id);
-            cmd.Parameters.AddWithValue("name", name);
-            cmd.Parameters.AddWithValue("groupId", groupId);
-            cmd.Parameters.AddWithValue("positionId", positionId);
+            string sql = $@"insert into users values ('{id}', '{name}', {groupId}, {positionId})";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+
             cmd.ExecuteNonQuery();
         }
     }

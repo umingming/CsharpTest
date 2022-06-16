@@ -11,10 +11,17 @@ using Runch.Domain;
 
 namespace Runch.View
 {
+    /*
+        JoinForm; 회원가입
+        1. 콤보박스 초기화
+        2. 회원 존재여부 판별
+        3. 입력 값 토대로 사용자 추가
+     */
     public partial class JoinForm : Form
     {
         Notification box;
         User user;
+
         public JoinForm()
         {
             box = new Notification();
@@ -22,6 +29,11 @@ namespace Runch.View
             InitializeComponent();
         }
 
+        /*
+            InitCmb; 콤보박스 초기화
+            1. 원하는 데이터로 배열 생성
+            2. 소속과, 직위 콤보박스에 할당
+         */
         private void InitCmb(object sender, EventArgs e)
         {
             cmbGroup.DisplayMember = "Text";

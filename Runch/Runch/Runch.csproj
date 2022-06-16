@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="Data\DBUtil.cs" />
     <Compile Include="Domain\Restaurant.cs" />
-    <Compile Include="Domain\EnumType.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="View\EditForm.cs">

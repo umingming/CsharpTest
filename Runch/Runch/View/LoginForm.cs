@@ -13,6 +13,11 @@ using Runch.View;
 
 namespace Runch
 {
+    /*
+        LoginForm
+        1. 사원 번호 밸리데이션 후 로그인
+        2. 회원가입으로 이동
+     */
     public partial class LoginForm : Form
     {
         User user;
@@ -45,6 +50,10 @@ namespace Runch
             }
         }
 
+        /*
+            Join
+            1. 회원가입 창 호출
+         */
         private void Join(object sender, EventArgs e)
         {
             new JoinForm().Show();

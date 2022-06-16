@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Runch.Domain;
 
@@ -51,7 +44,7 @@ namespace Runch.View
             SelectCategory
             1. 선택된 카테고리 리스트에 할당
             2. 해당 리스트 문자열 설정에 저장
-
+            3. 레스토랑 객체 생성 후 추천 폼 보여주기
          */
         private void SelectCategroy(object sender, EventArgs e)
         {
@@ -78,7 +71,7 @@ namespace Runch.View
 
         /*
             CheckAll; 모두 선택
-            1. 전체 선택 여부 판단 해 초기화함.
+            1. 전체 선택 여부 판단해 초기화함.
             2. for문 체크리스트 아이템 반복
                 > 해당 박스를 체크 설정
          */

@@ -11,6 +11,11 @@ using Runch.Domain;
 
 namespace Runch.View
 {
+    /*
+        SearchForm
+        1. 카테고리 할당
+        2. 검색 조건 설정
+     */
     public partial class SearchForm : Form
     {
         Notification box;
@@ -21,6 +26,10 @@ namespace Runch.View
             InitializeComponent();
         }
 
+        /*
+            기본 화면
+            1. 콤보박스에 카테고리의 텍스트와 값 할당
+         */
         private void SearchForm_Load(object sender, EventArgs e)
         {
             cmbCategory.DisplayMember = "Text";
@@ -37,16 +46,12 @@ namespace Runch.View
             cmbCategory.Text = "";
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
-        {
-            box.DisplayWarning(dtpStart.Value.ToString().Substring(0, dtpStart.Value.ToString().IndexOf(" ")) + "");
-        }
-
+        /*
+            레스토랑 검색 조건 설정
+            1. 레스토랑 객체 생성
+            2. 조건을 토대로 변수 설정
+            3. 레스토랑 인자로 SearchListForm 생성
+         */
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Restaurant restaurant = new Restaurant();
@@ -56,6 +61,14 @@ namespace Runch.View
             restaurant.userName = txtUser.Text;
 
             new SearchListForm(restaurant).Show();
+        }
+
+        /*
+            화면 닫기
+         */
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

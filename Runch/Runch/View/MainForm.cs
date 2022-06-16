@@ -47,6 +47,10 @@ namespace Runch.View
             this.Visible = false;
         }
 
+        /*
+            ListRestaurant; 레스토랑 목록 출력
+            1. ListForm 호출
+         */
         private void ListRestaurant(object sender, EventArgs e)
         {
             new ListForm().Show();
