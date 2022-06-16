@@ -19,6 +19,9 @@ namespace Runch.Domain
         public string signature;
         public int cntAdoption;
         public string recentAdoption;
+        public string start;
+        public string end;
+        public string userName;
         public ArrayList recommendList;
 
         private DBUtil dbutil;
@@ -110,6 +113,24 @@ namespace Runch.Domain
         public DataSet List()
         {
             string sql = "select * from vwRestaurantSimpleInfo";
+            OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect());
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+
+            return ds;
+        }
+
+        public DataSet Search()
+        {
+            string sql = $@"select * from vwrestaurantSimpleInfo where ""No"" in (SELECT restaurant_id
+                            FROM VWRESTAURANTINFO
+                            WHERE CATEGORY_ID IN ('{categoryId}')
+                            	AND recent BETWEEN '{start}' AND '{end}'
+	                            AND RESTAURANT_ID IN (SELECT RESTAURANT_ID 
+						                              FROM RESTAURANT_ADOPTION 
+						                              WHERE user_id IN (SELECT user_id 
+                                                                        FROM users 
+                                                                        WHERE name = '{userName}')))";
             OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect());
             DataSet ds = new DataSet();
             adapter.Fill(ds);

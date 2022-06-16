@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Runch.Domain;
 
 namespace Runch.View
 {
     public partial class SearchForm : Form
     {
+        Notification box;
+
         public SearchForm()
         {
+            box = new Notification();
             InitializeComponent();
         }
 
@@ -36,6 +40,22 @@ namespace Runch.View
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            box.DisplayWarning(dtpStart.Value.ToString().Substring(0, dtpStart.Value.ToString().IndexOf(" ")) + "");
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Restaurant restaurant = new Restaurant();
+            restaurant.start = dtpStart.Value.ToString().Substring(0, dtpStart.Value.ToString().IndexOf(" ")) + "";
+            restaurant.end = dtpEnd.Value.ToString().Substring(0, dtpEnd.Value.ToString().IndexOf(" ")) + "";
+            restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
+            restaurant.userName = txtUser.Text;
+
+            new SearchListForm(restaurant).Show();
         }
     }
 }

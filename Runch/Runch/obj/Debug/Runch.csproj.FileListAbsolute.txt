@@ -35,3 +35,4 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.AddForm.
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.DetailForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.SearchForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.EditForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.SearchListForm.resources
