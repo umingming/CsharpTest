@@ -1,6 +1,6 @@
 ﻿namespace Runch.View
 {
-    partial class AddForm
+    partial class EditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,7 +37,7 @@
             this.txtSignature = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -125,21 +125,21 @@
             this.cmbCategory.Size = new System.Drawing.Size(244, 39);
             this.cmbCategory.TabIndex = 7;
             // 
-            // btnAdd
+            // btnEdit
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("이사만루체 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(54, 222);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(353, 45);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "추가";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(163)))), ((int)(((byte)(166)))));
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("이사만루체 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(54, 222);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(353, 45);
+            this.btnEdit.TabIndex = 8;
+            this.btnEdit.Text = "수정";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnClose
             // 
@@ -155,7 +155,7 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // AddForm
+            // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -164,7 +164,7 @@
             this.ClientSize = new System.Drawing.Size(464, 290);
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.txtSignature);
             this.Controls.Add(this.label5);
@@ -173,10 +173,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddForm";
+            this.Name = "EditForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.AddForm_Load);
+            this.Load += new System.EventHandler(this.EditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,7 +192,7 @@
         private System.Windows.Forms.TextBox txtSignature;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnClose;
     }
 }

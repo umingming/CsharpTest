@@ -38,37 +38,42 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.txtAdoption);
-            this.panel1.Location = new System.Drawing.Point(26, 218);
+            this.panel1.Location = new System.Drawing.Point(26, 224);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(392, 197);
             this.panel1.TabIndex = 2;
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("한컴 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox1.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.textBox1.Location = new System.Drawing.Point(3, 162);
+            this.textBox1.Location = new System.Drawing.Point(22, 162);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(386, 32);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(349, 29);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TabStop = false;
             this.textBox1.Text = "맛있게 드세요!";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtAdoption
             // 
+            this.txtAdoption.BackColor = System.Drawing.Color.White;
             this.txtAdoption.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAdoption.Font = new System.Drawing.Font("한컴 고딕", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtAdoption.Font = new System.Drawing.Font("한컴 고딕", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtAdoption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtAdoption.Location = new System.Drawing.Point(3, 8);
+            this.txtAdoption.Location = new System.Drawing.Point(22, 11);
             this.txtAdoption.Name = "txtAdoption";
-            this.txtAdoption.Size = new System.Drawing.Size(386, 42);
+            this.txtAdoption.ReadOnly = true;
+            this.txtAdoption.Size = new System.Drawing.Size(349, 37);
             this.txtAdoption.TabIndex = 3;
+            this.txtAdoption.TabStop = false;
             this.txtAdoption.Text = "오늘의 점심: ";
             this.txtAdoption.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -77,7 +82,7 @@
             this.btnJoin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
             this.btnJoin.FlatAppearance.BorderSize = 0;
             this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJoin.Font = new System.Drawing.Font("이사만루체 Medium", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnJoin.Font = new System.Drawing.Font("이사만루체 Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnJoin.ForeColor = System.Drawing.Color.White;
             this.btnJoin.Location = new System.Drawing.Point(48, 445);
             this.btnJoin.Name = "btnJoin";
@@ -85,6 +90,7 @@
             this.btnJoin.TabIndex = 14;
             this.btnJoin.Text = "목록 보기";
             this.btnJoin.UseVisualStyleBackColor = false;
+            this.btnJoin.Click += new System.EventHandler(this.ListRestaurant);
             // 
             // AdoptionForm
             // 

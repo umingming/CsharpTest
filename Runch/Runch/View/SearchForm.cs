@@ -4,22 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Runch.Domain;
 
 namespace Runch.View
 {
-    public partial class AddForm : Form
+    public partial class SearchForm : Form
     {
-        public AddForm()
+        public SearchForm()
         {
             InitializeComponent();
         }
 
-        private void AddForm_Load(object sender, EventArgs e)
+        private void SearchForm_Load(object sender, EventArgs e)
         {
             cmbCategory.DisplayMember = "Text";
             cmbCategory.ValueMember = "Value";
@@ -37,16 +35,6 @@ namespace Runch.View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Restaurant restaurant = new Restaurant();
-            restaurant.name = txtName.Text;
-            restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
-            restaurant.signature = txtSignature.Text;
-            restaurant.Add();
             this.Close();
         }
     }

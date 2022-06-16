@@ -23,9 +23,20 @@ namespace Runch.View
             dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
         }
 
-        private void ShowRestaurant(object sender, DataGridViewCellEventArgs e)
+        private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dgvRestaurant.CurrentRow.Cells["No"].Value.ToString());
+            int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells["No"].Value.ToString());
+            new DetailForm(new Restaurant().FindById(id)).Show();
+        }
+
+        private void AddRestaurant(object sender, EventArgs e)
+        {
+            new AddForm().Show();
+        }
+
+        private void SearchRestaurant(object sender, EventArgs e)
+        {
+            new SearchForm().Show();
         }
     }
 }

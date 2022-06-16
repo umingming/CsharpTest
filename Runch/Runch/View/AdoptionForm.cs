@@ -25,5 +25,11 @@ namespace Runch.View
         {
             txtAdoption.Text += restaurant.name;
         }
+
+        private void ListRestaurant(object sender, EventArgs e)
+        {
+            new ListForm().Show();
+            this.Visible = false;
+        }
     }
 }

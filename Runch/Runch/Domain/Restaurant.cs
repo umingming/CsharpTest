@@ -18,6 +18,7 @@ namespace Runch.Domain
         public int categoryId;
         public string signature;
         public int cntAdoption;
+        public string recentAdoption;
         public ArrayList recommendList;
 
         private DBUtil dbutil;
@@ -123,9 +124,53 @@ namespace Runch.Domain
             OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
             cmd.ExecuteNonQuery();
 
-            string userId = "2203001";//Properties.Settings.Default.UserId;
+            string userId = Properties.Settings.Default.UserId;
             sql = $@"insert into restaurant_history
                         values (seq_restaurant_history.nextVal, (select max(restaurant_id) from restaurant), '{userId}', 'C', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+        }
+
+        public Restaurant FindById(int id)
+        {
+            string sql = $@"select * from vwRestaurantInfo where restaurant_id = {id}";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            Restaurant restaurant = new Restaurant();
+            
+            if (reader.Read())
+            {
+                restaurant.id = Int32.Parse(reader["restaurant_id"].ToString());
+                restaurant.name = reader["name"].ToString();
+                restaurant.category = reader["category"].ToString();
+                restaurant.signature = reader["signature"].ToString();
+                restaurant.cntAdoption = Int32.Parse(reader["cnt"].ToString());
+                restaurant.recentAdoption = reader["recent"].ToString();
+            }
+
+            return restaurant;
+        }
+
+        public void Block()
+        {
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"insert into restaurant_block
+                                values (seq_restaurant_block.nextVal, '{userId}', {id})";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+        }
+
+        public void Edit(Restaurant newRestaurant)
+        {
+            string sql = $@"update restaurant set name = '{newRestaurant.name}', category_id = {newRestaurant.categoryId}, signature = '{newRestaurant.signature}'
+                                where restaurant_id = {id}";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+
+            string userId = Properties.Settings.Default.UserId;
+            sql = $@"insert into restaurant_history
+                        values (seq_restaurant_history.nextVal, {id}, '{userId}', 'U', '{newRestaurant.name}', {newRestaurant.categoryId}, '{newRestaurant.signature}', 30, 30, sysdate)";
             cmd = new OleDbCommand(sql, dbutil.Connect());
             cmd.ExecuteNonQuery();
         }

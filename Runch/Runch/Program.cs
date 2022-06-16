@@ -10,7 +10,6 @@ namespace Runch
 {
     internal static class Program
     {
-        private static DBUtil db = new DBUtil();
         /// <summary>
         /// 해당 애플리케이션의 주 진입점입니다.
         /// </summary>
@@ -20,9 +19,11 @@ namespace Runch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //new SearchForm().Show();
             //new ListForm().Show();
-            //new LoginForm().Show();
-            new AddForm().Show();
+            //new CategoryForm().Show();
+            new LoginForm().Show();
+            //new AddForm().Show();
             Application.Run();
         }
     }

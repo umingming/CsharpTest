@@ -30,28 +30,28 @@ namespace Runch.View
             cmbPosition.ValueMember = "Value";
 
             var groups = new[] {
-                new { Text = "소속", Value = "0" },
-                new { Text = "개발1그룹", Value = "2" },
-                new { Text = "개발2그룹", Value = "3" },
-                new { Text = "F/W 그룹", Value = "4" },
-                new { Text = "WEB/UX그룹", Value = "5" },
+                new { Text = " 개발1그룹", Value = "2" },
+                new { Text = " 개발2그룹", Value = "3" },
+                new { Text = " F/W 그룹", Value = "4" },
+                new { Text = " WEB/UX그룹", Value = "5" },
             };
             cmbGroup.DataSource = groups;
+            cmbGroup.Text = " 소속";
 
             var positions = new[] {
-                new { Text = "직위", Value = "0" },
-                new { Text = "사원", Value = "6" },
-                new { Text = "선임", Value = "7" },
-                new { Text = "책임", Value = "8" },
-                new { Text = "수석보", Value = "9" },
-                new { Text = "수석", Value = "10" },
-                new { Text = "이사", Value = "11" },
-                new { Text = "상무", Value = "12" },
-                new { Text = "전무", Value = "13" },
-                new { Text = "부사장", Value = "14" },
-                new { Text = "사장", Value = "15" },
+                new { Text = " 사원", Value = "6" },
+                new { Text = " 선임", Value = "7" },
+                new { Text = " 책임", Value = "8" },
+                new { Text = " 수석보", Value = "9" },
+                new { Text = " 수석", Value = "10" },
+                new { Text = " 이사", Value = "11" },
+                new { Text = " 상무", Value = "12" },
+                new { Text = " 전무", Value = "13" },
+                new { Text = " 부사장", Value = "14" },
+                new { Text = " 사장", Value = "15" },
             };
             cmbPosition.DataSource = positions;
+            cmbPosition.Text = " 직위";
         }
 
         /*
@@ -70,7 +70,7 @@ namespace Runch.View
             if(!user.IsValid(txtId.Text))
             {
                 user.id = txtId.Text;
-                btnIdChecked.BackColor = Color.Green;
+                btnIdUnChecked.Visible = false;
             }
         }
         

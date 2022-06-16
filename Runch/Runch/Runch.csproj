@@ -66,6 +66,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailForm.Designer.cs">
+      <DependentUpon>DetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\CategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
     </Compile>
     <Compile Include="View\AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ListForm.cs">
       <SubType>Form</SubType>
@@ -126,6 +144,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="View\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailForm.resx">
+      <DependentUpon>DetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\RecommendForm.resx">
       <DependentUpon>RecommendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

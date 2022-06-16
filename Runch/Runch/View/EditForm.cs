@@ -12,14 +12,21 @@ using Runch.Domain;
 
 namespace Runch.View
 {
-    public partial class AddForm : Form
+    public partial class EditForm : Form
     {
-        public AddForm()
+        Restaurant restaurant;
+        public EditForm(Restaurant restaurant)
         {
+            this.restaurant = restaurant;
             InitializeComponent();
         }
 
-        private void AddForm_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void EditForm_Load(object sender, EventArgs e)
         {
             cmbCategory.DisplayMember = "Text";
             cmbCategory.ValueMember = "Value";
@@ -35,18 +42,13 @@ namespace Runch.View
             cmbCategory.Text = "";
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Restaurant restaurant = new Restaurant();
-            restaurant.name = txtName.Text;
-            restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
-            restaurant.signature = txtSignature.Text;
-            restaurant.Add();
+            Restaurant newRestaurant = new Restaurant();
+            newRestaurant.name = txtName.Text;
+            newRestaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
+            newRestaurant.signature = txtSignature.Text;
+            restaurant.Edit(newRestaurant);
             this.Close();
         }
     }

@@ -43,7 +43,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.txtAdoption);
             this.panel1.Controls.Add(this.txtSignature);
             this.panel1.Controls.Add(this.label2);
@@ -57,22 +57,28 @@
             // 
             // txtAdoption
             // 
+            this.txtAdoption.BackColor = System.Drawing.Color.White;
             this.txtAdoption.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAdoption.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtAdoption.Location = new System.Drawing.Point(189, 132);
             this.txtAdoption.Name = "txtAdoption";
+            this.txtAdoption.ReadOnly = true;
             this.txtAdoption.Size = new System.Drawing.Size(120, 24);
             this.txtAdoption.TabIndex = 4;
+            this.txtAdoption.TabStop = false;
             this.txtAdoption.Text = "3932";
             // 
             // txtSignature
             // 
+            this.txtSignature.BackColor = System.Drawing.Color.White;
             this.txtSignature.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSignature.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtSignature.Location = new System.Drawing.Point(189, 105);
             this.txtSignature.Name = "txtSignature";
+            this.txtSignature.ReadOnly = true;
             this.txtSignature.Size = new System.Drawing.Size(120, 24);
             this.txtSignature.TabIndex = 2;
+            this.txtSignature.TabStop = false;
             this.txtSignature.Text = "연어초밥";
             // 
             // label2
@@ -97,23 +103,29 @@
             // 
             // txtCategory
             // 
+            this.txtCategory.BackColor = System.Drawing.Color.White;
             this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCategory.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtCategory.Location = new System.Drawing.Point(321, 48);
+            this.txtCategory.Location = new System.Drawing.Point(321, 40);
             this.txtCategory.Name = "txtCategory";
+            this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(41, 24);
             this.txtCategory.TabIndex = 1;
+            this.txtCategory.TabStop = false;
             this.txtCategory.Text = "/";
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Font = new System.Drawing.Font("한컴 고딕", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtName.Location = new System.Drawing.Point(61, 22);
+            this.txtName.Location = new System.Drawing.Point(61, 14);
             this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(254, 58);
             this.txtName.TabIndex = 0;
+            this.txtName.TabStop = false;
             this.txtName.Text = "사카나";
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

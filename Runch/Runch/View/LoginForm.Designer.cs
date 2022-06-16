@@ -108,6 +108,7 @@
             this.DoubleBuffered = true;
             this.Name = "LoginForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.ResumeLayout(false);
             this.PerformLayout();
