@@ -20,11 +20,13 @@ namespace Runch
             Application.SetCompatibleTextRenderingDefault(false);
 
             //new SearchForm().Show();
-            new ListForm().Show();
+            //new ListForm().Show();
             //new CategoryForm().Show();
-            //new LoginForm().Show();
+            new LoginForm().Show();
             //new AddForm().Show();
             Application.Run();
         }
+
+
     }
 }

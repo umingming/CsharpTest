@@ -43,6 +43,7 @@
             this.btnRecommend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRecommend.FlatAppearance.BorderSize = 0;
             this.btnRecommend.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRecommend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRecommend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecommend.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnRecommend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -138,6 +139,7 @@
             this.Controls.Add(this.btnUserIcon);
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnList);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
