@@ -44,7 +44,7 @@ namespace Runch.View
         private void RecommendLunch(object sender, EventArgs e)
         {
             new CategoryForm().Show();
-            this.Visible = false;
+           // this.Visible = false;
         }
 
         /*
@@ -54,7 +54,7 @@ namespace Runch.View
         private void ListRestaurant(object sender, EventArgs e)
         {
             new ListForm().Show();
-            this.Visible = false;
+            //this.Visible = false;
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Runch.View
          */
         private void EditForm_Load(object sender, EventArgs e)
         {
+            txtName.Text = Class1.temp;
             cmbCategory.DisplayMember = "Text";
             cmbCategory.ValueMember = "Value";
 

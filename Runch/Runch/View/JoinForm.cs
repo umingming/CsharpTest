@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Runch.Domain;
 
@@ -17,10 +10,13 @@ namespace Runch.View
         2. 회원 존재여부 판별
         3. 입력 값 토대로 사용자 추가
      */
+     
     public partial class JoinForm : Form
     {
         Notification box;
         User user;
+
+        Boolean isIdChecked = false;
 
         public JoinForm()
         {
@@ -84,6 +80,8 @@ namespace Runch.View
                 user.id = txtId.Text;
                 btnIdUnChecked.Visible = false;
             }
+
+            isIdChecked = true;
         }
         
         /*
@@ -94,14 +92,34 @@ namespace Runch.View
          */
         private void Join(object sender, EventArgs e)
         {
-            user.name = txtName.Text;
-            user.groupId = Int32.Parse(cmbGroup.SelectedValue.ToString());
-            user.positionId = Int32.Parse(cmbPosition.SelectedValue.ToString());
+            try
+            {
+                if(isIdChecked == false)
+                {
+                    box.DisplayWarning("사원번호");
+                    return;
+                }
 
-            user.Add();
+                if(txtId.Text == string.Empty || txtId.Text == "사번")
+                {
+                    box.DisplayWarning("사원번호");
+                    txtId.Focus();
+                    return;
+                }
 
-            new LoginForm().Show();
-            this.Visible = false;
+                user.name = txtName.Text;
+                user.groupId = Int32.Parse(cmbGroup.SelectedValue.ToString());
+                user.positionId = Int32.Parse(cmbPosition.SelectedValue.ToString());
+
+                user.Add();
+
+                new LoginForm().Show();
+                this.Visible = false;
+
+            } catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

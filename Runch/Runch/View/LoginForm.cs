@@ -40,6 +40,7 @@ namespace Runch
             if (txtId.Text.Equals(""))
             {
                 box.DisplayWarning("ID 입력");
+                txtId.Focus();
                 return;
             }
 

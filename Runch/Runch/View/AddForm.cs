@@ -38,6 +38,22 @@ namespace Runch.View
             cmbCategory.Text = "";
         }
 
+        private void AddFormu_Load(object sender, EventArgs e, string str)
+        {
+            cmbCategory.DisplayMember = "Text";
+            cmbCategory.ValueMember = "Value";
+
+            var categories = new[] {
+                new { Text = " 한식", Value = "16" },
+                new { Text = " 중식", Value = "17" },
+                new { Text = " 일식", Value = "18" },
+                new { Text = " 양식", Value = "19" },
+                new { Text = " 기타", Value = "20" },
+            };
+            cmbCategory.DataSource = categories;
+            cmbCategory.Text = "";
+        }
+
         /*
             레스토랑 추가
             1. 객체 생성 후 값 초기화

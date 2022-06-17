@@ -55,6 +55,7 @@ namespace Runch.View
          */
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            Class1.temp = restaurant.name;
             new EditForm(restaurant).Show();
             this.Close();
         }
