@@ -118,10 +118,12 @@
             this.ClientSize = new System.Drawing.Size(444, 639);
             this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "CategoryForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.InitCklCate);
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).EndInit();
             this.panel1.ResumeLayout(false);

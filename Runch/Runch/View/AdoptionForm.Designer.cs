@@ -101,10 +101,12 @@
             this.ClientSize = new System.Drawing.Size(444, 639);
             this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "AdoptionForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.ShowLunch);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

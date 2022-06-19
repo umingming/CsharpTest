@@ -37,5 +37,16 @@ namespace Runch.View
             new ListForm().Show();
             this.Visible = false;
         }
+
+        /*
+            Quit
+            1. 로그아웃
+            2. 어플리케이션을 종료
+         */
+        private void Quit(object sender, FormClosedEventArgs e)
+        {
+            new User().Logout();
+            Application.Exit();
+        }
     }
 }

@@ -34,6 +34,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListForm));
             this.ultraDataChart1 = new Infragistics.Win.DataVisualization.UltraDataChart();
             this.dgvRestaurant = new System.Windows.Forms.DataGridView();
+            this.noDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.식당명DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.카테고리DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.선정횟수DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vWRESTAURANTSIMPLEINFOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new Runch.DataSet1();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,10 +46,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
             this.vWRESTAURANTSIMPLEINFOTableAdapter = new Runch.DataSet1TableAdapters.VWRESTAURANTSIMPLEINFOTableAdapter();
-            this.noDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.식당명DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.카테고리DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.선정횟수DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vWRESTAURANTSIMPLEINFOBindingSource)).BeginInit();
@@ -55,6 +55,11 @@
             // ultraDataChart1
             // 
             this.ultraDataChart1.BackColor = System.Drawing.Color.White;
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
@@ -107,6 +112,16 @@
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
@@ -133,6 +148,11 @@
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
             this.ultraDataChart1.Name = "ultraDataChart1";
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
@@ -211,6 +231,42 @@
             this.dgvRestaurant.TabIndex = 0;
             this.dgvRestaurant.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowDetail);
             // 
+            // noDataGridViewTextBoxColumn
+            // 
+            this.noDataGridViewTextBoxColumn.DataPropertyName = "No";
+            this.noDataGridViewTextBoxColumn.FillWeight = 56.81819F;
+            this.noDataGridViewTextBoxColumn.HeaderText = "No.";
+            this.noDataGridViewTextBoxColumn.MinimumWidth = 4;
+            this.noDataGridViewTextBoxColumn.Name = "noDataGridViewTextBoxColumn";
+            this.noDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 식당명DataGridViewTextBoxColumn
+            // 
+            this.식당명DataGridViewTextBoxColumn.DataPropertyName = "식당명";
+            this.식당명DataGridViewTextBoxColumn.FillWeight = 156.9442F;
+            this.식당명DataGridViewTextBoxColumn.HeaderText = "   식당명";
+            this.식당명DataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.식당명DataGridViewTextBoxColumn.Name = "식당명DataGridViewTextBoxColumn";
+            this.식당명DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 카테고리DataGridViewTextBoxColumn
+            // 
+            this.카테고리DataGridViewTextBoxColumn.DataPropertyName = "카테고리";
+            this.카테고리DataGridViewTextBoxColumn.FillWeight = 86.57453F;
+            this.카테고리DataGridViewTextBoxColumn.HeaderText = "카테고리";
+            this.카테고리DataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.카테고리DataGridViewTextBoxColumn.Name = "카테고리DataGridViewTextBoxColumn";
+            this.카테고리DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 선정횟수DataGridViewTextBoxColumn
+            // 
+            this.선정횟수DataGridViewTextBoxColumn.DataPropertyName = "선정 횟수";
+            this.선정횟수DataGridViewTextBoxColumn.FillWeight = 99.66319F;
+            this.선정횟수DataGridViewTextBoxColumn.HeaderText = "선정 횟수";
+            this.선정횟수DataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.선정횟수DataGridViewTextBoxColumn.Name = "선정횟수DataGridViewTextBoxColumn";
+            this.선정횟수DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // vWRESTAURANTSIMPLEINFOBindingSource
             // 
             this.vWRESTAURANTSIMPLEINFOBindingSource.DataMember = "VWRESTAURANTSIMPLEINFO";
@@ -286,42 +342,6 @@
             // 
             this.vWRESTAURANTSIMPLEINFOTableAdapter.ClearBeforeFill = true;
             // 
-            // noDataGridViewTextBoxColumn
-            // 
-            this.noDataGridViewTextBoxColumn.DataPropertyName = "No";
-            this.noDataGridViewTextBoxColumn.FillWeight = 56.81819F;
-            this.noDataGridViewTextBoxColumn.HeaderText = "No.";
-            this.noDataGridViewTextBoxColumn.MinimumWidth = 4;
-            this.noDataGridViewTextBoxColumn.Name = "noDataGridViewTextBoxColumn";
-            this.noDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // 식당명DataGridViewTextBoxColumn
-            // 
-            this.식당명DataGridViewTextBoxColumn.DataPropertyName = "식당명";
-            this.식당명DataGridViewTextBoxColumn.FillWeight = 156.9442F;
-            this.식당명DataGridViewTextBoxColumn.HeaderText = "   식당명";
-            this.식당명DataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.식당명DataGridViewTextBoxColumn.Name = "식당명DataGridViewTextBoxColumn";
-            this.식당명DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // 카테고리DataGridViewTextBoxColumn
-            // 
-            this.카테고리DataGridViewTextBoxColumn.DataPropertyName = "카테고리";
-            this.카테고리DataGridViewTextBoxColumn.FillWeight = 86.57453F;
-            this.카테고리DataGridViewTextBoxColumn.HeaderText = "카테고리";
-            this.카테고리DataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.카테고리DataGridViewTextBoxColumn.Name = "카테고리DataGridViewTextBoxColumn";
-            this.카테고리DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // 선정횟수DataGridViewTextBoxColumn
-            // 
-            this.선정횟수DataGridViewTextBoxColumn.DataPropertyName = "선정 횟수";
-            this.선정횟수DataGridViewTextBoxColumn.FillWeight = 99.66319F;
-            this.선정횟수DataGridViewTextBoxColumn.HeaderText = "선정 횟수";
-            this.선정횟수DataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.선정횟수DataGridViewTextBoxColumn.Name = "선정횟수DataGridViewTextBoxColumn";
-            this.선정횟수DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -340,6 +360,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.ListRestaurant);
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurant)).EndInit();

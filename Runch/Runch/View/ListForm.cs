@@ -74,5 +74,16 @@ namespace Runch.View
         {
             new SearchForm().Show();
         }
+
+        /*
+            Quit
+            1. 로그아웃
+            2. 어플리케이션을 종료
+         */
+        private void Quit(object sender, FormClosedEventArgs e)
+        {
+            new User().Logout();
+            Application.Exit();
+        }
     }
 }

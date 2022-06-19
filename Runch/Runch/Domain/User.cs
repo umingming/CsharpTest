@@ -56,6 +56,22 @@ namespace Runch.Domain
         }
 
         /*
+            Logout
+            1. id 할당
+            2. 로그아웃 쿼리 초기화
+            3. DB 수행
+         */
+        public void Logout()
+        {
+            id = Properties.Settings.Default.UserId;
+
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+
+            cmd.ExecuteNonQuery();
+        }
+
+        /*
             IsValid
             1. 유저 조회 쿼리 할당
             2. if문 해당 유저가 있는지?
