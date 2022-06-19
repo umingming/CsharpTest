@@ -23,5 +23,15 @@ namespace Runch.Domain
         {
             MessageBox.Show(text + "(을)를 확인해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        public void DisplaySimpleWarning(string text)
+        {
+            MessageBox.Show(text + "입니다.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public void DisplayInfo(string text)
+        {
+            MessageBox.Show(text + "입니다.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

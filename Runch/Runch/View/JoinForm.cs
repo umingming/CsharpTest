@@ -69,19 +69,53 @@ namespace Runch.View
          */
         private void CheckId(object sender, EventArgs e)
         {
-            if (txtId.Text.Equals(""))
+            try
             {
-                box.DisplayWarning("ID 입력");
-                return;
-            }
+                Convert.ToInt32(txtId.Text);
 
-            if(!user.IsValid(txtId.Text))
-            {
+                if (txtId.Text.Equals(""))
+                {
+                    box.DisplayWarning("사원 번호 입력");
+                    txtId.Focus();
+                    return;
+                }
+
+                if(user.IsValid(txtId.Text))
+                {
+                    box.DisplaySimpleWarning("등록된 사용자");
+                    txtId.Focus();
+                    return;
+                }
+
                 user.id = txtId.Text;
                 btnIdUnChecked.Visible = false;
-            }
+                isIdChecked = true;
 
-            isIdChecked = true;
+                box.DisplayInfo("등록 가능한 사원 번호");
+            }
+            catch (FormatException)
+            {
+                box.DisplayWarning("사원 번호");
+                txtId.Focus();
+            }
+        }
+
+        /*
+            InitIdByClick
+            1. 텍스트 초기화
+         */
+        private void InitIdByClick(object sender, EventArgs e)
+        {
+            txtId.Text = "";
+        }
+
+        /*
+            InitNameByClick
+            1. 텍스트 초기화
+         */
+        private void InitNameByClick(object sender, EventArgs e)
+        {
+            txtName.Text = "";
         }
         
         /*
@@ -97,13 +131,28 @@ namespace Runch.View
                 if(isIdChecked == false)
                 {
                     box.DisplayWarning("사원번호");
+                    txtId.Focus();
                     return;
                 }
 
-                if(txtId.Text == string.Empty || txtId.Text == "사번")
+                if(txtName.Text == "이름")
                 {
-                    box.DisplayWarning("사원번호");
-                    txtId.Focus();
+                    box.DisplayWarning("이름");
+                    txtName.Focus();
+                    return;
+                }
+
+                if(cmbGroup.SelectedIndex == 0)
+                {
+                    box.DisplayWarning("소속");
+                    cmbGroup.Focus();
+                    return;
+                }
+
+                if(cmbPosition.SelectedIndex == 0)
+                {
+                    box.DisplayWarning("직위");
+                    cmbPosition.Focus();
                     return;
                 }
 

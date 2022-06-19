@@ -49,8 +49,9 @@
             this.txtId.Margin = new System.Windows.Forms.Padding(0);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(259, 26);
-            this.txtId.TabIndex = 0;
+            this.txtId.TabIndex = 1;
             this.txtId.Text = "사원 번호";
+            this.txtId.Click += new System.EventHandler(this.InitIdByClick);
             // 
             // label1
             // 
@@ -59,7 +60,7 @@
             this.label1.Location = new System.Drawing.Point(48, 227);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(292, 34);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             // 
             // btnIdChecked
             // 
@@ -73,6 +74,7 @@
             this.btnIdChecked.Name = "btnIdChecked";
             this.btnIdChecked.Size = new System.Drawing.Size(36, 36);
             this.btnIdChecked.TabIndex = 3;
+            this.btnIdChecked.TabStop = false;
             this.btnIdChecked.UseVisualStyleBackColor = false;
             this.btnIdChecked.Click += new System.EventHandler(this.CheckId);
             // 
@@ -87,6 +89,7 @@
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(343, 34);
             this.cmbGroup.TabIndex = 4;
+            this.cmbGroup.Click += new System.EventHandler(this.ShowGroup);
             // 
             // label2
             // 
@@ -95,7 +98,7 @@
             this.label2.Location = new System.Drawing.Point(48, 281);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(343, 34);
-            this.label2.TabIndex = 7;
+            this.label2.TabIndex = 33;
             // 
             // txtName
             // 
@@ -106,18 +109,20 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(259, 26);
-            this.txtName.TabIndex = 11;
+            this.txtName.TabIndex = 3;
             this.txtName.Text = "이름";
+            this.txtName.Click += new System.EventHandler(this.InitNameByClick);
             // 
             // cmbPosition
             // 
+            this.cmbPosition.BackColor = System.Drawing.Color.White;
             this.cmbPosition.Font = new System.Drawing.Font("한컴 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cmbPosition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbPosition.FormattingEnabled = true;
             this.cmbPosition.Location = new System.Drawing.Point(48, 389);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(343, 34);
-            this.cmbPosition.TabIndex = 12;
+            this.cmbPosition.TabIndex = 5;
             // 
             // btnJoin
             // 
@@ -129,7 +134,7 @@
             this.btnJoin.Location = new System.Drawing.Point(48, 444);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(343, 45);
-            this.btnJoin.TabIndex = 13;
+            this.btnJoin.TabIndex = 0;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.UseVisualStyleBackColor = false;
             this.btnJoin.Click += new System.EventHandler(this.Join);
@@ -146,7 +151,7 @@
             this.btnIdUnChecked.Location = new System.Drawing.Point(355, 226);
             this.btnIdUnChecked.Name = "btnIdUnChecked";
             this.btnIdUnChecked.Size = new System.Drawing.Size(36, 36);
-            this.btnIdUnChecked.TabIndex = 14;
+            this.btnIdUnChecked.TabIndex = 2;
             this.btnIdUnChecked.UseVisualStyleBackColor = false;
             this.btnIdUnChecked.Click += new System.EventHandler(this.CheckId);
             // 

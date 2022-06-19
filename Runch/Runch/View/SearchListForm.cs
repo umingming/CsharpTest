@@ -38,7 +38,11 @@ namespace Runch.View
             dgvRestaurant.Columns[0].Width = 40;
             dgvRestaurant.Columns[1].HeaderText = "     식당명";
             dgvRestaurant.Columns[1].Width = 100;
-            dgvRestaurant.Rows[0].Selected = false;
+
+            if(dgvRestaurant.Rows.Count > 0)
+            {
+                dgvRestaurant.Rows[0].Selected = false;
+            }
         }
 
         /*

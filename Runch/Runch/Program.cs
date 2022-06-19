@@ -22,7 +22,8 @@ namespace Runch
             //new SearchForm().Show();
             //new ListForm().Show();
             //new CategoryForm().Show();
-            new LoginForm().Show();
+            //new LoginForm().Show();
+            new JoinForm().Show();
             //new AddForm().Show();
             Application.Run();
         }
