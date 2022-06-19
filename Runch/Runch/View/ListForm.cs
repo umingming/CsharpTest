@@ -42,9 +42,20 @@ namespace Runch.View
          */
         private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells["No"].Value.ToString());
+            int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells[0].Value.ToString());
             new DetailForm(new Restaurant().FindById(id)).Show();
         }
+
+        /*
+            SelectRowByClick
+            1. 셀 클릭으로 로우 선택
+         */
+        private void SelectRowByClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvRestaurant.CurrentRow.Selected = true;
+        }
+
+
 
         /*
             AddRestaurant
