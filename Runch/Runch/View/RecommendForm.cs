@@ -62,5 +62,58 @@ namespace Runch.View
             new AdoptionForm(recommend).Show();
             this.Visible = false;
         }
+
+        /*
+            ShowList
+            1. 리스트 폼 호출
+         */
+        private void ShowList(object sender, EventArgs e)
+        {
+            new ListForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            SelectCategory; 점심추천 메뉴로 이동
+            1. 카테고리 폼 생성
+         */
+        private void SelectCategory(object sender, EventArgs e)
+        {
+            new CategoryForm().Show();
+            // this.Visible = false;
+        }
+
+        /*
+            Logout
+            1. 로그아웃
+            2. 로그인 화면으로 이동
+         */
+        private void Logout(object sender, EventArgs e)
+        {
+            new User().Logout();
+            new LoginForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            ShowMain
+            1. 메인으로 이동
+         */
+        private void ShowMain(object sender, EventArgs e)
+        {
+            new MainForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            Quit
+            1. 로그아웃
+            2. 어플리케이션을 종료
+         */
+        private void Quit(object sender, FormClosedEventArgs e)
+        {
+            new User().Logout();
+            Application.Exit();
+        }
     }
 }

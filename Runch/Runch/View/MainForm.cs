@@ -34,7 +34,6 @@ namespace Runch.View
             user = new User();
             user.id = Properties.Settings.Default.UserId;
             user.name = Properties.Settings.Default.UserName;
-            btnUser.Text = user.name + "님";
         }
 
         /*
@@ -44,7 +43,7 @@ namespace Runch.View
         private void RecommendLunch(object sender, EventArgs e)
         {
             new CategoryForm().Show();
-           // this.Visible = false;
+            this.Visible = false;
         }
 
         /*
@@ -54,7 +53,19 @@ namespace Runch.View
         private void ListRestaurant(object sender, EventArgs e)
         {
             new ListForm().Show();
-            //this.Visible = false;
+            this.Visible = false;
+        }
+
+        /*
+            Logout
+            1. 로그아웃
+            2. 로그인 화면으로 이동
+         */
+        private void Logout(object sender, EventArgs e)
+        {
+            user.Logout();
+            new LoginForm().Show();
+            this.Visible = false;
         }
 
         /*
@@ -64,7 +75,7 @@ namespace Runch.View
          */
         private void Quit(object sender, FormClosedEventArgs e)
         {
-            new User().Logout();
+            user.Logout();
             Application.Exit();
         }
     }

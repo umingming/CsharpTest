@@ -34,3 +34,5 @@ C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.DetailFo
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.SearchForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.EditForm.resources
 C:\Users\user\source\repos\AimTraining\Runch\Runch\obj\Debug\Runch.View.SearchListForm.resources
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.Misc.v14.2.dll
+C:\Users\user\source\repos\AimTraining\Runch\Runch\bin\Debug\Infragistics4.Win.Misc.v14.2.xml

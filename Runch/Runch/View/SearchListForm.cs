@@ -34,6 +34,20 @@ namespace Runch.View
         private void ListRestaurant(object sender, EventArgs e)
         {
             dgvRestaurant.DataSource = restaurant.Search().Tables[0].DefaultView;
+            dgvRestaurant.Columns[0].HeaderText = "No.";
+            dgvRestaurant.Columns[0].Width = 40;
+            dgvRestaurant.Columns[1].HeaderText = "     식당명";
+            dgvRestaurant.Columns[1].Width = 100;
+            dgvRestaurant.Rows[0].Selected = false;
+        }
+
+        /*
+            SelectRowByClick
+            1. 셀 클릭으로 로우 선택
+         */
+        private void SelectRowByClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvRestaurant.CurrentRow.Selected = true;
         }
 
         /*
@@ -43,7 +57,7 @@ namespace Runch.View
          */
         private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells["No"].Value.ToString());
+            int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells[0].Value.ToString());
             new DetailForm(new Restaurant().FindById(id)).Show();
         }
 
@@ -63,6 +77,48 @@ namespace Runch.View
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
+        }
+
+        /*
+            ShowList
+            1. 리스트 폼 호출
+         */
+        private void ShowList(object sender, EventArgs e)
+        {
+            new ListForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            RecommendLunch; 점심추천 메뉴로 이동
+            1. 카테고리 폼 생성
+         */
+        private void RecommendLunch(object sender, EventArgs e)
+        {
+            new CategoryForm().Show();
+            // this.Visible = false;
+        }
+
+        /*
+            Logout
+            1. 로그아웃
+            2. 로그인 화면으로 이동
+         */
+        private void Logout(object sender, EventArgs e)
+        {
+            new User().Logout();
+            new LoginForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            ShowMain
+            1. 메인으로 이동
+         */
+        private void ShowMain(object sender, EventArgs e)
+        {
+            new MainForm().Show();
+            this.Visible = false;
         }
 
         /*

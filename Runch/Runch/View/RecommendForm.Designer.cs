@@ -38,6 +38,10 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnJoin = new System.Windows.Forms.Button();
+            this.btnMain = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnList = new System.Windows.Forms.Button();
+            this.btnRecommend = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,6 +163,78 @@
             this.btnJoin.UseVisualStyleBackColor = false;
             this.btnJoin.Click += new System.EventHandler(this.AdoptRestaurant);
             // 
+            // btnMain
+            // 
+            this.btnMain.BackColor = System.Drawing.Color.Transparent;
+            this.btnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMain.FlatAppearance.BorderSize = 0;
+            this.btnMain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnMain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMain.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnMain.Location = new System.Drawing.Point(4, 0);
+            this.btnMain.Name = "btnMain";
+            this.btnMain.Size = new System.Drawing.Size(83, 82);
+            this.btnMain.TabIndex = 29;
+            this.btnMain.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMain.UseVisualStyleBackColor = false;
+            this.btnMain.Click += new System.EventHandler(this.ShowMain);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnLogout.Location = new System.Drawing.Point(360, 0);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(83, 82);
+            this.btnLogout.TabIndex = 28;
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.Logout);
+            // 
+            // btnList
+            // 
+            this.btnList.BackColor = System.Drawing.Color.Transparent;
+            this.btnList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnList.FlatAppearance.BorderSize = 0;
+            this.btnList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnList.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnList.Location = new System.Drawing.Point(180, 0);
+            this.btnList.Name = "btnList";
+            this.btnList.Size = new System.Drawing.Size(86, 82);
+            this.btnList.TabIndex = 27;
+            this.btnList.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnList.UseVisualStyleBackColor = false;
+            this.btnList.Click += new System.EventHandler(this.ShowList);
+            // 
+            // btnRecommend
+            // 
+            this.btnRecommend.BackColor = System.Drawing.Color.Transparent;
+            this.btnRecommend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRecommend.FlatAppearance.BorderSize = 0;
+            this.btnRecommend.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRecommend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRecommend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecommend.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnRecommend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnRecommend.Location = new System.Drawing.Point(93, 0);
+            this.btnRecommend.Name = "btnRecommend";
+            this.btnRecommend.Size = new System.Drawing.Size(86, 82);
+            this.btnRecommend.TabIndex = 26;
+            this.btnRecommend.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRecommend.UseVisualStyleBackColor = false;
+            this.btnRecommend.Click += new System.EventHandler(this.SelectCategory);
+            // 
             // RecommendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -166,13 +242,19 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(444, 639);
+            this.Controls.Add(this.btnMain);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnList);
+            this.Controls.Add(this.btnRecommend);
             this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "RecommendForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.RecommendLunch);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -191,5 +273,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnJoin;
+        private System.Windows.Forms.Button btnMain;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnList;
+        private System.Windows.Forms.Button btnRecommend;
     }
 }

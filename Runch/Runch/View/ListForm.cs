@@ -32,7 +32,12 @@ namespace Runch.View
         {
             // TODO: 이 코드는 데이터를 'dataSet1.VWRESTAURANTSIMPLEINFO' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
             this.vWRESTAURANTSIMPLEINFOTableAdapter.Fill(this.dataSet1.VWRESTAURANTSIMPLEINFO);
-            dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
+            //dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
+            dgvRestaurant.Columns[0].HeaderText = "No.";
+            dgvRestaurant.Columns[0].Width = 40;
+            dgvRestaurant.Columns[1].HeaderText = "     식당명";
+            dgvRestaurant.Columns[1].Width = 100;
+            dgvRestaurant.Rows[0].Selected = false;
         }
 
         /*
@@ -55,8 +60,6 @@ namespace Runch.View
             dgvRestaurant.CurrentRow.Selected = true;
         }
 
-
-
         /*
             AddRestaurant
             1. 레스토랑 추가 폼 호출
@@ -73,6 +76,48 @@ namespace Runch.View
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
+        }
+
+        /*
+            ShowList
+            1. 리스트 폼 호출
+         */
+        private void ShowList(object sender, EventArgs e)
+        {
+            new ListForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            RecommendLunch; 점심추천 메뉴로 이동
+            1. 카테고리 폼 생성
+         */
+        private void RecommendLunch(object sender, EventArgs e)
+        {
+            new CategoryForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            Logout
+            1. 로그아웃
+            2. 로그인 화면으로 이동
+         */
+        private void Logout(object sender, EventArgs e)
+        {
+            new User().Logout();
+            new LoginForm().Show();
+            this.Visible = false;
+        }
+
+        /*
+            ShowMain
+            1. 메인으로 이동
+         */
+        private void ShowMain(object sender, EventArgs e)
+        {
+            new MainForm().Show();
+            this.Visible = false;
         }
 
         /*
