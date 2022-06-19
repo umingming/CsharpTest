@@ -121,5 +121,29 @@ namespace Runch.View
                 throw ex;
             }
         }
+
+        /*
+            SelectGroup
+            1. cmbGroup에 포커싱함.
+            2. 콤보 박스의 리스트 열기
+            3. 스타일을 DropDownList로 변경
+         */
+        private void ShowGroup(object sender, EventArgs e)
+        {
+            cmbGroup.Select();
+            cmbGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGroup.DroppedDown = true;
+        }
+
+        /*
+            SelectGroup; 마우스 클릭 이벤트라 오버로딩함.
+         */
+        private void ShowGroup(object sender, MouseEventArgs e)
+        {
+            cmbGroup.Select();
+            cmbGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGroup.DroppedDown = true;
+        }
+
     }
 }
