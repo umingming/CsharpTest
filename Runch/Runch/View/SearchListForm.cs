@@ -66,21 +66,13 @@ namespace Runch.View
         }
 
         /*
-            AddRestaurant
-            1. AddForm 호출
-         */
-        private void AddRestaurant(object sender, EventArgs e)
-        {
-            new AddForm().Show();
-        }
-
-        /*
             SearchRestaurant
             1. SearchForm 호출
          */
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
+            this.Visible = false;
         }
 
         /*
@@ -100,7 +92,7 @@ namespace Runch.View
         private void RecommendLunch(object sender, EventArgs e)
         {
             new CategoryForm().Show();
-            // this.Visible = false;
+            this.Visible = false;
         }
 
         /*

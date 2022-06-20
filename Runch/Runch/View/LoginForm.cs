@@ -58,7 +58,6 @@ namespace Runch
         private void Join(object sender, EventArgs e)
         {
             new JoinForm().Show();
-            this.Visible = false;
         }
 
         /*
@@ -71,6 +70,24 @@ namespace Runch
         {
             if (e.KeyCode != Keys.Enter) return;
             Login(sender, e);
+        }
+
+        /*
+            Quit
+            1. 어플리케이션을 종료
+         */
+        private void Quit(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /*
+            ProcessCmdKey; 오버로딩
+         */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape) { this.Close(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 

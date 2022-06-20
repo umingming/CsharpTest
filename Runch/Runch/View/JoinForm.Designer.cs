@@ -45,10 +45,10 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtId.Font = new System.Drawing.Font("한컴 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtId.Location = new System.Drawing.Point(60, 231);
+            this.txtId.Location = new System.Drawing.Point(50, 192);
             this.txtId.Margin = new System.Windows.Forms.Padding(0);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(259, 26);
+            this.txtId.Size = new System.Drawing.Size(216, 22);
             this.txtId.TabIndex = 1;
             this.txtId.Text = "사원 번호";
             this.txtId.Click += new System.EventHandler(this.InitIdByClick);
@@ -57,9 +57,10 @@
             // 
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(48, 227);
+            this.label1.Location = new System.Drawing.Point(40, 189);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(292, 34);
+            this.label1.Size = new System.Drawing.Size(244, 29);
             this.label1.TabIndex = 0;
             // 
             // btnIdChecked
@@ -70,9 +71,10 @@
             this.btnIdChecked.FlatAppearance.BorderSize = 0;
             this.btnIdChecked.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnIdChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIdChecked.Location = new System.Drawing.Point(355, 226);
+            this.btnIdChecked.Location = new System.Drawing.Point(296, 188);
+            this.btnIdChecked.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIdChecked.Name = "btnIdChecked";
-            this.btnIdChecked.Size = new System.Drawing.Size(36, 36);
+            this.btnIdChecked.Size = new System.Drawing.Size(30, 30);
             this.btnIdChecked.TabIndex = 3;
             this.btnIdChecked.TabStop = false;
             this.btnIdChecked.UseVisualStyleBackColor = false;
@@ -84,20 +86,21 @@
             this.cmbGroup.Font = new System.Drawing.Font("한컴 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cmbGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(48, 336);
-            this.cmbGroup.Margin = new System.Windows.Forms.Padding(10);
+            this.cmbGroup.Location = new System.Drawing.Point(40, 280);
+            this.cmbGroup.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(343, 34);
+            this.cmbGroup.Size = new System.Drawing.Size(286, 30);
             this.cmbGroup.TabIndex = 4;
-            this.cmbGroup.Click += new System.EventHandler(this.ShowGroup);
+            this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InvalidateInput);
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(48, 281);
+            this.label2.Location = new System.Drawing.Point(40, 234);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(343, 34);
+            this.label2.Size = new System.Drawing.Size(286, 29);
             this.label2.TabIndex = 33;
             // 
             // txtName
@@ -105,10 +108,10 @@
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Font = new System.Drawing.Font("한컴 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtName.Location = new System.Drawing.Point(60, 285);
+            this.txtName.Location = new System.Drawing.Point(50, 238);
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(259, 26);
+            this.txtName.Size = new System.Drawing.Size(216, 22);
             this.txtName.TabIndex = 3;
             this.txtName.Text = "이름";
             this.txtName.Click += new System.EventHandler(this.InitNameByClick);
@@ -119,10 +122,12 @@
             this.cmbPosition.Font = new System.Drawing.Font("한컴 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cmbPosition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(48, 389);
+            this.cmbPosition.Location = new System.Drawing.Point(40, 324);
+            this.cmbPosition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbPosition.Name = "cmbPosition";
-            this.cmbPosition.Size = new System.Drawing.Size(343, 34);
+            this.cmbPosition.Size = new System.Drawing.Size(286, 30);
             this.cmbPosition.TabIndex = 5;
+            this.cmbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InvalidateInput);
             // 
             // btnJoin
             // 
@@ -131,9 +136,10 @@
             this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoin.Font = new System.Drawing.Font("이사만루체 Bold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnJoin.ForeColor = System.Drawing.Color.White;
-            this.btnJoin.Location = new System.Drawing.Point(48, 444);
+            this.btnJoin.Location = new System.Drawing.Point(40, 370);
+            this.btnJoin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnJoin.Name = "btnJoin";
-            this.btnJoin.Size = new System.Drawing.Size(343, 45);
+            this.btnJoin.Size = new System.Drawing.Size(286, 38);
             this.btnJoin.TabIndex = 0;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.UseVisualStyleBackColor = false;
@@ -148,20 +154,21 @@
             this.btnIdUnChecked.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnIdUnChecked.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnIdUnChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIdUnChecked.Location = new System.Drawing.Point(355, 226);
+            this.btnIdUnChecked.Location = new System.Drawing.Point(296, 188);
+            this.btnIdUnChecked.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIdUnChecked.Name = "btnIdUnChecked";
-            this.btnIdUnChecked.Size = new System.Drawing.Size(36, 36);
+            this.btnIdUnChecked.Size = new System.Drawing.Size(30, 30);
             this.btnIdUnChecked.TabIndex = 2;
             this.btnIdUnChecked.UseVisualStyleBackColor = false;
             this.btnIdUnChecked.Click += new System.EventHandler(this.CheckId);
             // 
             // JoinForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(444, 639);
+            this.ClientSize = new System.Drawing.Size(370, 532);
             this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.cmbPosition);
             this.Controls.Add(this.cmbGroup);
@@ -171,10 +178,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnIdUnChecked);
             this.Controls.Add(this.btnIdChecked);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "JoinForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.InitCmb);
             this.ResumeLayout(false);
             this.PerformLayout();

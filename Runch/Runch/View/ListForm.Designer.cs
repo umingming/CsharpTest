@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ultraDataChart1 = new Infragistics.Win.DataVisualization.UltraDataChart();
             this.vWRESTAURANTSIMPLEINFOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new Runch.DataSet1();
@@ -50,6 +50,7 @@
             this.식당명DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.카테고리DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.선정횟수DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vWRESTAURANTSIMPLEINFOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -370,14 +371,14 @@
             this.dgvRestaurant.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRestaurant.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvRestaurant.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRestaurant.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRestaurant.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvRestaurant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRestaurant.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.noDataGridViewTextBoxColumn,
@@ -385,14 +386,14 @@
             this.카테고리DataGridViewTextBoxColumn,
             this.선정횟수DataGridViewTextBoxColumn});
             this.dgvRestaurant.DataSource = this.vWRESTAURANTSIMPLEINFOBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRestaurant.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRestaurant.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvRestaurant.GridColor = System.Drawing.Color.White;
             this.dgvRestaurant.Location = new System.Drawing.Point(7, 240);
             this.dgvRestaurant.Name = "dgvRestaurant";
@@ -443,6 +444,20 @@
             this.선정횟수DataGridViewTextBoxColumn.Name = "선정횟수DataGridViewTextBoxColumn";
             this.선정횟수DataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(234)))));
+            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(20, 207);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(21, 26);
+            this.btnRefresh.TabIndex = 22;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.ListRestaurant);
+            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -450,6 +465,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(444, 639);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnList);
@@ -467,7 +483,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
-            this.Load += new System.EventHandler(this.ListRestaurant);
+            this.Load += new System.EventHandler(this.LoadForm);
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vWRESTAURANTSIMPLEINFOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
@@ -497,5 +513,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 식당명DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn 카테고리DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn 선정횟수DataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

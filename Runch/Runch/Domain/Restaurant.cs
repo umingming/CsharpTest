@@ -30,7 +30,7 @@ namespace Runch.Domain
         public Restaurant()
         {
             recommendList = new ArrayList();
-            dbutil = new DBUtil();
+            dbutil = DBUtil.This;
             box = new Notification();
         }
 
@@ -61,20 +61,23 @@ namespace Runch.Domain
                                 and category_id in ({Properties.Settings.Default.CategoryList})
                                 and rownum <= 5
                             order by recent_adoption, cnt desc";
-                                    
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            OleDbDataReader reader = cmd.ExecuteReader();
 
-            while (reader.Read())
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
-                Restaurant restaurant = new Restaurant();
-                restaurant.id = Int32.Parse(reader["restaurant_id"].ToString());
-                restaurant.name = reader["name"].ToString();
-                restaurant.category = reader["category"].ToString();
-                restaurant.signature = reader["signature"].ToString();
-                restaurant.cntAdoption = Int32.Parse(reader["cnt"].ToString());
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Restaurant restaurant = new Restaurant();
+                        restaurant.id = Int32.Parse(reader["restaurant_id"].ToString());
+                        restaurant.name = reader["name"].ToString();
+                        restaurant.category = reader["category"].ToString();
+                        restaurant.signature = reader["signature"].ToString();
+                        restaurant.cntAdoption = Int32.Parse(reader["cnt"].ToString());
 
-                recommendList.Add(restaurant);
+                        recommendList.Add(restaurant);
+                    }
+                }
             }
         }
 
@@ -94,15 +97,17 @@ namespace Runch.Domain
             Adopt; 레스토랑 채택
             1. DB 설정
             2. 쿼리 할당
-         */        
+         */
         public void Adopt()
         {
             string userId = Properties.Settings.Default.UserId;
             string sql = $@"insert into restaurant_adoption
                                 values (seq_restaurant_adoption.nextVal, '{userId}', {id}, sysdate)";
-            
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
+
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /*
@@ -113,11 +118,13 @@ namespace Runch.Domain
         public DataSet List()
         {
             string sql = "select * from vwRestaurantSimpleInfo";
-            OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect());
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect()))
+            {
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
 
-            return ds;
+                return ds;
+            }
         }
 
         /*
@@ -137,11 +144,13 @@ namespace Runch.Domain
                                                                       where user_id in (select user_id
                                                                                         from users
                                                                                         where name = '{userName}')))";
-            OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect());
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect()))
+            {
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
 
-            return ds;
+                return ds;
+            }
         }
 
         /*
@@ -174,22 +183,25 @@ namespace Runch.Domain
         public Restaurant FindById(int id)
         {
             string sql = $@"select * from vwRestaurantInfo where restaurant_id = {id}";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            OleDbDataReader reader = cmd.ExecuteReader();
-
-            Restaurant restaurant = new Restaurant();
-            
-            if (reader.Read())
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
-                restaurant.id = Int32.Parse(reader["restaurant_id"].ToString());
-                restaurant.name = reader["name"].ToString();
-                restaurant.category = reader["category"].ToString();
-                restaurant.signature = reader["signature"].ToString();
-                restaurant.cntAdoption = Int32.Parse(reader["cnt"].ToString());
-                restaurant.recentAdoption = reader["recent"].ToString();
-            }
+                OleDbDataReader reader = cmd.ExecuteReader();
 
-            return restaurant;
+                Restaurant restaurant = new Restaurant();
+
+                if (reader.Read())
+                {
+                    restaurant.id = Int32.Parse(reader["restaurant_id"].ToString());
+                    restaurant.name = reader["name"].ToString();
+                    restaurant.category = reader["category"].ToString();
+                    restaurant.categoryId = Int32.Parse(reader["category_id"].ToString());
+                    restaurant.signature = reader["signature"].ToString();
+                    restaurant.cntAdoption = Int32.Parse(reader["cnt"].ToString());
+                    restaurant.recentAdoption = reader["recent"].ToString();
+                }
+
+                return restaurant;
+            }
         }
 
         /*
@@ -202,8 +214,10 @@ namespace Runch.Domain
             string userId = Properties.Settings.Default.UserId;
             string sql = $@"insert into restaurant_block
                                 values (seq_restaurant_block.nextVal, '{userId}', {id})";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /*
@@ -215,14 +229,32 @@ namespace Runch.Domain
         {
             string sql = $@"update restaurant set name = '{newRestaurant.name}', category_id = {newRestaurant.categoryId}, signature = '{newRestaurant.signature}'
                                 where restaurant_id = {id}";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
 
-            string userId = Properties.Settings.Default.UserId;
-            sql = $@"insert into restaurant_history
+                string userId = Properties.Settings.Default.UserId;
+                sql = $@"insert into restaurant_history
                         values (seq_restaurant_history.nextVal, {id}, '{userId}', 'U', '{newRestaurant.name}', {newRestaurant.categoryId}, '{newRestaurant.signature}', 30, 30, sysdate)";
-            cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
+                //cmd = new OleDbCommand(sql, dbutil.Connect());
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /*
+            Delete
+            1. Delete에 해당하는 로그 남김.
+         */
+        public void Delete()
+        {
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"insert into restaurant_history
+                            values (seq_restaurant_history.nextVal, {id}, '{userId}', 'D', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -30,14 +30,23 @@ namespace Runch.View
          */
         private void InitCklCate(object sender, EventArgs e)
         {
-            cklCategory.DisplayMember = "Text";
-            cklCategory.ValueMember = "Value";
+            cklLike.DisplayMember = "Text";
+            cklLike.ValueMember = "Value";
 
-            cklCategory.Items.Insert(0, new { Text = "한식", Value = "16" });
-            cklCategory.Items.Insert(1, new { Text = "중식", Value = "17" });
-            cklCategory.Items.Insert(2, new { Text = "일식", Value = "18" });
-            cklCategory.Items.Insert(3, new { Text = "양식", Value = "19" });
-            cklCategory.Items.Insert(4, new { Text = "기타", Value = "20" });
+            cklLike.Items.Insert(0, new { Text = "한식", Value = "16" });
+            cklLike.Items.Insert(1, new { Text = "중식", Value = "17" });
+            cklLike.Items.Insert(2, new { Text = "일식", Value = "18" });
+            cklLike.Items.Insert(3, new { Text = "양식", Value = "19" });
+            cklLike.Items.Insert(4, new { Text = "기타", Value = "20" });
+
+            cklDislike.DisplayMember = "Text";
+            cklDislike.ValueMember = "Value";
+
+            cklDislike.Items.Insert(0, new { Text = "한식", Value = "16" });
+            cklDislike.Items.Insert(1, new { Text = "중식", Value = "17" });
+            cklDislike.Items.Insert(2, new { Text = "일식", Value = "18" });
+            cklDislike.Items.Insert(3, new { Text = "양식", Value = "19" });
+            cklDislike.Items.Insert(4, new { Text = "기타", Value = "20" });
         }
 
         /*
@@ -50,11 +59,17 @@ namespace Runch.View
         {
             ArrayList categorys = new ArrayList();
 
-            for(int i=0; i<cklCategory.Items.Count; i++)
+            if(cklLike.SelectedItems.Count == 0 && !chkLikeAll.Checked)
             {
-                if (cklCategory.GetItemChecked(i))
+                box.DisplayWarning("카테고리");
+                return;
+            }
+
+            for(int i=0; i<cklLike.Items.Count; i++)
+            {
+                if (cklLike.GetItemChecked(i))
                 {
-                    string category = cklCategory.Items[i].ToString();
+                    string category = cklLike.Items[i].ToString();
                     string value = category.Substring(category.LastIndexOf('=') + 2, 2);
                     categorys.Add(value);
                 }
@@ -75,13 +90,38 @@ namespace Runch.View
             2. for문 체크리스트 아이템 반복
                 > 해당 박스를 체크 설정
          */
-        private void CheckAll(object sender, EventArgs e)
+        private void LikeAll(object sender, EventArgs e)
         {
-            bool isAllChecked = chkAll.Checked;
+            bool isAllChecked = chkLikeAll.Checked;
+            chkDislikeAll.Checked = !chkLikeAll.Checked;
 
-            for(int i=0; i<cklCategory.Items.Count; i++)
+            for(int i=0; i<cklLike.Items.Count; i++)
             {
-                cklCategory.SetItemChecked(i, isAllChecked);
+                cklLike.SetItemChecked(i, isAllChecked);
+
+                if(cklDislike.GetItemChecked(i))
+                {
+                    cklDislike.SetItemChecked(i, false);
+                }
+            }
+        }
+
+        /*
+            DislikeAll; All 버튼 클릭으로 비선호 할당;
+         */
+        private void DislikeAll(object sender, EventArgs e)
+        {
+            bool isAllChecked = chkDislikeAll.Checked;
+            chkLikeAll.Checked = !chkDislikeAll.Checked;
+
+            for (int i=0; i<cklDislike.Items.Count; i++)
+            {
+                cklDislike.SetItemChecked(i, isAllChecked);
+
+                if (cklLike.GetItemChecked(i))
+                {
+                    cklLike.SetItemChecked(i, false);
+                }
             }
         }
 
@@ -136,6 +176,15 @@ namespace Runch.View
         {
             new User().Logout();
             Application.Exit();
+        }
+
+        /*
+            ProcessCmdKey; 오버로딩
+         */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape) { this.Close(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

@@ -11,21 +11,52 @@ namespace Runch.Data
 {
     internal class DBUtil
     {
-        private OleDbConnection conn;
-        private OleDbCommand cmd;
+        private static readonly DBUtil _instance = new DBUtil();
 
-        private Notification box;
+        private OleDbConnection conn;
+        //private OleDbCommand cmd;
+
+        private Notification box = new Notification();
+
+        private DBUtil()
+        {
+            //this.Open();
+        }
+
+        public static DBUtil This
+        {
+            get { return _instance; }
+        }
+
+        //private void Open()
+        //{
+        //    string connStr = string.Format("Provider=OraOLEDB.Oracle;" +
+        //                                    "OLEDB.NET=true;" +
+        //                                    "PLSQLRSet=true;" +
+        //                                    "Data Source=orcl;" +
+        //                                    "User Id=runch;" +
+        //                                    "Password=java1234;");
+        //    try
+        //    {
+        //        conn = new OleDbConnection(connStr);
+        //    }
+        //    catch
+        //    {
+        //        box.DisplayWarning("접속");
+        //    }
+        //}
 
         public OleDbConnection Connect()
         {
-            string connStr = string.Format("Provider=OraOLEDB.Oracle;" +
-                                            "OLEDB.NET=true;" +
-                                            "PLSQLRSet=true;" +
-                                            "Data Source=orcl;" +
-                                            "User Id=runch;" +
-                                            "Password=java1234;");
             try
             {
+                string connStr = string.Format("Provider=OraOLEDB.Oracle;" +
+                                                "OLEDB.NET=true;" +
+                                                "PLSQLRSet=true;" +
+                                                "Data Source=orcl;" +
+                                                "User Id=runch;" +
+                                                "Password=java1234;");
+
                 conn = new OleDbConnection(connStr);
                 conn.Open();
                 return conn;
@@ -37,11 +68,11 @@ namespace Runch.Data
             }
         }
 
-        public void Add(string sql)
-        {
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-        }
+        //public void Add(string sql)
+        //{
+        //    cmd.CommandText = sql;
+        //    cmd.ExecuteNonQuery();
+        //}
 
     }
 }

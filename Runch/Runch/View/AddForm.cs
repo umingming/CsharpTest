@@ -38,22 +38,6 @@ namespace Runch.View
             cmbCategory.Text = "";
         }
 
-        private void AddFormu_Load(object sender, EventArgs e, string str)
-        {
-            cmbCategory.DisplayMember = "Text";
-            cmbCategory.ValueMember = "Value";
-
-            var categories = new[] {
-                new { Text = " 한식", Value = "16" },
-                new { Text = " 중식", Value = "17" },
-                new { Text = " 일식", Value = "18" },
-                new { Text = " 양식", Value = "19" },
-                new { Text = " 기타", Value = "20" },
-            };
-            cmbCategory.DataSource = categories;
-            cmbCategory.Text = "";
-        }
-
         /*
             레스토랑 추가
             1. 객체 생성 후 값 초기화
@@ -66,7 +50,22 @@ namespace Runch.View
             restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
             restaurant.signature = txtSignature.Text;
             restaurant.Add();
+
+//            MessageBox.Show(this.ParentForm + "");
+//            new ListForm().Show();
             this.Close();
+        }
+
+        /*
+            AddByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. Add 호출
+         */
+        private void AddByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            btnAdd_Click(sender, e);
         }
 
         /*

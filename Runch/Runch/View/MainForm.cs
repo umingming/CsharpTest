@@ -78,5 +78,14 @@ namespace Runch.View
             user.Logout();
             Application.Exit();
         }
+
+        /*
+            ProcessCmdKey; 오버로딩
+         */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape) { this.Close(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

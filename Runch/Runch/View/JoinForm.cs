@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Runch.Domain;
 
@@ -194,5 +195,31 @@ namespace Runch.View
             cmbGroup.DroppedDown = true;
         }
 
+        /*
+            Quit
+            1. 어플리케이션을 종료
+         */
+        private void Quit(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /*
+            ProcessCmdKey; 오버로딩
+         */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape) { this.Close(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /*
+            InvalidateInput;키 입력 막음
+            1. 키 입력 이벤트 true로
+         */
+        private void InvalidateInput(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
     }
 }

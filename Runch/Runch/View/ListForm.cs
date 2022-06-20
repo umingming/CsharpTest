@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Runch.Domain;
@@ -19,25 +20,72 @@ namespace Runch.View
      */
     public partial class ListForm : Form
     {
+        Thread listThread;
+
         public ListForm()
         {
+            listThread = new Thread(() => ListRestaurant());
+            listThread.IsBackground = true;
             InitializeComponent();
+        }
+
+        /*
+         */
+        private void LoadForm(object sender, EventArgs e)
+        {
+            listThread.Start();
         }
 
         /*
             ListRestaurant
             1. DataGridView에 레스토랑 목록 데이터셋 할당
          */
-        private void ListRestaurant(object sender, EventArgs e)
+        private void ListRestaurant()
         {
             // TODO: 이 코드는 데이터를 'dataSet1.VWRESTAURANTSIMPLEINFO' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
-            this.vWRESTAURANTSIMPLEINFOTableAdapter.Fill(this.dataSet1.VWRESTAURANTSIMPLEINFO);
-            //dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
-            dgvRestaurant.Columns[0].HeaderText = "No.";
-            dgvRestaurant.Columns[0].Width = 40;
-            dgvRestaurant.Columns[1].HeaderText = "     식당명";
-            dgvRestaurant.Columns[1].Width = 100;
+
+            if (dgvRestaurant.Columns.Count > 0)
+            {
+               UpdateDgv(dgvRestaurant);
+            }
             dgvRestaurant.Rows[0].Selected = false;
+        }
+
+        /*
+            ListRestaurant; 리프레쉬 버튼 클릭시
+         */
+        private void ListRestaurant(object sender, EventArgs e)
+        {
+            if (dgvRestaurant.Columns.Count > 0)
+            {
+                UpdateDgv(dgvRestaurant);
+            }
+            dgvRestaurant.Rows[0].Selected = false;
+        }
+
+        public static void UpdateDgv(DataGridView dgv)
+        {
+            if (dgv.InvokeRequired)
+            {
+                dgv.Invoke(new MethodInvoker(delegate
+                {
+                    dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
+                    dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
+                    dgv.Columns[0].HeaderText = "No.";
+                    dgv.Columns[0].Width = 40;
+                    dgv.Columns[1].HeaderText = "     식당명";
+                    dgv.Columns[1].Width = 100;
+                }));
+            }
+            else
+            {
+                dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
+                dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
+                dgv.Columns[0].HeaderText = "No.";
+                dgv.Columns[0].Width = 40;
+                dgv.Columns[1].HeaderText = "     식당명";
+                dgv.Columns[1].Width = 100;
+            }
         }
 
         /*
@@ -47,6 +95,7 @@ namespace Runch.View
          */
         private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
+            SelectRowByClick(sender, e);
             int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells[0].Value.ToString());
             new DetailForm(new Restaurant().FindById(id)).Show();
         }
@@ -66,7 +115,10 @@ namespace Runch.View
          */
         private void AddRestaurant(object sender, EventArgs e)
         {
-            new AddForm().Show();
+            AddForm addForm = new AddForm();
+            addForm.ShowDialog();
+
+            ListRestaurant();
         }
 
         /*
@@ -76,6 +128,7 @@ namespace Runch.View
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
+            this.Visible = false;
         }
 
         /*
@@ -129,6 +182,15 @@ namespace Runch.View
         {
             new User().Logout();
             Application.Exit();
+        }
+
+        /*
+            ProcessCmdKey; 오버로딩
+         */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape) { this.Close(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

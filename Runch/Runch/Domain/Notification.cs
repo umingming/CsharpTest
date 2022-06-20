@@ -33,5 +33,10 @@ namespace Runch.Domain
         {
             MessageBox.Show(text + "입니다.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public void DisplaySimpleInfo(string text)
+        {
+            MessageBox.Show(text, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

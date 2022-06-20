@@ -24,7 +24,7 @@ namespace Runch.Domain
          */
         public User()
         {
-            dbutil = new DBUtil();
+            dbutil = DBUtil.This;
             box = new Notification();
         }
 
@@ -38,7 +38,7 @@ namespace Runch.Domain
         {
             this.id = id;
 
-            if (!IsValid(id)) 
+            if (!IsValid(id))
             {
                 box.DisplayWarning("미등록 사용자");
                 return 0;
@@ -50,9 +50,10 @@ namespace Runch.Domain
             }
 
             string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'in', sysdate)";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            
-            return cmd.ExecuteNonQuery();
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         /*
@@ -66,9 +67,10 @@ namespace Runch.Domain
             id = Properties.Settings.Default.UserId;
 
             string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-
-            cmd.ExecuteNonQuery();
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /*
@@ -81,21 +83,24 @@ namespace Runch.Domain
         public Boolean IsValid(string id)
         {
             string sql = $@"select * from vwUserInfo where user_id = '{id}'";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            OleDbDataReader reader = cmd.ExecuteReader();
-
-            if(reader.Read())
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
-                id = reader["user_id"].ToString();
-                Properties.Settings.Default.UserId = id;
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        id = reader["user_id"].ToString();
+                        Properties.Settings.Default.UserId = id;
 
-                name = reader["name"].ToString();
-                Properties.Settings.Default.UserName = name;
+                        name = reader["name"].ToString();
+                        Properties.Settings.Default.UserName = name;
 
-                Properties.Settings.Default.Save();
-                return true;
+                        Properties.Settings.Default.Save();
+                        return true;
+                    }
+                    return false;
+                }
             }
-            return false;
         }
 
         /*
@@ -107,14 +112,17 @@ namespace Runch.Domain
         public Boolean IsLoggedIn()
         {
             string sql = $@"select * from user_log where user_id = '{id}' and rownum = 1 order by user_log_id desc";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            OleDbDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
-                if (reader["log_type"].ToString() == "in") return true;
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        if (reader["log_type"].ToString() == "in") return true;
+                    }
+                    return false;
+                }
             }
-            return false;
         }
 
         /*
@@ -125,9 +133,10 @@ namespace Runch.Domain
         public void Add()
         {
             string sql = $@"insert into users values ('{id}', '{name}', {groupId}, {positionId})";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-
-            cmd.ExecuteNonQuery();
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

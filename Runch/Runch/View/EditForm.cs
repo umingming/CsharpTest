@@ -34,7 +34,6 @@ namespace Runch.View
          */
         private void EditForm_Load(object sender, EventArgs e)
         {
-            txtName.Text = Class1.temp;
             cmbCategory.DisplayMember = "Text";
             cmbCategory.ValueMember = "Value";
 
@@ -47,6 +46,10 @@ namespace Runch.View
             };
             cmbCategory.DataSource = categories;
             cmbCategory.Text = "";
+
+            txtName.Text = restaurant.name;
+            cmbCategory.Text = " " + restaurant.category;
+            txtSignature.Text = restaurant.signature;
         }
 
         /*

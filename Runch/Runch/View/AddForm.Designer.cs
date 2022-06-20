@@ -83,7 +83,7 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(223, 32);
-            this.txtName.TabIndex = 3;
+            this.txtName.TabIndex = 0;
             // 
             // label4
             // 
@@ -103,7 +103,8 @@
             this.txtSignature.Margin = new System.Windows.Forms.Padding(0);
             this.txtSignature.Name = "txtSignature";
             this.txtSignature.Size = new System.Drawing.Size(223, 32);
-            this.txtSignature.TabIndex = 5;
+            this.txtSignature.TabIndex = 2;
+            this.txtSignature.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddByEnterKeyDown);
             // 
             // label5
             // 
@@ -123,7 +124,7 @@
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(10);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(244, 39);
-            this.cmbCategory.TabIndex = 7;
+            this.cmbCategory.TabIndex = 1;
             // 
             // btnAdd
             // 

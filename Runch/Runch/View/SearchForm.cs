@@ -61,6 +61,7 @@ namespace Runch.View
             restaurant.userName = txtUser.Text;
 
             new SearchListForm(restaurant).Show();
+            this.Close();
         }
 
         /*

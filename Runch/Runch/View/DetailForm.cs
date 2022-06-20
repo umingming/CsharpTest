@@ -20,10 +20,12 @@ namespace Runch.View
     public partial class DetailForm : Form
     {
         Restaurant restaurant;
+        Notification box;
 
         public DetailForm(Restaurant restaurant)
         {
             this.restaurant = restaurant;
+            this.box = new Notification();
             InitializeComponent();
         }
 
@@ -61,11 +63,23 @@ namespace Runch.View
         }
 
         /*
+            레스토랑 삭제
+            1. 삭제하기
+         */
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            restaurant.Delete();
+            this.Close();
+            box.DisplaySimpleInfo($@"[{restaurant.name}]이(가) 삭제되었습니다.");
+        }
+
+        /*
             화면 닫기
          */
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }

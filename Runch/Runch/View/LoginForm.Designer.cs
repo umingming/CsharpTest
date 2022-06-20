@@ -110,6 +110,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "aim Systems";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.ResumeLayout(false);
             this.PerformLayout();
 
