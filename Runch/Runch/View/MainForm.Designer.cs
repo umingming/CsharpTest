@@ -49,9 +49,10 @@
             this.btnRecommend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecommend.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnRecommend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnRecommend.Location = new System.Drawing.Point(80, 227);
+            this.btnRecommend.Location = new System.Drawing.Point(67, 189);
+            this.btnRecommend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRecommend.Name = "btnRecommend";
-            this.btnRecommend.Size = new System.Drawing.Size(123, 120);
+            this.btnRecommend.Size = new System.Drawing.Size(102, 100);
             this.btnRecommend.TabIndex = 0;
             this.btnRecommend.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRecommend.UseVisualStyleBackColor = false;
@@ -66,9 +67,10 @@
             this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnList.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnList.Location = new System.Drawing.Point(230, 223);
+            this.btnList.Location = new System.Drawing.Point(192, 186);
+            this.btnList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(135, 130);
+            this.btnList.Size = new System.Drawing.Size(112, 108);
             this.btnList.TabIndex = 1;
             this.btnList.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnList.UseVisualStyleBackColor = false;
@@ -80,9 +82,10 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(96, 324);
+            this.label1.Location = new System.Drawing.Point(80, 270);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 23);
+            this.label1.Size = new System.Drawing.Size(69, 19);
             this.label1.TabIndex = 4;
             this.label1.Text = "점심 추천";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,9 +96,10 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(263, 324);
+            this.label2.Location = new System.Drawing.Point(219, 270);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 23);
+            this.label2.Size = new System.Drawing.Size(69, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "식당 목록";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,9 +114,10 @@
             this.btnMyPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMyPage.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnMyPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnMyPage.Location = new System.Drawing.Point(78, 387);
+            this.btnMyPage.Location = new System.Drawing.Point(65, 322);
+            this.btnMyPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMyPage.Name = "btnMyPage";
-            this.btnMyPage.Size = new System.Drawing.Size(123, 120);
+            this.btnMyPage.Size = new System.Drawing.Size(102, 100);
             this.btnMyPage.TabIndex = 6;
             this.btnMyPage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMyPage.UseVisualStyleBackColor = false;
@@ -127,9 +132,10 @@
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("한컴 고딕", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnLogout.Location = new System.Drawing.Point(239, 387);
+            this.btnLogout.Location = new System.Drawing.Point(199, 322);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(123, 120);
+            this.btnLogout.Size = new System.Drawing.Size(102, 100);
             this.btnLogout.TabIndex = 7;
             this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -141,9 +147,10 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(90, 485);
+            this.label3.Location = new System.Drawing.Point(75, 404);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 23);
+            this.label3.Size = new System.Drawing.Size(79, 19);
             this.label3.TabIndex = 8;
             this.label3.Text = "마이페이지";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -154,21 +161,22 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(265, 485);
+            this.label4.Location = new System.Drawing.Point(221, 404);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 23);
+            this.label4.Size = new System.Drawing.Size(65, 19);
             this.label4.TabIndex = 9;
             this.label4.Text = "로그아웃";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(444, 639);
+            this.ClientSize = new System.Drawing.Size(370, 532);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnLogout);
@@ -178,6 +186,7 @@
             this.Controls.Add(this.btnRecommend);
             this.Controls.Add(this.btnList);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

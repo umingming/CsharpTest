@@ -43,6 +43,10 @@ namespace Runch.View
             {
                 dgvRestaurant.Rows[0].Selected = false;
             }
+            else
+            {
+                txtEmpty.Visible = true;
+            }
         }
 
         /*
@@ -72,7 +76,7 @@ namespace Runch.View
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
-            this.Visible = false;
+            //this.Visible = false;
         }
 
         /*

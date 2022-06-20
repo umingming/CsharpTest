@@ -143,14 +143,14 @@ namespace Runch.View
                     return;
                 }
 
-                if(cmbGroup.SelectedIndex == 0)
+                if(cmbGroup.SelectedIndex < 0)
                 {
                     box.DisplayWarning("소속");
                     cmbGroup.Focus();
                     return;
                 }
 
-                if(cmbPosition.SelectedIndex == 0)
+                if(cmbPosition.SelectedIndex < 0)
                 {
                     box.DisplayWarning("직위");
                     cmbPosition.Focus();

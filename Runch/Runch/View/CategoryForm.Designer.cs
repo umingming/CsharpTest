@@ -36,13 +36,14 @@
             this.chkLikeAll = new System.Windows.Forms.CheckBox();
             this.cklLike = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cklDislike = new System.Windows.Forms.CheckedListBox();
+            this.chkDislikeAll = new System.Windows.Forms.CheckBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnMain = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnList = new System.Windows.Forms.Button();
             this.btnRecommend = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.chkDislikeAll = new System.Windows.Forms.CheckBox();
-            this.cklDislike = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,12 +95,12 @@
             this.chkLikeAll.TabIndex = 1;
             this.chkLikeAll.Text = "ALL";
             this.chkLikeAll.UseVisualStyleBackColor = true;
-            this.chkLikeAll.CheckedChanged += new System.EventHandler(this.LikeAll);
+            this.chkLikeAll.Click += new System.EventHandler(this.LikeAll);
             // 
             // cklLike
             // 
             this.cklLike.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cklLike.ColumnWidth = 60;
+            this.cklLike.ColumnWidth = 45;
             this.cklLike.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cklLike.FormattingEnabled = true;
             this.cklLike.Location = new System.Drawing.Point(20, 48);
@@ -108,10 +109,12 @@
             this.cklLike.Name = "cklLike";
             this.cklLike.Size = new System.Drawing.Size(152, 88);
             this.cklLike.TabIndex = 3;
+            this.cklLike.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LikeOnlyByCheck);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cklDislike);
             this.panel1.Controls.Add(this.chkDislikeAll);
             this.panel1.Controls.Add(this.textBox2);
@@ -123,6 +126,57 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(327, 148);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(158, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1, 113);
+            this.label1.TabIndex = 7;
+            // 
+            // cklDislike
+            // 
+            this.cklDislike.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cklDislike.ColumnWidth = 60;
+            this.cklDislike.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cklDislike.FormattingEnabled = true;
+            this.cklDislike.Location = new System.Drawing.Point(170, 48);
+            this.cklDislike.Margin = new System.Windows.Forms.Padding(2);
+            this.cklDislike.MultiColumn = true;
+            this.cklDislike.Name = "cklDislike";
+            this.cklDislike.Size = new System.Drawing.Size(152, 88);
+            this.cklDislike.TabIndex = 6;
+            this.cklDislike.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.DislikeOnlyByCheck);
+            // 
+            // chkDislikeAll
+            // 
+            this.chkDislikeAll.AutoSize = true;
+            this.chkDislikeAll.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDislikeAll.Location = new System.Drawing.Point(252, 7);
+            this.chkDislikeAll.Margin = new System.Windows.Forms.Padding(2);
+            this.chkDislikeAll.Name = "chkDislikeAll";
+            this.chkDislikeAll.Size = new System.Drawing.Size(57, 23);
+            this.chkDislikeAll.TabIndex = 5;
+            this.chkDislikeAll.Text = "ALL";
+            this.chkDislikeAll.UseVisualStyleBackColor = true;
+            this.chkDislikeAll.Click += new System.EventHandler(this.DislikeAll);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("한컴 고딕", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.textBox2.Location = new System.Drawing.Point(169, 0);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(84, 35);
+            this.textBox2.TabIndex = 4;
+            this.textBox2.TabStop = false;
+            this.textBox2.Text = "비선호";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnMain
             // 
@@ -200,55 +254,13 @@
             this.btnRecommend.UseVisualStyleBackColor = false;
             this.btnRecommend.Click += new System.EventHandler(this.RecommendLunch);
             // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("한컴 고딕", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.textBox2.Location = new System.Drawing.Point(169, 0);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(84, 35);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.TabStop = false;
-            this.textBox2.Text = "비선호";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // chkDislikeAll
-            // 
-            this.chkDislikeAll.AutoSize = true;
-            this.chkDislikeAll.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkDislikeAll.Location = new System.Drawing.Point(252, 7);
-            this.chkDislikeAll.Margin = new System.Windows.Forms.Padding(2);
-            this.chkDislikeAll.Name = "chkDislikeAll";
-            this.chkDislikeAll.Size = new System.Drawing.Size(57, 23);
-            this.chkDislikeAll.TabIndex = 5;
-            this.chkDislikeAll.Text = "ALL";
-            this.chkDislikeAll.UseVisualStyleBackColor = true;
-            this.chkDislikeAll.CheckedChanged += new System.EventHandler(this.DislikeAll);
-            // 
-            // cklDislike
-            // 
-            this.cklDislike.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cklDislike.ColumnWidth = 60;
-            this.cklDislike.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cklDislike.FormattingEnabled = true;
-            this.cklDislike.Location = new System.Drawing.Point(170, 48);
-            this.cklDislike.Margin = new System.Windows.Forms.Padding(2);
-            this.cklDislike.MultiColumn = true;
-            this.cklDislike.Name = "cklDislike";
-            this.cklDislike.Size = new System.Drawing.Size(152, 88);
-            this.cklDislike.TabIndex = 6;
-            // 
             // CategoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(296, 425);
+            this.ClientSize = new System.Drawing.Size(370, 532);
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnList);
@@ -284,5 +296,6 @@
         private System.Windows.Forms.CheckBox chkDislikeAll;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckedListBox cklDislike;
+        private System.Windows.Forms.Label label1;
     }
 }

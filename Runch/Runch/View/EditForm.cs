@@ -64,6 +64,8 @@ namespace Runch.View
             newRestaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
             newRestaurant.signature = txtSignature.Text;
             restaurant.Edit(newRestaurant);
+
+            new DetailForm(new Restaurant().FindById(restaurant.id)).Show();
             this.Close();
         }
 
@@ -73,6 +75,18 @@ namespace Runch.View
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /*
+            EditByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. 수정 
+         */
+        private void EditByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            btnEdit_Click(sender, e);
         }
     }
 }

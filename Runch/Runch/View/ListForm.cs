@@ -128,7 +128,7 @@ namespace Runch.View
         private void SearchRestaurant(object sender, EventArgs e)
         {
             new SearchForm().Show();
-            this.Visible = false;
+            //this.Visible = false;
         }
 
         /*

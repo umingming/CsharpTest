@@ -221,6 +221,44 @@ namespace Runch.Domain
         }
 
         /*
+            Unblock; 레스토랑 차단 해제
+            1. 일치하는 레스토랑 데이터 테이블에서 삭제
+         */
+        public void Unblock()
+        {
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"delete from restaurant_block where user_id = '{userId}' and restaurant_id = {id}";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /*
+            IsBlock; 차단인지?
+            1. 차단 확인 위한 쿼리 할당
+         */
+        public Boolean IsBlock()
+        {
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"select restaurant_id
+                            from restaurant_adoption
+                            where user_id = '{userId}'
+                                and restaurant_id = {id}";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                OleDbDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /*
             Edit
             1. 레스토랑 테이블 편집
             2. Update에 해당하는 로그 남김.

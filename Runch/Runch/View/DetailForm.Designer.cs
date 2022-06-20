@@ -41,9 +41,10 @@
             this.btnBlock = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnBlockTxt = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUnblock = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClose
@@ -158,6 +159,7 @@
             this.btnBlock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBlock.BackgroundImage")));
             this.btnBlock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBlock.FlatAppearance.BorderSize = 0;
+            this.btnBlock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlock.Location = new System.Drawing.Point(134, 7);
             this.btnBlock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -172,6 +174,7 @@
             this.btnEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEdit.BackgroundImage")));
             this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Location = new System.Drawing.Point(18, 6);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -186,6 +189,7 @@
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(76, 6);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -193,24 +197,28 @@
             this.button3.Size = new System.Drawing.Size(20, 20);
             this.button3.TabIndex = 20;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // button4
+            // btnBlockTxt
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button4.Location = new System.Drawing.Point(147, 2);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(63, 28);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "차단";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnBlockTxt.FlatAppearance.BorderSize = 0;
+            this.btnBlockTxt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBlockTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBlockTxt.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBlockTxt.Location = new System.Drawing.Point(147, 2);
+            this.btnBlockTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBlockTxt.Name = "btnBlockTxt";
+            this.btnBlockTxt.Size = new System.Drawing.Size(92, 28);
+            this.btnBlockTxt.TabIndex = 21;
+            this.btnBlockTxt.Text = "차단";
+            this.btnBlockTxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBlockTxt.UseVisualStyleBackColor = true;
+            this.btnBlockTxt.Click += new System.EventHandler(this.btnBlock_Click);
             // 
             // button5
             // 
             this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button5.Location = new System.Drawing.Point(31, 2);
@@ -221,10 +229,12 @@
             this.button5.Text = "수정";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.Location = new System.Drawing.Point(89, 2);
@@ -236,6 +246,22 @@
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUnblock
+            // 
+            this.btnUnblock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUnblock.BackgroundImage")));
+            this.btnUnblock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUnblock.FlatAppearance.BorderSize = 0;
+            this.btnUnblock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUnblock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnblock.Location = new System.Drawing.Point(134, 7);
+            this.btnUnblock.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUnblock.Name = "btnUnblock";
+            this.btnUnblock.Size = new System.Drawing.Size(20, 20);
+            this.btnUnblock.TabIndex = 24;
+            this.btnUnblock.UseVisualStyleBackColor = true;
+            this.btnUnblock.Visible = false;
+            this.btnUnblock.Click += new System.EventHandler(this.btnUnblock_Click);
             // 
             // DetailForm
             // 
@@ -257,8 +283,9 @@
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnUnblock);
+            this.Controls.Add(this.btnBlockTxt);
             this.Controls.Add(this.btnDelete);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DetailForm";
@@ -283,8 +310,9 @@
         private System.Windows.Forms.Button btnBlock;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnBlockTxt;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUnblock;
     }
 }

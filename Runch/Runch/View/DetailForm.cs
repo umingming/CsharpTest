@@ -35,6 +35,12 @@ namespace Runch.View
          */
         private void DetailForm_Load(object sender, EventArgs e)
         {
+            if(restaurant.IsBlock())
+            {
+                btnUnblock.Visible = true;
+                btnBlock.Visible = false;
+                btnBlockTxt.Text = "차단 해제";
+            }
             txtName.Text = restaurant.name;
             txtCategory.Text += restaurant.category;
             txtSignature.Text = restaurant.signature;
@@ -49,6 +55,21 @@ namespace Runch.View
         private void btnBlock_Click(object sender, EventArgs e)
         {
             restaurant.Block();
+            btnUnblock.Visible = true;
+            btnBlock.Visible = false;
+            btnBlockTxt.Text = "차단 해제";
+        }
+
+        /*
+            레스토랑 언블락
+            1. 언블락 호출
+         */
+        private void btnUnblock_Click(object sender, EventArgs e)
+        {
+            restaurant.Unblock(); 
+            btnUnblock.Visible = false;
+            btnBlock.Visible = true;
+            btnBlockTxt.Text = "차단";
         }
 
         /*
@@ -80,6 +101,5 @@ namespace Runch.View
         {
             this.Close();
         }
-
     }
 }

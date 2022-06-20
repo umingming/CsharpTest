@@ -93,7 +93,11 @@ namespace Runch.View
         private void LikeAll(object sender, EventArgs e)
         {
             bool isAllChecked = chkLikeAll.Checked;
-            chkDislikeAll.Checked = !chkLikeAll.Checked;
+
+            if (chkDislikeAll.Checked)
+            {
+                chkDislikeAll.Checked = !chkLikeAll.Checked;
+            }
 
             for(int i=0; i<cklLike.Items.Count; i++)
             {
@@ -112,7 +116,11 @@ namespace Runch.View
         private void DislikeAll(object sender, EventArgs e)
         {
             bool isAllChecked = chkDislikeAll.Checked;
-            chkLikeAll.Checked = !chkDislikeAll.Checked;
+
+            if (chkLikeAll.Checked)
+            {
+                chkLikeAll.Checked = !chkDislikeAll.Checked;
+            }
 
             for (int i=0; i<cklDislike.Items.Count; i++)
             {
@@ -142,7 +150,7 @@ namespace Runch.View
         private void RecommendLunch(object sender, EventArgs e)
         {
             new CategoryForm().Show();
-            // this.Visible = false;
+            this.Visible = false;
         }
 
         /*
@@ -185,6 +193,36 @@ namespace Runch.View
         {
             if (keyData == Keys.Escape) { this.Close(); return true; }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void DislikeOnlyByCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!cklDislike.GetItemChecked(e.Index))
+            {
+                cklLike.SetItemChecked(e.Index, false);
+            }
+            else
+            {
+                if (chkDislikeAll.Checked)
+                {
+                    chkDislikeAll.Checked = false;
+                }
+            }
+        }
+
+        private void LikeOnlyByCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!cklLike.GetItemChecked(e.Index))
+            {
+                cklDislike.SetItemChecked(e.Index, false);
+            }
+            else
+            {
+                if (chkLikeAll.Checked)
+                {
+                    chkLikeAll.Checked = false;
+                }
+            }
         }
     }
 }
