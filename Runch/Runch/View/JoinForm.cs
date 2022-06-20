@@ -163,7 +163,6 @@ namespace Runch.View
 
                 user.Add();
 
-                new LoginForm().Show();
                 this.Visible = false;
 
             } catch(Exception ex)

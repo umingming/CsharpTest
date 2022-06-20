@@ -75,5 +75,14 @@ namespace Runch.View
         {
             this.Close();
         }
+
+        /*
+            InvalidateInput;키 입력 막음
+            1. 키 입력 이벤트 true로
+         */
+        private void InvalidateInput(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
     }
 }

@@ -132,6 +132,7 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(204, 34);
             this.cmbCategory.TabIndex = 7;
+            this.cmbCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InvalidateInput);
             // 
             // btnEdit
             // 

@@ -65,7 +65,6 @@ namespace Runch.View
             newRestaurant.signature = txtSignature.Text;
             restaurant.Edit(newRestaurant);
 
-            new DetailForm(new Restaurant().FindById(restaurant.id)).Show();
             this.Close();
         }
 
@@ -87,6 +86,15 @@ namespace Runch.View
         {
             if (e.KeyCode != Keys.Enter) return;
             btnEdit_Click(sender, e);
+        }
+
+        /*
+            InvalidateInput;키 입력 막음
+            1. 키 입력 이벤트 true로
+         */
+        private void InvalidateInput(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
         }
     }
 }

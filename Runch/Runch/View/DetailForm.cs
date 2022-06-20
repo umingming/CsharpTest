@@ -35,7 +35,7 @@ namespace Runch.View
          */
         private void DetailForm_Load(object sender, EventArgs e)
         {
-            if(restaurant.IsBlock())
+            if(!restaurant.IsBlock())
             {
                 btnUnblock.Visible = true;
                 btnBlock.Visible = false;
@@ -58,6 +58,7 @@ namespace Runch.View
             btnUnblock.Visible = true;
             btnBlock.Visible = false;
             btnBlockTxt.Text = "차단 해제";
+            box.DisplaySimpleInfo($@"[{restaurant.name}]이(가) 차단되었습니다.");
         }
 
         /*
@@ -70,6 +71,7 @@ namespace Runch.View
             btnUnblock.Visible = false;
             btnBlock.Visible = true;
             btnBlockTxt.Text = "차단";
+            box.DisplaySimpleInfo($@"[{restaurant.name}]이(가) 차단 해제되었습니다.");
         }
 
         /*
@@ -79,8 +81,15 @@ namespace Runch.View
         private void btnEdit_Click(object sender, EventArgs e)
         {
             Class1.temp = restaurant.name;
-            new EditForm(restaurant).Show();
-            this.Close();
+            new EditForm(restaurant).ShowDialog();
+            Restaurant newRestaurant = new Restaurant().FindById(restaurant.id);
+
+            txtName.Text = newRestaurant.name;
+            txtCategory.Text += newRestaurant.category;
+            txtSignature.Text = newRestaurant.signature;
+            txtAdoption.Text = restaurant.cntAdoption.ToString();
+            txtRecentAdoption.Text = restaurant.recentAdoption;
+            //this.Close();
         }
 
         /*

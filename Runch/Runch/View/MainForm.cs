@@ -19,9 +19,11 @@ namespace Runch.View
     public partial class MainForm : Form
     {
         User user;
+        Notification box;
 
         public MainForm()
         {
+            box = new Notification();
             InitializeComponent();
         }
 
@@ -42,8 +44,8 @@ namespace Runch.View
          */
         private void RecommendLunch(object sender, EventArgs e)
         {
-            new CategoryForm().Show();
             this.Visible = false;
+            new CategoryForm().ShowDialog();
         }
 
         /*
@@ -52,8 +54,17 @@ namespace Runch.View
          */
         private void ListRestaurant(object sender, EventArgs e)
         {
-            new ListForm().Show();
             this.Visible = false;
+            new ListForm().ShowDialog();
+        }
+
+        /*
+            ShowMypage
+            1. 마이페이지로 이동
+        */
+        private void ShowMypage(object sender, EventArgs e)
+        {
+            box.DisplaySimpleWarning("준비 중");
         }
 
         /*
@@ -64,8 +75,8 @@ namespace Runch.View
         private void Logout(object sender, EventArgs e)
         {
             user.Logout();
-            new LoginForm().Show();
             this.Visible = false;
+            new LoginForm().ShowDialog();
         }
 
         /*

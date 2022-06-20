@@ -47,8 +47,8 @@ namespace Runch.View
          */
         private void AgainRecommend(object sender, EventArgs e)
         {
-            new RecommendForm(restaurant).Show();
             this.Visible = false;
+            new RecommendForm(restaurant).Show();
         }
 
         /*
@@ -59,8 +59,8 @@ namespace Runch.View
         private void AdoptRestaurant(object sender, EventArgs e)
         {
             recommend.Adopt();
-            new AdoptionForm(recommend).Show();
             this.Visible = false;
+            new AdoptionForm(recommend).Show();
         }
 
         /*
@@ -69,8 +69,8 @@ namespace Runch.View
          */
         private void ShowList(object sender, EventArgs e)
         {
-            new ListForm().Show();
             this.Visible = false;
+            new ListForm().Show();
         }
 
         /*
@@ -79,8 +79,8 @@ namespace Runch.View
          */
         private void SelectCategory(object sender, EventArgs e)
         {
+            this.Visible = false;
             new CategoryForm().Show();
-            // this.Visible = false;
         }
 
         /*
@@ -91,8 +91,8 @@ namespace Runch.View
         private void Logout(object sender, EventArgs e)
         {
             new User().Logout();
-            new LoginForm().Show();
             this.Visible = false;
+            new LoginForm().Show();
         }
 
         /*
@@ -101,8 +101,8 @@ namespace Runch.View
          */
         private void ShowMain(object sender, EventArgs e)
         {
-            new MainForm().Show();
             this.Visible = false;
+            new MainForm().Show();
         }
 
         /*

@@ -121,6 +121,7 @@
             this.btnMyPage.TabIndex = 6;
             this.btnMyPage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMyPage.UseVisualStyleBackColor = false;
+            this.btnMyPage.Click += new System.EventHandler(this.ShowMypage);
             // 
             // btnLogout
             // 

@@ -40,12 +40,12 @@ namespace Runch.Domain
 
             if (!IsValid(id))
             {
-                box.DisplayWarning("미등록 사용자");
+                box.DisplaySimpleWarning("미등록 사용자");
                 return 0;
             }
             if (IsLoggedIn())
             {
-                box.DisplayWarning("접속 사용자");
+                box.DisplaySimpleWarning("접속 사용자");
                 return 0;
             }
 

@@ -137,8 +137,8 @@ namespace Runch.View
          */
         private void ShowList(object sender, EventArgs e)
         {
-            new ListForm().Show();
             this.Visible = false;
+            new ListForm().Show();
         }
 
         /*
@@ -147,8 +147,8 @@ namespace Runch.View
          */
         private void RecommendLunch(object sender, EventArgs e)
         {
-            new CategoryForm().Show();
             this.Visible = false;
+            new CategoryForm().Show();
         }
 
         /*
@@ -159,8 +159,8 @@ namespace Runch.View
         private void Logout(object sender, EventArgs e)
         {
             new User().Logout();
-            new LoginForm().Show();
             this.Visible = false;
+            new LoginForm().Show();
         }
 
         /*
@@ -169,8 +169,8 @@ namespace Runch.View
          */
         private void ShowMain(object sender, EventArgs e)
         {
-            new MainForm().Show();
             this.Visible = false;
+            new MainForm().Show();
         }
 
         /*

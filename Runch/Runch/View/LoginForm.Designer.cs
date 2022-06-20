@@ -47,9 +47,10 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("이사만루체 Bold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(50, 370);
+            this.btnLogin.Location = new System.Drawing.Point(42, 308);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(163, 45);
+            this.btnLogin.Size = new System.Drawing.Size(136, 38);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -60,7 +61,8 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(129, 504);
+            this.button2.Location = new System.Drawing.Point(108, 420);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(0, 0);
             this.button2.TabIndex = 3;
@@ -74,9 +76,10 @@
             this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoin.Font = new System.Drawing.Font("이사만루체 Bold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnJoin.ForeColor = System.Drawing.Color.White;
-            this.btnJoin.Location = new System.Drawing.Point(234, 370);
+            this.btnJoin.Location = new System.Drawing.Point(195, 308);
+            this.btnJoin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnJoin.Name = "btnJoin";
-            this.btnJoin.Size = new System.Drawing.Size(163, 45);
+            this.btnJoin.Size = new System.Drawing.Size(136, 38);
             this.btnJoin.TabIndex = 3;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.UseVisualStyleBackColor = false;
@@ -88,24 +91,26 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtId.Font = new System.Drawing.Font("한컴 고딕", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtId.Location = new System.Drawing.Point(105, 281);
+            this.txtId.Location = new System.Drawing.Point(88, 234);
+            this.txtId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(273, 37);
+            this.txtId.Size = new System.Drawing.Size(228, 31);
             this.txtId.TabIndex = 0;
             this.txtId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginByEnterKeyDown);
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(444, 639);
+            this.ClientSize = new System.Drawing.Size(370, 532);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnLogin);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LoginForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

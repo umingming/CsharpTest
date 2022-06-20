@@ -46,8 +46,8 @@ namespace Runch
 
             if (user.Login(txtId.Text) != 0)
             {
-                new MainForm().Show();
                 this.Visible = false;
+                new MainForm().ShowDialog();
             }
         }
 
@@ -57,7 +57,7 @@ namespace Runch
          */
         private void Join(object sender, EventArgs e)
         {
-            new JoinForm().Show();
+            new JoinForm().ShowDialog();
         }
 
         /*
