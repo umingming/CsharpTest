@@ -195,6 +195,13 @@ namespace Runch.View
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        /*
+            DislikeOnlyByCheck
+            1. if문 비선호 카테고리 체크될 예정인지?
+                > 선호 내 해당 카테고리 체크 해제
+                > 체크 해제될 경우, 전체 체크박스가 선택되어 있는지
+                    > 전체 체크박스 해제
+         */
         private void DislikeOnlyByCheck(object sender, ItemCheckEventArgs e)
         {
             if (!cklDislike.GetItemChecked(e.Index))
@@ -210,6 +217,13 @@ namespace Runch.View
             }
         }
 
+        /*
+            LikeOnlyByCheck
+            1. if문 선호 카테고리 체크될 예정인지?
+                > 비선호 내 해당 카테고리 체크 해제
+                > 체크 해제될 경우, 전체 체크박스가 선택되어 있는지
+                    > 전체 체크박스 해제
+         */
         private void LikeOnlyByCheck(object sender, ItemCheckEventArgs e)
         {
             if (!cklLike.GetItemChecked(e.Index))
@@ -223,6 +237,12 @@ namespace Runch.View
                     chkLikeAll.Checked = false;
                 }
             }
+        }
+
+        private void ClearSelectedByClick(object sender, EventArgs e)
+        {
+            cklLike.SelectedIndex = -1;
+            cklDislike.SelectedIndex = -1;
         }
     }
 }
