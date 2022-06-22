@@ -90,7 +90,7 @@ namespace Runch.Domain
         {
             Random rnd = new Random();
             int index = rnd.Next(recommendList.Count);
-            return (Restaurant)recommendList[index];
+            return index > 0 ? (Restaurant)recommendList[index] : null;
         }
 
         /*
@@ -242,7 +242,7 @@ namespace Runch.Domain
         {
             string userId = Properties.Settings.Default.UserId;
             string sql = $@"select restaurant_id
-                            from restaurant_adoption
+                            from restaurant_block
                             where user_id = '{userId}'
                                 and restaurant_id = {id}";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))

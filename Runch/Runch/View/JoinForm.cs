@@ -91,6 +91,7 @@ namespace Runch.View
                 user.id = txtId.Text;
                 btnIdUnChecked.Visible = false;
                 isIdChecked = true;
+                txtName.Focus();
 
                 box.DisplayInfo("등록 가능한 사원 번호");
             }
@@ -107,7 +108,10 @@ namespace Runch.View
          */
         private void InitIdByClick(object sender, EventArgs e)
         {
-            txtId.Text = "";
+            if(txtId.Text == "사원 번호")
+            {
+                txtId.Text = "";
+            }
         }
 
         /*
@@ -143,14 +147,14 @@ namespace Runch.View
                     return;
                 }
 
-                if(cmbGroup.SelectedIndex < 0)
+                if(cmbGroup.SelectedIndex == 0)
                 {
                     box.DisplayWarning("소속");
                     cmbGroup.Focus();
                     return;
                 }
 
-                if(cmbPosition.SelectedIndex < 0)
+                if(cmbPosition.SelectedIndex == 0)
                 {
                     box.DisplayWarning("직위");
                     cmbPosition.Focus();
@@ -219,6 +223,40 @@ namespace Runch.View
         private void InvalidateInput(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
+        }
+
+        /*
+            CheckIdByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. 아이디 체크
+         */
+        private void CheckIdByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            CheckId(sender, e);
+        }
+
+        /*
+            JoinByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. 회원가입
+         */
+        private void JoinByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            Join(sender, e);
+        }
+
+        /*
+            아이디 변경
+            1. 체크확인 풀기
+         */
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+            isIdChecked = false;
+            btnIdUnChecked.Visible = true;
         }
     }
 }

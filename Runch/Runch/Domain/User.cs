@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Runch.Data;
 
 namespace Runch.Domain
@@ -45,7 +46,11 @@ namespace Runch.Domain
             }
             if (IsLoggedIn())
             {
-                box.DisplaySimpleWarning("접속 사용자");
+                var result = MessageBox.Show("접속 사용자입니다. \n강제 로그아웃 하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(result == DialogResult.Yes)
+                {
+                    Logout(id);
+                }
                 return 0;
             }
 
@@ -69,6 +74,22 @@ namespace Runch.Domain
             string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /*
+            Logout
+            1. id 할당
+            2. 로그아웃 쿼리 초기화
+            3. DB 수행
+         */
+        public void Logout(string id)
+        {
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                if (!IsLoggedIn()) return;
                 cmd.ExecuteNonQuery();
             }
         }

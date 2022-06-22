@@ -56,6 +56,7 @@ namespace Runch.View
         private void SelectRowByClick(object sender, DataGridViewCellEventArgs e)
         {
             dgvRestaurant.CurrentRow.Selected = true;
+            ShowDetail(sender, e);
         }
 
         /*
@@ -66,7 +67,9 @@ namespace Runch.View
         private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
             int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells[0].Value.ToString());
-            new DetailForm(new Restaurant().FindById(id)).Show();
+            new DetailForm(new Restaurant().FindById(id)).ShowDialog();
+            //new SearchListForm(restaurant).Show();
+            //this.Visible = false;
         }
 
         /*

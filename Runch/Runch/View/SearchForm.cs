@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,11 +55,24 @@ namespace Runch.View
          */
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (cmbCategory.SelectedIndex < 0)
+            {
+                box.DisplayWarning("카테고리");
+                cmbCategory.DroppedDown = true;
+                return;
+            }
+
+            if (txtName.Text == "이름")
+            {
+                box.DisplayWarning("이름");
+                txtName.Focus();
+                return;
+            }
             Restaurant restaurant = new Restaurant();
             restaurant.start = dtpStart.Value.ToString().Substring(0, dtpStart.Value.ToString().IndexOf(" ")) + "";
             restaurant.end = dtpEnd.Value.ToString().Substring(0, dtpEnd.Value.ToString().IndexOf(" ") - 1) + "1";
             restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
-            restaurant.userName = txtUser.Text;
+            restaurant.userName = txtName.Text;
 
             new SearchListForm(restaurant).Show();
             this.Close();
@@ -79,6 +93,31 @@ namespace Runch.View
         private void InvalidateInput(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
+        }
+
+        /*
+            카테고리 콤보박스 클릭
+            1. DroppedDown 이벤트
+         */
+        private void cmbCategory_Click(object sender, EventArgs e)
+        {
+            cmbCategory.DroppedDown = true; 
+        }
+
+        /*
+            SearchByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. 검색하기
+         */
+        private void SearchByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            btnSearch_Click(sender, e);
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

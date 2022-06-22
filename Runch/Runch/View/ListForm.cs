@@ -20,12 +20,8 @@ namespace Runch.View
      */
     public partial class ListForm : Form
     {
-        Thread listThread;
-
         public ListForm()
         {
-            listThread = new Thread(() => ListRestaurant());
-            listThread.IsBackground = true;
             InitializeComponent();
         }
 
@@ -33,20 +29,7 @@ namespace Runch.View
          */
         private void LoadForm(object sender, EventArgs e)
         {
-            listThread.Start();
-        }
-
-        /*
-            ListRestaurant
-            1. DataGridView에 레스토랑 목록 데이터셋 할당
-         */
-        private void ListRestaurant()
-        {
-            if (dgvRestaurant.Columns.Count > 0)
-            {
-               UpdateDgv(dgvRestaurant);
-            }
-            dgvRestaurant.Rows[0].Selected = false;
+            ListRestaurant(sender, e);
         }
 
         /*
@@ -54,33 +37,15 @@ namespace Runch.View
          */
         private void ListRestaurant(object sender, EventArgs e)
         {
-            if (dgvRestaurant.Columns.Count > 0)
-            {
-                UpdateDgv(dgvRestaurant);
-            }
-            dgvRestaurant.Rows[0].Selected = false;
-        }
+            dgvRestaurant.DataSource = new Restaurant().List().Tables[0].DefaultView;
+            dgvRestaurant.Columns[0].HeaderText = "No.";
+            dgvRestaurant.Columns[0].Width = 40;
+            dgvRestaurant.Columns[1].HeaderText = "     식당명";
+            dgvRestaurant.Columns[1].Width = 100;
 
-        public static void UpdateDgv(DataGridView dgv)
-        {
-            if (dgv.InvokeRequired)
+            if (dgvRestaurant.Rows.Count > 0)
             {
-                dgv.Invoke(new MethodInvoker(delegate
-                {
-                    dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
-                    dgv.Columns[0].HeaderText = "No.";
-                    dgv.Columns[0].Width = 40;
-                    dgv.Columns[1].HeaderText = "     식당명";
-                    dgv.Columns[1].Width = 100;
-                }));
-            }
-            else
-            {
-                dgv.DataSource = new Restaurant().List().Tables[0].DefaultView;
-                dgv.Columns[0].HeaderText = "No.";
-                dgv.Columns[0].Width = 40;
-                dgv.Columns[1].HeaderText = "     식당명";
-                dgv.Columns[1].Width = 100;
+                dgvRestaurant.Rows[0].Selected = false;
             }
         }
 
@@ -91,7 +56,6 @@ namespace Runch.View
          */
         private void ShowDetail(object sender, DataGridViewCellEventArgs e)
         {
-            SelectRowByClick(sender, e);
             int id = Int32.Parse(dgvRestaurant.CurrentRow.Cells[0].Value.ToString());
             new DetailForm(new Restaurant().FindById(id)).Show();
         }
@@ -103,6 +67,7 @@ namespace Runch.View
         private void SelectRowByClick(object sender, DataGridViewCellEventArgs e)
         {
             dgvRestaurant.CurrentRow.Selected = true;
+            ShowDetail(sender, e);
         }
 
         /*
@@ -114,7 +79,7 @@ namespace Runch.View
             AddForm addForm = new AddForm();
             addForm.ShowDialog();
 
-            ListRestaurant();
+            ListRestaurant(sender, e);
         }
 
         /*
@@ -123,8 +88,8 @@ namespace Runch.View
          */
         private void SearchRestaurant(object sender, EventArgs e)
         {
-            new SearchForm().Show();
-            //this.Visible = false;
+            new SearchForm().ShowDialog();
+            this.Visible = false;
         }
 
         /*

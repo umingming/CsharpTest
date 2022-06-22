@@ -96,6 +96,7 @@
             this.chkLikeAll.Text = "ALL";
             this.chkLikeAll.UseVisualStyleBackColor = true;
             this.chkLikeAll.Click += new System.EventHandler(this.LikeAll);
+            this.chkLikeAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectCateByEnterKeyDown);
             // 
             // cklLike
             // 
@@ -112,7 +113,7 @@
             this.cklLike.Size = new System.Drawing.Size(182, 84);
             this.cklLike.TabIndex = 3;
             this.cklLike.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LikeOnlyByCheck);
-            this.cklLike.Click += new System.EventHandler(this.ClearSelectedByClick);
+            this.cklLike.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectCateByEnterKeyDown);
             // 
             // panel1
             // 
@@ -153,7 +154,7 @@
             this.cklDislike.Size = new System.Drawing.Size(167, 84);
             this.cklDislike.TabIndex = 6;
             this.cklDislike.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.DislikeOnlyByCheck);
-            this.cklDislike.Click += new System.EventHandler(this.ClearSelectedByClick);
+            this.cklDislike.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectCateByEnterKeyDown);
             // 
             // chkDislikeAll
             // 
@@ -167,6 +168,7 @@
             this.chkDislikeAll.Text = "ALL";
             this.chkDislikeAll.UseVisualStyleBackColor = true;
             this.chkDislikeAll.Click += new System.EventHandler(this.DislikeAll);
+            this.chkDislikeAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectCateByEnterKeyDown);
             // 
             // textBox2
             // 
@@ -281,6 +283,7 @@
             this.Text = "aim Systems";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.InitCklCate);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectCateByEnterKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -60,7 +60,7 @@ namespace Runch.View
         {
             recommend.Adopt();
             this.Visible = false;
-            new AdoptionForm(recommend).Show();
+            new AdoptionForm(recommend).ShowDialog();
         }
 
         /*
@@ -123,6 +123,18 @@ namespace Runch.View
         {
             if (keyData == Keys.Escape) { this.Close(); return true; }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /*
+            AdoptByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. Adopt 호출
+         */
+        private void AdoptByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            AdoptRestaurant(sender, e);
         }
     }
 }

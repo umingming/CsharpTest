@@ -21,6 +21,7 @@ namespace Runch.View
     {
         Restaurant restaurant;
         Notification box;
+        Boolean isEdited = false;
 
         public DetailForm(Restaurant restaurant)
         {
@@ -35,7 +36,7 @@ namespace Runch.View
          */
         private void DetailForm_Load(object sender, EventArgs e)
         {
-            if(!restaurant.IsBlock())
+            if(restaurant.IsBlock())
             {
                 btnUnblock.Visible = true;
                 btnBlock.Visible = false;
@@ -54,6 +55,12 @@ namespace Runch.View
          */
         private void btnBlock_Click(object sender, EventArgs e)
         {
+            if(btnUnblock.Visible)
+            {
+                btnUnblock_Click(sender, e);
+                return;
+            }
+
             restaurant.Block();
             btnUnblock.Visible = true;
             btnBlock.Visible = false;
@@ -82,12 +89,13 @@ namespace Runch.View
         {
             new EditForm(restaurant).ShowDialog();
             Restaurant newRestaurant = new Restaurant().FindById(restaurant.id);
-
+            restaurant = newRestaurant;
             txtName.Text = newRestaurant.name;
             txtCategory.Text += newRestaurant.category;
             txtSignature.Text = newRestaurant.signature;
             txtAdoption.Text = restaurant.cntAdoption.ToString();
             txtRecentAdoption.Text = restaurant.recentAdoption;
+            isEdited = true;
             //this.Close();
         }
 
@@ -107,7 +115,12 @@ namespace Runch.View
          */
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (isEdited)
+            {
+                this.Close();
+            }
+
+            this.Visible = false;
         }
     }
 }

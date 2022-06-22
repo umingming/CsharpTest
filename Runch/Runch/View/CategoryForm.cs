@@ -239,10 +239,16 @@ namespace Runch.View
             }
         }
 
-        private void ClearSelectedByClick(object sender, EventArgs e)
+        /*
+            SelectCateByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. 카테고리 설정
+         */
+        private void SelectCateByEnterKeyDown(object sender, KeyEventArgs e)
         {
-            cklLike.SelectedIndex = -1;
-            cklDislike.SelectedIndex = -1;
+            if (e.KeyCode != Keys.Enter) return;
+            SelectCategroy(sender, e);
         }
     }
 }

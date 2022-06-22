@@ -89,5 +89,17 @@ namespace Runch.View
             if (keyData == Keys.Escape) { this.Close(); return true; }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        /*
+            ShowListByEnterKeyDown
+            1. if문 입력 키가 엔터가 아닌지?
+                > return
+            2. ListRestaurant 호출
+         */
+        private void ShowListByEnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) return;
+            ListRestaurant(sender, e);
+        }
     }
 }
