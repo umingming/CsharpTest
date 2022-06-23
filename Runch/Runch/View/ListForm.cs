@@ -66,6 +66,7 @@ namespace Runch.View
          */
         private void SelectRowByClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             dgvRestaurant.CurrentRow.Selected = true;
             ShowDetail(sender, e);
         }

@@ -20,10 +20,12 @@ namespace Runch.View
     public partial class EditForm : Form
     {
         Restaurant restaurant;
+        Notification box;
 
         public EditForm(Restaurant restaurant)
         {
             this.restaurant = restaurant;
+            box = new Notification();
             InitializeComponent();
         }
 
@@ -59,6 +61,28 @@ namespace Runch.View
          */
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (txtName.Text == "")
+            {
+                box.DisplayWarning("식당명");
+                txtName.Focus();
+                return;
+            }
+
+            if (cmbCategory.Text == "")
+            {
+                box.DisplayWarning("카테고리");
+                cmbCategory.Focus();
+                cmbCategory.DroppedDown = true;
+                return;
+            }
+
+            if (txtSignature.Text == "")
+            {
+                box.DisplayWarning("추천 메뉴");
+                txtSignature.Focus();
+                return;
+            }
+
             Restaurant newRestaurant = new Restaurant();
             newRestaurant.name = txtName.Text;
             newRestaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());

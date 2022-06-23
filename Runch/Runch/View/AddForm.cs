@@ -12,8 +12,11 @@ namespace Runch.View
      */
     public partial class AddForm : Form
     {
+        Notification box;
+
         public AddForm()
         {
+            box = new Notification();
             InitializeComponent();
         }
 
@@ -45,6 +48,28 @@ namespace Runch.View
          */
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if(txtName.Text == "")
+            {
+                box.DisplayWarning("식당명");
+                txtName.Focus();
+                return;
+            }
+
+            if (cmbCategory.Text == "")
+            {
+                box.DisplayWarning("카테고리");
+                cmbCategory.Focus();
+                cmbCategory.DroppedDown = true;
+                return;
+            }
+
+            if (txtSignature.Text == "")
+            {
+                box.DisplayWarning("추천 메뉴");
+                txtSignature.Focus();
+                return;
+            }
+
             Restaurant restaurant = new Restaurant();
             restaurant.name = txtName.Text;
             restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());

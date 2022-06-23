@@ -115,9 +115,10 @@ namespace Runch.View
             if (e.KeyCode != Keys.Enter) return;
             btnSearch_Click(sender, e);
         }
-
+        
         private void dtpEnd_ValueChanged(object sender, EventArgs e)
         {
+            
         }
     }
 }
