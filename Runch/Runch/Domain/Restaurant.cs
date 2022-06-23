@@ -274,7 +274,7 @@ namespace Runch.Domain
                 string userId = Properties.Settings.Default.UserId;
                 sql = $@"insert into restaurant_history
                         values (seq_restaurant_history.nextVal, {id}, '{userId}', 'U', '{newRestaurant.name}', {newRestaurant.categoryId}, '{newRestaurant.signature}', 30, 30, sysdate)";
-                //cmd = new OleDbCommand(sql, dbutil.Connect());
+
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }

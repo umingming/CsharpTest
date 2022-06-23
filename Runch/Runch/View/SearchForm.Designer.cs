@@ -69,7 +69,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(264, 24);
             this.txtName.TabIndex = 16;
-            this.txtName.Text = "이름";
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchByEnterKeyDown);
             // 
             // label5

@@ -62,9 +62,9 @@ namespace Runch.View
                 return;
             }
 
-            if (txtName.Text == "이름")
+            if (txtName.Text == "")
             {
-                box.DisplayWarning("이름");
+                box.DisplayWarning("사용자 이름");
                 txtName.Focus();
                 return;
             }

@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ultraDataChart1 = new Infragistics.Win.DataVisualization.UltraDataChart();
-            this.vWRESTAURANTSIMPLEINFOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnAddIcon = new System.Windows.Forms.Button();
@@ -46,13 +44,17 @@
             this.dgvRestaurant = new System.Windows.Forms.DataGridView();
             this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vWRESTAURANTSIMPLEINFOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurant)).BeginInit();
             this.SuspendLayout();
             // 
             // ultraDataChart1
             // 
             this.ultraDataChart1.BackColor = System.Drawing.Color.White;
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
             this.ultraDataChart1.Brushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
@@ -175,6 +177,16 @@
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
             this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(181)))), ((int)(((byte)(197)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(174)))), ((int)(((byte)(122)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(169)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.MarkerBrushes.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(125)))), ((int)(((byte)(191)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
+            this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
             this.ultraDataChart1.MarkerOutlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
@@ -296,14 +308,15 @@
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
             this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(125)))), ((int)(((byte)(141)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(143)))), ((int)(((byte)(143)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(143)))), ((int)(((byte)(88)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(126)))), ((int)(((byte)(17)))))));
+            this.ultraDataChart1.Outlines.Add(new Infragistics.Win.DataVisualization.SolidColorBrush(System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(88)))), ((int)(((byte)(162)))))));
             this.ultraDataChart1.PreviewRect = new Infragistics.Win.DataVisualization.Rectangle(double.PositiveInfinity, double.PositiveInfinity, double.NegativeInfinity, double.NegativeInfinity);
             this.ultraDataChart1.Size = new System.Drawing.Size(8, 8);
             this.ultraDataChart1.TabIndex = 0;
             this.ultraDataChart1.TitleFontSize = 12D;
-            // 
-            // vWRESTAURANTSIMPLEINFOBindingSource
-            // 
-            this.vWRESTAURANTSIMPLEINFOBindingSource.DataMember = "VWRESTAURANTSIMPLEINFO";
             // 
             // label1
             // 
@@ -541,7 +554,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Quit);
             this.Load += new System.EventHandler(this.ListRestaurant);
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataChart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vWRESTAURANTSIMPLEINFOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -556,7 +568,6 @@
         private System.Windows.Forms.Button btnAddIcon;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label btnAdd;
-        private System.Windows.Forms.BindingSource vWRESTAURANTSIMPLEINFOBindingSource;
         private System.Windows.Forms.Button btnMain;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnList;

@@ -26,13 +26,6 @@ namespace Runch.View
         }
 
         /*
-         */
-        private void LoadForm(object sender, EventArgs e)
-        {
-            ListRestaurant(sender, e);
-        }
-
-        /*
             ListRestaurant; 리프레쉬 버튼 클릭시
          */
         private void ListRestaurant(object sender, EventArgs e)
