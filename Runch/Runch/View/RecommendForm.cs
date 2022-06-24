@@ -20,9 +20,11 @@ namespace Runch.View
     {
         Restaurant restaurant;
         Restaurant recommend;
+        Notification box;
 
         public RecommendForm(Restaurant restaurant)
         {
+            this.box = new Notification();
             this.restaurant = restaurant;
             InitializeComponent();
         }

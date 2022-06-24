@@ -74,7 +74,6 @@ namespace Runch.View
                     categorys.Add(value);
                 }
             }
-
             Properties.Settings.Default.CategoryList = string.Join<object>(",", categorys.ToArray());
 
             Restaurant restaurant = new Restaurant();
