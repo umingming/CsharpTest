@@ -54,7 +54,7 @@ namespace Runch.Domain
                 return 0;
             }
 
-            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'in', sysdate)";
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'IN', sysdate)";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
                 return cmd.ExecuteNonQuery();
@@ -71,7 +71,7 @@ namespace Runch.Domain
         {
             id = Properties.Settings.Default.UserId;
 
-            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'OUT', sysdate)";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
                 cmd.ExecuteNonQuery();
@@ -86,7 +86,7 @@ namespace Runch.Domain
          */
         public void Logout(string id)
         {
-            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'out', sysdate)";
+            string sql = $@"insert into user_log values (seq_user_log.nextVal, '{id}', 'OUT', sysdate)";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
                 if (!IsLoggedIn()) return;
@@ -139,7 +139,7 @@ namespace Runch.Domain
                 {
                     if (reader.Read())
                     {
-                        if (reader["log_type"].ToString() == "in") return true;
+                        if (reader["log_type"].ToString() == "IN") return true;
                     }
                     return false;
                 }

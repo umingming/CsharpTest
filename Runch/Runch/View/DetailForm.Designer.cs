@@ -110,10 +110,10 @@
             // 
             this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCategory.Font = new System.Drawing.Font("한컴 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtCategory.Location = new System.Drawing.Point(358, 78);
+            this.txtCategory.Location = new System.Drawing.Point(354, 78);
             this.txtCategory.Margin = new System.Windows.Forms.Padding(2);
             this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(41, 24);
+            this.txtCategory.Size = new System.Drawing.Size(65, 24);
             this.txtCategory.TabIndex = 11;
             this.txtCategory.Text = "/";
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

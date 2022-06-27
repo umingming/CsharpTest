@@ -33,20 +33,20 @@ namespace Runch.View
             cklLike.DisplayMember = "Text";
             cklLike.ValueMember = "Value";
 
-            cklLike.Items.Insert(0, new { Text = "한식", Value = "16" });
-            cklLike.Items.Insert(1, new { Text = "중식", Value = "17" });
-            cklLike.Items.Insert(2, new { Text = "일식", Value = "18" });
-            cklLike.Items.Insert(3, new { Text = "양식", Value = "19" });
-            cklLike.Items.Insert(4, new { Text = "기타", Value = "20" });
+            cklLike.Items.Insert(0, new { Text = "한식", Value = "39" });
+            cklLike.Items.Insert(1, new { Text = "중식", Value = "40" });
+            cklLike.Items.Insert(2, new { Text = "일식", Value = "41" });
+            cklLike.Items.Insert(3, new { Text = "양식", Value = "42" });
+            cklLike.Items.Insert(4, new { Text = "기타", Value = "43" });
 
             cklDislike.DisplayMember = "Text";
             cklDislike.ValueMember = "Value";
 
-            cklDislike.Items.Insert(0, new { Text = "한식", Value = "16" });
-            cklDislike.Items.Insert(1, new { Text = "중식", Value = "17" });
-            cklDislike.Items.Insert(2, new { Text = "일식", Value = "18" });
-            cklDislike.Items.Insert(3, new { Text = "양식", Value = "19" });
-            cklDislike.Items.Insert(4, new { Text = "기타", Value = "20" });
+            cklDislike.Items.Insert(0, new { Text = "한식", Value = "39" });
+            cklDislike.Items.Insert(1, new { Text = "중식", Value = "40" });
+            cklDislike.Items.Insert(2, new { Text = "일식", Value = "41" });
+            cklDislike.Items.Insert(3, new { Text = "양식", Value = "42" });
+            cklDislike.Items.Insert(4, new { Text = "기타", Value = "43" });
         }
 
         /*

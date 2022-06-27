@@ -43,7 +43,7 @@ namespace Runch.View
                 btnBlockTxt.Text = "차단 해제";
             }
             txtName.Text = restaurant.name;
-            txtCategory.Text += restaurant.category;
+            txtCategory.Text = "/ " + restaurant.category;
             txtSignature.Text = restaurant.signature;
             txtAdoption.Text = restaurant.cntAdoption.ToString();
             txtRecentAdoption.Text = restaurant.recentAdoption;
@@ -91,7 +91,7 @@ namespace Runch.View
             Restaurant newRestaurant = new Restaurant().FindById(restaurant.id);
             restaurant = newRestaurant;
             txtName.Text = newRestaurant.name;
-            txtCategory.Text += newRestaurant.category;
+            txtCategory.Text = "/ " + newRestaurant.category;
             txtSignature.Text = newRestaurant.signature;
             txtAdoption.Text = restaurant.cntAdoption.ToString();
             txtRecentAdoption.Text = restaurant.recentAdoption;

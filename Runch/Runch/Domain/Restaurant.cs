@@ -90,8 +90,7 @@ namespace Runch.Domain
         {
             Random rnd = new Random();
             int index = rnd.Next(recommendList.Count);
-            box.DisplayInfo(index + "");
-            return index > 0 ? (Restaurant)recommendList[index] : null;
+            return index >= 0 ? (Restaurant)recommendList[index] : null;
         }
 
         /*

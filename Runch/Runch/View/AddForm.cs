@@ -31,11 +31,11 @@ namespace Runch.View
             cmbCategory.ValueMember = "Value";
 
             var categories = new[] {
-                new { Text = " 한식", Value = "16" },
-                new { Text = " 중식", Value = "17" },
-                new { Text = " 일식", Value = "18" },
-                new { Text = " 양식", Value = "19" },
-                new { Text = " 기타", Value = "20" },
+                new { Text = " 한식", Value = "39" },
+                new { Text = " 중식", Value = "40" },
+                new { Text = " 일식", Value = "41" },
+                new { Text = " 양식", Value = "42" },
+                new { Text = " 기타", Value = "43" },
             };
             cmbCategory.DataSource = categories;
             cmbCategory.Text = "";
