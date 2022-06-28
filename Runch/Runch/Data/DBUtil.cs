@@ -14,37 +14,13 @@ namespace Runch.Data
         private static readonly DBUtil _instance = new DBUtil();
 
         private OleDbConnection conn;
-        //private OleDbCommand cmd;
 
         private Notification box = new Notification();
-
-        private DBUtil()
-        {
-            //this.Open();
-        }
 
         public static DBUtil This
         {
             get { return _instance; }
         }
-
-        //private void Open()
-        //{
-        //    string connStr = string.Format("Provider=OraOLEDB.Oracle;" +
-        //                                    "OLEDB.NET=true;" +
-        //                                    "PLSQLRSet=true;" +
-        //                                    "Data Source=orcl;" +
-        //                                    "User Id=runch;" +
-        //                                    "Password=java1234;");
-        //    try
-        //    {
-        //        conn = new OleDbConnection(connStr);
-        //    }
-        //    catch
-        //    {
-        //        box.DisplayWarning("접속");
-        //    }
-        //}
 
         public OleDbConnection Connect()
         {
@@ -67,12 +43,5 @@ namespace Runch.Data
                 return null;
             }
         }
-
-        //public void Add(string sql)
-        //{
-        //    cmd.CommandText = sql;
-        //    cmd.ExecuteNonQuery();
-        //}
-
     }
 }

@@ -98,8 +98,6 @@ namespace Runch.View
          */
         private void LikeAll(object sender, EventArgs e)
         {
-            bool isAllChecked = chkLikeAll.Checked;
-
             if (chkDislikeAll.Checked)
             {
                 chkDislikeAll.Checked = !chkLikeAll.Checked;
@@ -107,7 +105,7 @@ namespace Runch.View
 
             for(int i=0; i<cklLike.Items.Count; i++)
             {
-                cklLike.SetItemChecked(i, isAllChecked);
+                cklLike.SetItemChecked(i, chkLikeAll.Checked);
 
                 if(cklDislike.GetItemChecked(i))
                 {
@@ -121,8 +119,6 @@ namespace Runch.View
          */
         private void DislikeAll(object sender, EventArgs e)
         {
-            bool isAllChecked = chkDislikeAll.Checked;
-
             if (chkLikeAll.Checked)
             {
                 chkLikeAll.Checked = !chkDislikeAll.Checked;
@@ -130,7 +126,7 @@ namespace Runch.View
 
             for (int i=0; i<cklDislike.Items.Count; i++)
             {
-                cklDislike.SetItemChecked(i, isAllChecked);
+                cklDislike.SetItemChecked(i, chkDislikeAll.Checked);
 
                 if (cklLike.GetItemChecked(i))
                 {

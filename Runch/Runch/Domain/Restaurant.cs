@@ -35,11 +35,86 @@ namespace Runch.Domain
         }
 
         /*
+            Add
+            1. 레스토랑에 데이터 추가
+            2. 시스템에 저장된 유저아이디를 사용해, 로그 기록
+         */
+        public void Add()
+        {
+            string sql = $@"insert into restaurant
+                                values (seq_restaurant.nextVal, '{name}', {categoryId}, '{signature}', 30, 30)";
+            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+
+            string userId = Properties.Settings.Default.UserId;
+            sql = $@"insert into restaurant_history
+                        values (seq_restaurant_history.nextVal, (select max(restaurant_id) from restaurant), '{userId}', 'C', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            cmd = new OleDbCommand(sql, dbutil.Connect());
+            cmd.ExecuteNonQuery();
+        }
+
+        /*
+            List
+            1. 레스토랑 간단 목록 쿼리 선언
+            2. DB 설정 후 데이터셋 반환
+         */
+        public DataSet List()
+        {
+            string sql = "select * from vwRestaurantSimpleInfo";
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect()))
+            {
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+
+                return ds;
+            }
+        }
+
+        /*
+            Edit
+            1. 레스토랑 테이블 편집
+            2. Update에 해당하는 로그 남김.
+         */
+        public void Edit(Restaurant newRestaurant)
+        {
+            string sql = $@"update restaurant set name = '{newRestaurant.name}', category_id = {newRestaurant.categoryId}, signature = '{newRestaurant.signature}'
+                                where restaurant_id = {id}";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+
+                string userId = Properties.Settings.Default.UserId;
+                sql = $@"insert into restaurant_history
+                        values (seq_restaurant_history.nextVal, {id}, '{userId}', 'U', '{newRestaurant.name}', {newRestaurant.categoryId}, '{newRestaurant.signature}', 30, 30, sysdate)";
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /*
+            Delete
+            1. Delete에 해당하는 로그 남김.
+         */
+        public void Delete()
+        {
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"insert into restaurant_history
+                            values (seq_restaurant_history.nextVal, {id}, '{userId}', 'D', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        /*
             InitRecommendList
-            1. DB 설정
-            2. for문 데이터 읽기
-                > 레스토랑 객체 생성
-                > 객체에 칼럼 값 할당 후 리스트에 추가
+            1. 문자열에 추천 레스토랑 5곳 조회하는 쿼리 할당
+            2. command, reader 생성 후 초기화
+                > while문 데이터 읽기
+                    > 레스토랑 객체 생성
+                    > 객체에 칼럼 값 할당 후 리스트에 추가
          */
         public void InitRecommendList()
         {
@@ -83,8 +158,10 @@ namespace Runch.Domain
 
         /*
             Recommend
-            1. 랜덤 객체 생성해 인덱스 초기화
-            2. 리스트 중 해당 인덱스의 요소를 리턴함.
+            1. 랜덤 객체 생성
+            2. 리스트의 Count가 0보다 큰지?
+                > 랜덤으로 리스트의 요소를 리턴함.
+                > 0일 경우 null
          */
         public Restaurant Recommend()
         {
@@ -94,8 +171,8 @@ namespace Runch.Domain
 
         /*
             Adopt; 레스토랑 채택
-            1. DB 설정
-            2. 쿼리 할당
+            1. restaurant_adoption 테이블에 insert하는 쿼리를 sql 변수에 초기화함.
+            2. DB 수행 객체 생성 후, 쿼리 실행
          */
         public void Adopt()
         {
@@ -106,23 +183,6 @@ namespace Runch.Domain
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
                 cmd.ExecuteNonQuery();
-            }
-        }
-
-        /*
-            List
-            1. 레스토랑 간단 목록 쿼리 선언
-            2. DB 설정 후 데이터셋 반환
-         */
-        public DataSet List()
-        {
-            string sql = "select * from vwRestaurantSimpleInfo";
-            using (OleDbDataAdapter adapter = new OleDbDataAdapter(sql, dbutil.Connect()))
-            {
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-
-                return ds;
             }
         }
 
@@ -150,25 +210,6 @@ namespace Runch.Domain
 
                 return ds;
             }
-        }
-
-        /*
-            Add
-            1. 레스토랑에 데이터 추가
-            2. 시스템에 저장된 유저아이디를 사용해, 로그 기록
-         */
-        public void Add()
-        {
-            string sql = $@"insert into restaurant
-                                values (seq_restaurant.nextVal, '{name}', {categoryId}, '{signature}', 30, 30)";
-            OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
-
-            string userId = Properties.Settings.Default.UserId;
-            sql = $@"insert into restaurant_history
-                        values (seq_restaurant_history.nextVal, (select max(restaurant_id) from restaurant), '{userId}', 'C', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
-            cmd = new OleDbCommand(sql, dbutil.Connect());
-            cmd.ExecuteNonQuery();
         }
 
         /*
@@ -204,36 +245,6 @@ namespace Runch.Domain
         }
 
         /*
-            Block; 레스토랑 차단
-            1. 유저 아이디로, 레스토랑 차단하는 쿼리 선언
-            2. DB 작업 수행 객체 사용
-         */
-        public void Block()
-        {
-            string userId = Properties.Settings.Default.UserId;
-            string sql = $@"insert into restaurant_block
-                                values (seq_restaurant_block.nextVal, '{userId}', {id})";
-            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
-            {
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        /*
-            Unblock; 레스토랑 차단 해제
-            1. 일치하는 레스토랑 데이터 테이블에서 삭제
-         */
-        public void Unblock()
-        {
-            string userId = Properties.Settings.Default.UserId;
-            string sql = $@"delete from restaurant_block where user_id = '{userId}' and restaurant_id = {id}";
-            using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
-            {
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        /*
             IsBlock; 차단인지?
             1. 차단 확인 위한 쿼리 할당
          */
@@ -258,36 +269,29 @@ namespace Runch.Domain
         }
 
         /*
-            Edit
-            1. 레스토랑 테이블 편집
-            2. Update에 해당하는 로그 남김.
+            Block; 레스토랑 차단
+            1. 유저 아이디로, 레스토랑 차단하는 쿼리 선언
+            2. DB 작업 수행 객체 사용
          */
-        public void Edit(Restaurant newRestaurant)
+        public void Block()
         {
-            string sql = $@"update restaurant set name = '{newRestaurant.name}', category_id = {newRestaurant.categoryId}, signature = '{newRestaurant.signature}'
-                                where restaurant_id = {id}";
+            string userId = Properties.Settings.Default.UserId;
+            string sql = $@"insert into restaurant_block
+                                values (seq_restaurant_block.nextVal, '{userId}', {id})";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
-                cmd.ExecuteNonQuery();
-
-                string userId = Properties.Settings.Default.UserId;
-                sql = $@"insert into restaurant_history
-                        values (seq_restaurant_history.nextVal, {id}, '{userId}', 'U', '{newRestaurant.name}', {newRestaurant.categoryId}, '{newRestaurant.signature}', 30, 30, sysdate)";
-
-                cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }
         }
 
         /*
-            Delete
-            1. Delete에 해당하는 로그 남김.
+            Unblock; 레스토랑 차단 해제
+            1. 일치하는 레스토랑 데이터 테이블에서 삭제
          */
-        public void Delete()
+        public void Unblock()
         {
             string userId = Properties.Settings.Default.UserId;
-            string sql = $@"insert into restaurant_history
-                            values (seq_restaurant_history.nextVal, {id}, '{userId}', 'D', '{name}', {categoryId}, '{signature}', 30, 30, sysdate)";
+            string sql = $@"delete from restaurant_block where user_id = '{userId}' and restaurant_id = {id}";
             using (OleDbCommand cmd = new OleDbCommand(sql, dbutil.Connect()))
             {
                 cmd.ExecuteNonQuery();
