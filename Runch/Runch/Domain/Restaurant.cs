@@ -89,8 +89,7 @@ namespace Runch.Domain
         public Restaurant Recommend()
         {
             Random rnd = new Random();
-            int index = rnd.Next(recommendList.Count);
-            return index >= 0 ? (Restaurant)recommendList[index] : null;
+            return recommendList.Count > 0 ? (Restaurant)recommendList[rnd.Next(recommendList.Count)] : null;
         }
 
         /*
@@ -135,10 +134,10 @@ namespace Runch.Domain
         public DataSet Search()
         {
             string sql = $@"select * from vwRestaurantSimpleInfo 
-                            where ""No"" in (select restaurant_id
+                            where ""NO"" in (select restaurant_id
                                              from vwRestaurantInfo
                                              where category_id in ('{categoryId}')
-                                                and recent between '{start}' and '{end}'
+                                                and recent between '{start}' and to_date('{end} 23:59:59', 'YYYY-MM-DD hh24:mi:ss')
                                                 and restaurant_id in (select restaurant_id
                                                                       from restaurant_adoption
                                                                       where user_id in (select user_id

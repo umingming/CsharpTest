@@ -48,7 +48,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label1.Location = new System.Drawing.Point(48, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 25);
+            this.label1.Size = new System.Drawing.Size(79, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "식당명";
             // 
@@ -59,7 +59,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label2.Location = new System.Drawing.Point(48, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 25);
+            this.label2.Size = new System.Drawing.Size(101, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "카테고리";
             // 
@@ -70,7 +70,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label3.Location = new System.Drawing.Point(48, 166);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 25);
+            this.label3.Size = new System.Drawing.Size(107, 30);
             this.label3.TabIndex = 2;
             this.label3.Text = "추천 메뉴";
             // 
@@ -82,7 +82,7 @@
             this.txtName.Location = new System.Drawing.Point(175, 54);
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(223, 26);
+            this.txtName.Size = new System.Drawing.Size(223, 32);
             this.txtName.TabIndex = 0;
             // 
             // label4
@@ -102,7 +102,7 @@
             this.txtSignature.Location = new System.Drawing.Point(175, 167);
             this.txtSignature.Margin = new System.Windows.Forms.Padding(0);
             this.txtSignature.Name = "txtSignature";
-            this.txtSignature.Size = new System.Drawing.Size(223, 26);
+            this.txtSignature.Size = new System.Drawing.Size(223, 32);
             this.txtSignature.TabIndex = 2;
             this.txtSignature.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddByEnterKeyDown);
             // 
@@ -123,7 +123,7 @@
             this.cmbCategory.Location = new System.Drawing.Point(163, 107);
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(10);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(244, 34);
+            this.cmbCategory.Size = new System.Drawing.Size(244, 39);
             this.cmbCategory.TabIndex = 1;
             this.cmbCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InvalidateInput);
             // 
@@ -175,8 +175,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.AddForm_Load);
             this.ResumeLayout(false);

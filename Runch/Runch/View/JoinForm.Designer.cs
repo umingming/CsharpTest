@@ -89,7 +89,7 @@
             this.cmbGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Location = new System.Drawing.Point(48, 336);
-            this.cmbGroup.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.cmbGroup.Margin = new System.Windows.Forms.Padding(10);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(342, 34);
             this.cmbGroup.TabIndex = 4;
@@ -181,11 +181,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnIdUnChecked);
             this.Controls.Add(this.btnIdChecked);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "JoinForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aim Systems";
+            this.Text = "Run for lunch";
             this.Load += new System.EventHandler(this.InitCmb);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -79,6 +79,13 @@ namespace Runch.View
             Restaurant restaurant = new Restaurant();
             restaurant.InitRecommendList();
 
+            restaurant = restaurant.Recommend();
+            if (restaurant == null)
+            {
+                box.DisplaySimpleInfo("추천 가능한 식당이 존재하지 않습니다.");
+                return;
+            }
+
             this.Visible = false;
             new RecommendForm(restaurant).ShowDialog();
         }

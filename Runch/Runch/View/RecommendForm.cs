@@ -19,7 +19,6 @@ namespace Runch.View
     public partial class RecommendForm : Form
     {
         Restaurant restaurant;
-        Restaurant recommend;
         Notification box;
 
         public RecommendForm(Restaurant restaurant)
@@ -36,11 +35,10 @@ namespace Runch.View
          */
         private void RecommendLunch(object sender, EventArgs e)
         {
-            recommend = restaurant.Recommend();
-            txtName.Text = recommend.name;
-            txtCategory.Text += recommend.category;
-            txtSignature.Text = recommend.signature;
-            txtAdoption.Text = recommend.cntAdoption.ToString();
+            txtName.Text = restaurant.name;
+            txtCategory.Text += restaurant.category;
+            txtSignature.Text = restaurant.signature;
+            txtAdoption.Text = restaurant.cntAdoption.ToString();
         }
 
         /*
@@ -60,9 +58,9 @@ namespace Runch.View
          */
         private void AdoptRestaurant(object sender, EventArgs e)
         {
-            recommend.Adopt();
+            restaurant.Adopt();
             this.Visible = false;
-            new AdoptionForm(recommend).ShowDialog();
+            new AdoptionForm(restaurant).ShowDialog();
         }
 
         /*

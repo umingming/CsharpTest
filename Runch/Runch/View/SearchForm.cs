@@ -70,7 +70,7 @@ namespace Runch.View
             }
             Restaurant restaurant = new Restaurant();
             restaurant.start = dtpStart.Value.ToString().Substring(0, dtpStart.Value.ToString().IndexOf(" ")) + "";
-            restaurant.end = dtpEnd.Value.ToString().Substring(0, dtpEnd.Value.ToString().IndexOf(" ") - 1) + "1";
+            restaurant.end = dtpEnd.Value.ToString().Substring(0, dtpEnd.Value.ToString().IndexOf(" ")) + "";
             restaurant.categoryId = Int32.Parse(cmbCategory.SelectedValue.ToString());
             restaurant.userName = txtName.Text;
 
@@ -83,6 +83,7 @@ namespace Runch.View
          */
         private void btnClose_Click(object sender, EventArgs e)
         {
+            new ListForm().Show();
             this.Visible = false;
         }
 

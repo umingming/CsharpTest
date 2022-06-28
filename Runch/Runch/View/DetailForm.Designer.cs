@@ -287,9 +287,9 @@
             this.Controls.Add(this.btnUnblock);
             this.Controls.Add(this.btnBlockTxt);
             this.Controls.Add(this.btnDelete);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DetailForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.DetailForm_Load);
             this.ResumeLayout(false);
